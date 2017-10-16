@@ -1,6 +1,6 @@
 .table-btn {
-  min-width: 34px;
-  min-height: 34px;
+  min-width: 46px;
+  min-height: 46px;
 }
 
 .table > thead > tr > th,
@@ -11,4 +11,6 @@
 .table > tfoot > tr > td {
   border-top: none;
   text-align: center;
+  width: 46px;
+  padding: 3px;
 }

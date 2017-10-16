@@ -9,7 +9,7 @@ const Dashboard = createDashboard();
 
 const EditDistance = ({ table, buttons }) => (
   <div align="center">
-    <PageHeader>Edit Distance<small> Dynamic Programming</small></PageHeader>
+    <PageHeader>Edit Distance<small></small></PageHeader>
     <Dashboard />
     <Table />
     <Buttons />

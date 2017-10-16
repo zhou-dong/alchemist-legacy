@@ -1,7 +1,13 @@
 // @flow
 
 import React from "react";
-import { InputGroup, FormGroup, Glyphicon, ProgressBar } from "react-bootstrap";
+import {
+  ProgressBar,
+  Grid,
+  Row,
+  Col,
+  Button
+} from "react-bootstrap";
 import "./dashboard.css";
 
 type Props = {
@@ -13,21 +19,20 @@ type Props = {
 export default function(props: Props) {
   return (
     <form>
-      <FormGroup controlId="formValidation2" validationState="success">
-        <InputGroup>
-          <InputGroup.Addon>STEPS</InputGroup.Addon>
-          <InputGroup.Addon>{props.steps}</InputGroup.Addon>
-          <InputGroup.Addon>
-            <Glyphicon glyph="circle-arrow-up" />
-          </InputGroup.Addon>
-        </InputGroup>
-      </FormGroup>
-
-      <ProgressBar
-        bsStyle="success"
-        now={props.currentScore / props.totalScore * 100}
-        label={`${props.currentScore}`}
-      />
+      <Grid>
+        <Row className="show-grid">
+          <Col xs={8} sm={10}>
+            <ProgressBar
+              bsStyle="success"
+              now={props.currentScore / props.totalScore * 100}
+              label={`${props.currentScore}`}
+            />
+          </Col>
+          <Col xs={4} sm={2}>
+              <Button>STEPS: {props.steps}</Button>
+          </Col>
+        </Row>
+      </Grid>
     </form>
   );
 }

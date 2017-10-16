@@ -10,7 +10,11 @@ export default function(props: Props) {
     <ButtonGroup>
       {props.buttons.map((value, index) => {
         return (
-          <Button key={index} onClick={() => props.onClick(value)}>
+          <Button
+            bsSize="large"
+            key={index}
+            onClick={() => props.onClick(value)}
+          >
             {value}
           </Button>
         );

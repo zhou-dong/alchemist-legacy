@@ -12,7 +12,7 @@ const Row = (props: rowProps) => (
     {props.row.map((item, index) => {
       return (
         <td key={index}>
-          <Button className="table-btn" bsStyle={props.styles[index]}>
+          <Button className="table-btn" bsStyle={props.styles[index]} bsSize="large">
             {item}
           </Button>
         </td>

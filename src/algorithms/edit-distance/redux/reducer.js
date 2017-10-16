@@ -7,10 +7,11 @@ import { longestString } from "../../../utils/generic-helper";
 import { createDpTable as comparedTable, createStyleTable } from "../algorithm";
 
 import {
-  defaultStyle,
-  goingStyle,
-  successStyle,
-  errorStyle
+  DEFAULT_STYLE,
+  ON_GOING_STYLE,
+  SUCCESS_STYLE,
+  ERROR_STYLE,
+  INDICATE_STYLE
 } from "./constants";
 
 const wordOne = "abcde";
@@ -21,10 +22,14 @@ const buttons = () => {
   return Array.from(Array(longer.length + 1).keys());
 };
 
+const styles: Array<Array<string>> = createStyleTable(wordOne, wordTwo, DEFAULT_STYLE, ON_GOING_STYLE)
+styles[1][0] = INDICATE_STYLE;
+styles[0][1] = INDICATE_STYLE;
+
 const initialState = {
   table: createDPTable(wordOne, wordTwo),
   compared: comparedTable(wordOne, wordTwo),
-  styles: createStyleTable(wordOne, wordTwo, defaultStyle, goingStyle),
+  styles: styles,
   buttons: buttons(),
   row: 1,
   col: 1
@@ -55,17 +60,32 @@ const updateTable = (state: State, action: Action): State => {
 
   if (compared[row - 1][col - 1] === action.value) {
     table[row][col] = action.value;
-    styles[row][col] = successStyle;
+    styles[row][col] = SUCCESS_STYLE;
 
     if (!isSuccess(table, row, col)) {
       if (isEndOfRow(table, row, col)) {
         const nextRow = row + 1;
         const nextCol = 1;
-        styles[nextRow][nextCol] = goingStyle;
+
+        styles[nextRow][nextCol] = ON_GOING_STYLE;
+
+        // update row indicate style
+        styles[row][0] = DEFAULT_STYLE;
+        styles[nextRow][0] = INDICATE_STYLE;
+
+        // update col indicate style
+        styles[0][col] = DEFAULT_STYLE;
+        styles[0][1] = INDICATE_STYLE;
+
         return { ...state, table: table, row: nextRow, col: nextCol, styles };
       } else {
         const nextCol = col + 1;
-        styles[row][nextCol] = goingStyle;
+        styles[row][nextCol] = ON_GOING_STYLE;
+
+        // update col indicate style
+        styles[0][col] = DEFAULT_STYLE;
+        styles[0][nextCol] = INDICATE_STYLE;
+
         return { ...state, table: table, col: nextCol, styles };
       }
     } else {
@@ -73,10 +93,9 @@ const updateTable = (state: State, action: Action): State => {
       return { ...state, table: table };
     }
   } else {
-    styles[row][col] = errorStyle;
+    styles[row][col] = ERROR_STYLE;
     return { ...state, table, styles };
   }
-
 };
 
 export default function(state: State = initialState, action: Action): State {

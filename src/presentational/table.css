@@ -10,4 +10,5 @@
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   border-top: none;
+  text-align: center;
 }

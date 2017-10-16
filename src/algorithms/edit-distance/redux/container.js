@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 
 import Table from "presentational/table";
 import Buttons from "presentational/button-group";
+import Dashboard from "presentational/dashboard";
 
 import { buttonClick } from "./actions";
 
@@ -34,4 +35,20 @@ export function createButtons() {
   };
 
   return connect(mapStateToProps, mapDispatchToProps)(Buttons);
+}
+
+export function createDashboard() {
+  const mapStateToProps = (state, ownProps) => {
+    return {
+      ...state,
+      totalScore: state.editDistanceReducer.totalScore,
+      currentScore: state.editDistanceReducer.currentScore,
+      steps: state.editDistanceReducer.steps
+    };
+  };
+
+  const mapDispatchToProps = dispatch => {
+    return {};
+  };
+  return connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 }

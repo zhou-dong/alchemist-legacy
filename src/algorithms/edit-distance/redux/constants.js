@@ -11,10 +11,13 @@ export const INDICATE_STYLE: string = "warning";
 export type State = {
   table: Array<Array<string | number>>,
   styles: Array<Array<string>>,
-  +compared: Array<Array<number>>,
+  compared: Array<Array<number>>,
   buttons: Array<number>,
   row: number,
-  col: number
+  col: number,
+  totalScore: number,
+  currentScore: number,
+  steps: number,
 };
 
 export type Action = { type: string, value: number };

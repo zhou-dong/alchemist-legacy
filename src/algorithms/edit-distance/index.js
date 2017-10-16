@@ -1,14 +1,18 @@
 import React from "react";
 
-import { createTable, createButtons } from "./redux/container";
+import { createTable, createButtons, createDashboard } from "./redux/container";
+import {PageHeader} from 'react-bootstrap';
 
-const EditDistanceTable = createTable();
-const EditDistanceButtons = createButtons();
+const Table = createTable();
+const Buttons = createButtons();
+const Dashboard = createDashboard();
 
 const EditDistance = ({ table, buttons }) => (
   <div align="center">
-    <EditDistanceTable />
-    <EditDistanceButtons />
+    <PageHeader>Edit Distance<small> Dynamic Programming</small></PageHeader>
+    <Dashboard />
+    <Table />
+    <Buttons />
   </div>
 );
 

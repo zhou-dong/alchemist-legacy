@@ -17,8 +17,10 @@ import {
 const wordOne = "abcde";
 const wordTwo = "abgfe";
 
+const longerStr: string = longestString(wordOne, wordTwo);
+
 const buttons = () => {
-  const longer: string = longestString(wordOne, wordTwo);
+  const longer: string = longerStr;
   return Array.from(Array(longer.length + 1).keys());
 };
 
@@ -32,7 +34,10 @@ const initialState = {
   styles: styles,
   buttons: buttons(),
   row: 1,
-  col: 1
+  col: 1,
+  totalScore: longerStr.length,
+  currentScore: longerStr.length,
+  steps: 0,
 };
 
 const isSuccess = (
@@ -52,6 +57,9 @@ const isEndOfRow = (
 };
 
 const updateTable = (state: State, action: Action): State => {
+
+  state.steps  += 1;
+
   const table = state.table;
   const compared = state.compared;
   const styles = state.styles;
@@ -94,6 +102,7 @@ const updateTable = (state: State, action: Action): State => {
     }
   } else {
     styles[row][col] = ERROR_STYLE;
+    state.currentScore -= 1;
     return { ...state, table, styles };
   }
 };

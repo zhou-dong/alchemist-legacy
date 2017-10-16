@@ -21,15 +21,15 @@ export default function(props: Props) {
     <form>
       <Grid>
         <Row className="show-grid">
-          <Col xs={8} sm={10}>
+          <Col xs={9} md={10}>
             <ProgressBar
               bsStyle="success"
               now={props.currentScore / props.totalScore * 100}
               label={`${props.currentScore}`}
             />
           </Col>
-          <Col xs={4} sm={2}>
-              <Button>STEPS: {props.steps}</Button>
+          <Col xs={3} md={2}>
+              <Button bsSize="xsmall">STEPS: {props.steps}</Button>
           </Col>
         </Row>
       </Grid>

@@ -24,7 +24,12 @@ const buttons = () => {
   return Array.from(Array(longer.length + 1).keys());
 };
 
-const styles: Array<Array<string>> = createStyleTable(wordOne, wordTwo, DEFAULT_STYLE, ON_GOING_STYLE)
+const styles: Array<Array<string>> = createStyleTable(
+  wordOne,
+  wordTwo,
+  DEFAULT_STYLE,
+  ON_GOING_STYLE
+);
 styles[1][0] = INDICATE_STYLE;
 styles[0][1] = INDICATE_STYLE;
 
@@ -37,7 +42,7 @@ const initialState = {
   col: 1,
   totalScore: longerStr.length,
   currentScore: longerStr.length,
-  steps: 0,
+  steps: 0
 };
 
 const isSuccess = (
@@ -57,8 +62,7 @@ const isEndOfRow = (
 };
 
 const updateTable = (state: State, action: Action): State => {
-
-  state.steps  += 1;
+  state.steps += 1;
 
   const table = state.table;
   const compared = state.compared;
@@ -107,11 +111,11 @@ const updateTable = (state: State, action: Action): State => {
   }
 };
 
-export default function(state: State = initialState, action: Action): State {
+export default (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case EDIT_DISTANCE_BUTTON_CLICK:
       return updateTable(state, action);
     default:
       return state;
   }
-}
+};

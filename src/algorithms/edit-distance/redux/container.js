@@ -6,7 +6,7 @@ import Dashboard from "presentational/dashboard";
 
 import { buttonClick } from "./actions";
 
-export function createTable() {
+export const createTable = () => {
   const mapStateToProps = (state, ownProps) => {
     return {
       ...state,
@@ -14,18 +14,14 @@ export function createTable() {
       styles: state.editDistanceReducer.styles
     };
   };
-
-  const mapDispatchToProps = dispatch => {
-    return {};
-  };
+  const mapDispatchToProps = dispatch => {};
   return connect(mapStateToProps, mapDispatchToProps)(Table);
-}
+};
 
-export function createButtons() {
+export const createButtons = () => {
   const mapStateToProps = (state, ownProps) => {
     return { ...state, buttons: state.editDistanceReducer.buttons };
   };
-
   const mapDispatchToProps = dispatch => {
     return {
       onClick: buttonValue => {
@@ -33,11 +29,10 @@ export function createButtons() {
       }
     };
   };
-
   return connect(mapStateToProps, mapDispatchToProps)(Buttons);
-}
+};
 
-export function createDashboard() {
+export const createDashboard = () => {
   const mapStateToProps = (state, ownProps) => {
     return {
       ...state,
@@ -46,9 +41,6 @@ export function createDashboard() {
       steps: state.editDistanceReducer.steps
     };
   };
-
-  const mapDispatchToProps = dispatch => {
-    return {};
-  };
+  const mapDispatchToProps = dispatch => {};
   return connect(mapStateToProps, mapDispatchToProps)(Dashboard);
-}
+};

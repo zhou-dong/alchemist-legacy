@@ -8,7 +8,7 @@ import {
   Col,
   Button
 } from "react-bootstrap";
-import "./dashboard.css";
+import "./css/dashboard.css";
 
 type Props = {
   totalScore: number,

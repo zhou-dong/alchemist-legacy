@@ -3,7 +3,7 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 
-import "./table.css";
+import "./css/table.css";
 
 type rowProps = { row: Array<string | number>, styles: Array<string> };
 

@@ -105,8 +105,8 @@ const fruits = [
 ];
 
 const randomInt = max => Math.floor(Math.random() * max);
-const randomFruit = () => fruits[randomInt(fruits.length)];
-const randomDay = () => days[randomInt(days.length)];
+const randomFruit = () => fruits[randomInt(fruits.length)].toLowerCase();
+const randomDay = () => days[randomInt(days.length)].toLowerCase();
 const result = (word1, word2) => ({ word1: word1, word2: word2 });
 const randomDays = () => result(randomDay(), randomDay());
 const randomFruits = () => result(randomFruit(), randomFruit());

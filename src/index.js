@@ -4,14 +4,16 @@ import "index.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
-import rootReducer from "reducers";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
 
+import rootReducer from "reducers";
 import registerServiceWorker from "./registerServiceWorker";
 import EditDistance from "algorithms/edit-distance";
 
-const store = createStore(rootReducer);
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 ReactDOM.render(
   <Provider store={store}>

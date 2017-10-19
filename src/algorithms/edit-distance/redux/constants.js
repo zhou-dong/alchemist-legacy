@@ -17,7 +17,10 @@ export type State = {
   col: number,
   totalScore: number,
   currentScore: number,
-  steps: number,
+  steps: number
 };
 
-export type Action = { type: string, value: number };
+export type Action = {
+  type: string,
+  value: number
+};

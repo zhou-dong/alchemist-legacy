@@ -1,16 +1,17 @@
 import React from "react";
 
 import { createTable, createButtons, createDashboard } from "./redux/container";
-import {PageHeader} from 'react-bootstrap';
+
+import Header from "presentational/Header";
 
 const Table = createTable();
 const Buttons = createButtons();
 const Dashboard = createDashboard();
 
-const EditDistance = ({ table, buttons }) => (
+const EditDistance = () => (
   <div align="center">
-    <PageHeader>Edit Distance<small></small></PageHeader>
-    <Dashboard />
+    <Header title="Edit Distance" />
+     <Dashboard />
     <Table />
     <Buttons />
   </div>

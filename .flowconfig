@@ -7,3 +7,6 @@
 [lints]
 
 [options]
+
+module.name_mapper='^presentational\(.*\)$' -> '<PROJECT_ROOT>/src/presentational/\1'
+module.name_mapper='^utils\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'

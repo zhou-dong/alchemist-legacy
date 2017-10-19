@@ -1,10 +1,9 @@
 // @flow
 
-import { createDPTable } from "../../../utils/dp-helper";
 import type { State, Action } from "./constants";
 import { EDIT_DISTANCE_BUTTON_CLICK } from "./constants";
-import { longestString } from "../../../utils/generic-helper";
-import { createDpTable as comparedTable, createStyleTable } from "../algorithm";
+import { createInitialState } from '../helper';
+import getData from "utils/data";
 
 import {
   DEFAULT_STYLE,
@@ -13,37 +12,6 @@ import {
   ERROR_STYLE,
   INDICATE_STYLE
 } from "./constants";
-
-const wordOne = "abcde";
-const wordTwo = "abgfe";
-
-const longerStr: string = longestString(wordOne, wordTwo);
-
-const buttons = () => {
-  const longer: string = longerStr;
-  return Array.from(Array(longer.length + 1).keys());
-};
-
-const styles: Array<Array<string>> = createStyleTable(
-  wordOne,
-  wordTwo,
-  DEFAULT_STYLE,
-  ON_GOING_STYLE
-);
-styles[1][0] = INDICATE_STYLE;
-styles[0][1] = INDICATE_STYLE;
-
-const initialState = {
-  table: createDPTable(wordOne, wordTwo),
-  compared: comparedTable(wordOne, wordTwo),
-  styles: styles,
-  buttons: buttons(),
-  row: 1,
-  col: 1,
-  totalScore: longerStr.length,
-  currentScore: longerStr.length,
-  steps: 0
-};
 
 const isSuccess = (
   table: Array<Array<string | number>>,
@@ -110,6 +78,9 @@ const updateTable = (state: State, action: Action): State => {
     return { ...state, table, styles };
   }
 };
+
+const pair = getData();
+const initialState = createInitialState(pair.word1, pair.word2);
 
 export default (state: State = initialState, action: Action): State => {
   switch (action.type) {

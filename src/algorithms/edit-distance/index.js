@@ -1,7 +1,6 @@
 import React from "react";
 
 import { createTable, createButtons, createDashboard } from "./redux/container";
-
 import Header from "presentational/Header";
 
 const Table = createTable();
@@ -11,7 +10,7 @@ const Dashboard = createDashboard();
 const EditDistance = () => (
   <div align="center">
     <Header title="Edit Distance" />
-     <Dashboard />
+    <Dashboard />
     <Table />
     <Buttons />
   </div>

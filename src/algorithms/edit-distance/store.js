@@ -34,7 +34,7 @@ const initialState = {
   buttons: buttons(),
   row: 1,
   col: 1,
-  totalScore: longerStr.length,
-  currentScore: longerStr.length,
+  score: longerStr.length,
+  errors: 0,
   steps: 0
 };

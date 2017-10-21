@@ -33,8 +33,8 @@ export const createInitialState = (wordOne: string, wordTwo: string) => {
     buttons: buttons(),
     row: 1,
     col: 1,
-    totalScore: longerStr.length,
-    currentScore: longerStr.length,
-    steps: 0
+    score: longerStr.length,
+    steps: 0,
+    errors: 0
   };
 };

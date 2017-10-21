@@ -1,7 +1,6 @@
 // @flow
 
 import React from "react";
-import { PageHeader } from "react-bootstrap";
 
 export type Props = {
   title: string,
@@ -9,8 +8,13 @@ export type Props = {
 };
 
 export default (props: Props) => (
-  <PageHeader>
-    {props.title}
-    <small>{props.subTitle}</small>
-  </PageHeader>
+  <div>
+    <header>
+      <h1>
+        {props.title}
+        <small>{props.subTitle}</small>
+      </h1>
+    </header>
+    <hr />
+  </div>
 );

@@ -1,16 +1,86 @@
-.table-btn {
-  min-width: 46px;
-  min-height: 46px;
+html,
+body,
+table {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
-  border-top: none;
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+  border: 1px solid #000;
+  width: 1%;
+  white-space: nowrap;
   text-align: center;
-  width: 46px;
-  padding: 3px;
+}
+
+table > thead > tr > th > div,
+table > tbody > tr > th > div,
+table > tfoot > tr > th > div,
+table > thead > tr > td > div,
+table > tbody > tr > td > div,
+table > tfoot > tr > td > div {
+  min-height: 2em;
+  text-align: center;
+  line-height: 2em;
+}
+
+table > thead > tr > th > button,
+table > tbody > tr > th > button,
+table > tfoot > tr > th > button,
+table > thead > tr > td > button,
+table > tbody > tr > td > button,
+table > tfoot > tr > td > button {
+  min-height: 2em;
+  min-width: 2em;
+  width: 100%;
+  text-align: center;
+  line-height: 2em;
+  border: none;
+  background-color: yellow;
+}
+
+table {
+  margin-bottom: 1em;
+}
+
+.info {
+  background-color: blue;
+  color: white;
+}
+
+.default {
+}
+
+.success {
+  background-color: green;
+  color: white;
+}
+
+.danger {
+  background-color: red;
+  color: white;
+}
+
+.warning {
+  background-color: brown;
+  color: white;
+}
+
+ul {
+  padding: 0;
+  padding-bottom: 1em;
+}
+
+ul > li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+  padding-right: 3em;
 }

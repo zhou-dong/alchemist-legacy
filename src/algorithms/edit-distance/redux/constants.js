@@ -15,8 +15,8 @@ export type State = {
   buttons: Array<number>,
   row: number,
   col: number,
-  totalScore: number,
-  currentScore: number,
+  score: number,
+  errors: number,
   steps: number
 };
 

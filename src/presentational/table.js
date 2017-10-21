@@ -1,7 +1,6 @@
 // @flow
 
 import React from "react";
-import { Table, Button } from "react-bootstrap";
 
 import "./css/table.css";
 
@@ -15,13 +14,7 @@ const Row = (props: rowProps) => (
     {props.row.map((item, index) => {
       return (
         <td key={index}>
-          <Button
-            className="table-btn"
-            bsStyle={props.styles[index]}
-            bsSize="large"
-          >
-            {item}
-          </Button>
+          <div className={props.styles[index]}>{item}</div>
         </td>
       );
     })}
@@ -34,11 +27,11 @@ export type tableProps = {
 };
 
 export default (props: tableProps) => (
-  <Table bordered={false} condensed={false}>
+  <table>
     <tbody>
       {props.table.map((row, index) => {
         return <Row key={index} row={row} styles={props.styles[index]} />;
       })}
     </tbody>
-  </Table>
+  </table>
 );

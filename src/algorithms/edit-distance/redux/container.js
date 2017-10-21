@@ -36,8 +36,8 @@ export const createButtons = () => {
 export const createDashboard = () => {
   const mapStateToProps = (state, ownProps) => ({
     ...state,
-    totalScore: state.editDistanceReducer.totalScore,
-    currentScore: state.editDistanceReducer.currentScore,
+    score: state.editDistanceReducer.score,
+    errors: state.editDistanceReducer.errors,
     steps: state.editDistanceReducer.steps
   });
   const mapDispatchToProps = dispatch => ({});

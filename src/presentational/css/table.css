@@ -9,7 +9,8 @@ table {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.9em;
+  font-weight: normal;
 }
 
 table > thead > tr > th,

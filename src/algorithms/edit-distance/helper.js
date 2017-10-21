@@ -7,7 +7,8 @@ import { createDpTable as comparedTable, createStyleTable } from "./algorithm";
 import {
   DEFAULT_STYLE,
   ON_GOING_STYLE,
-  INDICATE_STYLE
+  INDICATE_STYLE,
+  DISABLE_TABLE_BUTTON
 } from "./redux/constants";
 
 const createStyles = (wordOne, wordTwo): Array<Array<string>> => {
@@ -15,7 +16,8 @@ const createStyles = (wordOne, wordTwo): Array<Array<string>> => {
     wordTwo,
     wordOne,
     DEFAULT_STYLE,
-    ON_GOING_STYLE
+    ON_GOING_STYLE,
+    DISABLE_TABLE_BUTTON
   );
   result[1][0] = INDICATE_STYLE;
   result[0][1] = INDICATE_STYLE;

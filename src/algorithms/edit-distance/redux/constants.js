@@ -8,6 +8,8 @@ export const SUCCESS_STYLE: string = "success";
 export const ERROR_STYLE: string = "danger";
 export const INDICATE_STYLE: string = "warning";
 
+export const DISABLE_TABLE_BUTTON: string = "DISABLE_TABLE_BUTTON";
+
 export type State = {
   table: Array<Array<string | number>>,
   styles: Array<Array<string>>,

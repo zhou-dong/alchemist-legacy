@@ -5,6 +5,11 @@ table {
   width: 100%;
   padding: 0;
   margin: 0;
+  font-family: Raleway;
+}
+
+h1 {
+  font-size: 2em;
 }
 
 table > thead > tr > th,
@@ -37,7 +42,6 @@ table > thead > tr > td > button,
 table > tbody > tr > td > button,
 table > tfoot > tr > td > button {
   min-height: 2em;
-  min-width: 2em;
   width: 100%;
   text-align: center;
   line-height: 2em;
@@ -72,9 +76,13 @@ table {
   color: white;
 }
 
+.DISABLE_TABLE_BUTTON {
+  background-color: orange;
+  color: black;
+}
 ul {
   padding: 0;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
 }
 
 ul > li {
@@ -82,5 +90,11 @@ ul > li {
   margin: 0;
   padding: 0;
   float: left;
-  padding-right: 3em;
+  padding-right: 2em;
+  font-size: 1.3em;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

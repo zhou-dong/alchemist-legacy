@@ -6,11 +6,11 @@ import { createInitialState } from "../helper";
 import getData from "utils/data";
 
 import {
-  DEFAULT_STYLE,
   ON_GOING_STYLE,
   SUCCESS_STYLE,
   ERROR_STYLE,
-  INDICATE_STYLE
+  INDICATE_STYLE,
+  DISABLE_TABLE_BUTTON
 } from "./constants";
 
 const isSuccess = (
@@ -42,10 +42,10 @@ const updateSytles = (
 ): Array<Array<string>> => {
   styles[nextRow][nextCol] = ON_GOING_STYLE;
   // update col indicate style
-  styles[0][col] = DEFAULT_STYLE;
+  styles[0][col] = DISABLE_TABLE_BUTTON;
   styles[0][nextCol] = INDICATE_STYLE;
   // update row indicate style
-  styles[row][0] = DEFAULT_STYLE;
+  styles[row][0] = DISABLE_TABLE_BUTTON;
   styles[nextRow][0] = INDICATE_STYLE;
   return styles;
 };

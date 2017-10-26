@@ -1,6 +1,8 @@
 // @flow
 
 export const EDIT_DISTANCE_BUTTON_CLICK: string = "EDIT_DISTANCE_BUTTON_CLICK";
+export const CLOSE_MODAL_CLICK: string = "CLOSE_MODAL_CLICK";
+export const OPEN_MODAL_CLICK: string = "OPEN_MODAL_CLICK";
 
 export const DEFAULT_STYLE: string = "default";
 export const ON_GOING_STYLE: string = "info";

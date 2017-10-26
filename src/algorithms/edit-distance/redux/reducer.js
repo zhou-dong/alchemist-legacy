@@ -1,7 +1,11 @@
 // @flow
 
 import type { State, Action } from "./constants";
-import { EDIT_DISTANCE_BUTTON_CLICK } from "./constants";
+import {
+  EDIT_DISTANCE_BUTTON_CLICK,
+  CLOSE_MODAL_CLICK,
+  OPEN_MODAL_CLICK
+} from "./constants";
 import { createInitialState } from "../helper";
 import getData from "utils/data";
 
@@ -106,6 +110,11 @@ export default (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case EDIT_DISTANCE_BUTTON_CLICK:
       return updateTable(state, action);
+    case CLOSE_MODAL_CLICK:
+      return { ...state, showModal: false };
+    case OPEN_MODAL_CLICK:
+      console.log("jiu shi zhe ge yang zi");
+      return { ...state, showModal: true };
     default:
       return state;
   }

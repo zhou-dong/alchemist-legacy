@@ -113,7 +113,6 @@ export default (state: State = initialState, action: Action): State => {
     case CLOSE_MODAL_CLICK:
       return { ...state, showModal: false };
     case OPEN_MODAL_CLICK:
-      console.log("jiu shi zhe ge yang zi");
       return { ...state, showModal: true };
     default:
       return state;

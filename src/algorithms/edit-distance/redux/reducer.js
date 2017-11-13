@@ -10,12 +10,12 @@ import { createInitialState } from "../helper";
 import getData from "utils/data";
 
 import {
-  ON_GOING_STYLE,
-  SUCCESS_STYLE,
-  ERROR_STYLE,
-  INDICATE_STYLE,
-  DISABLE_TABLE_BUTTON
-} from "./constants";
+  TABLE_ELEMENT_ON_GOING_STYLE,
+  TABLE_ELEMENT_SUCCESS_STYLE,
+  TABLE_ELEMENT_ERROR_STYLE,
+  TABLE_ELEMENT_INDICATE_STYLE,
+  TABLE_ELEMENT_DISABLE_STYLE
+} from "presentational/constants";
 
 const isSuccess = (
   table: Array<Array<string | number>>,
@@ -44,13 +44,13 @@ const updateSytles = (
   nextRow: number,
   nextCol: number
 ): Array<Array<string>> => {
-  styles[nextRow][nextCol] = ON_GOING_STYLE;
+  styles[nextRow][nextCol] = TABLE_ELEMENT_ON_GOING_STYLE;
   // update col indicate style
-  styles[0][col] = DISABLE_TABLE_BUTTON;
-  styles[0][nextCol] = INDICATE_STYLE;
+  styles[0][col] = TABLE_ELEMENT_DISABLE_STYLE;
+  styles[0][nextCol] = TABLE_ELEMENT_INDICATE_STYLE;
   // update row indicate style
-  styles[row][0] = DISABLE_TABLE_BUTTON;
-  styles[nextRow][0] = INDICATE_STYLE;
+  styles[row][0] = TABLE_ELEMENT_DISABLE_STYLE;
+  styles[nextRow][0] = TABLE_ELEMENT_INDICATE_STYLE;
   return styles;
 };
 
@@ -66,14 +66,14 @@ const updateTable = (state: State, action: Action): State => {
   let nextCol = col;
 
   if (compared[row - 1][col - 1] !== action.value) {
-    styles[row][col] = ERROR_STYLE;
+    styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
     state.score = state.score === 0 ? 0 : state.score - 1;
     state.errors += 1;
     return { ...state, table, styles };
   }
 
   table[row][col] = action.value;
-  styles[row][col] = SUCCESS_STYLE;
+  styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(table, row, col)) {
     console.log("success");

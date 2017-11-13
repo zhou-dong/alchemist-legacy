@@ -8,13 +8,14 @@ export default (props: Props) => (
   <table>
     <tbody>
       <tr>
-        {props.buttons.map((value, index) => {
-          return (
-            <td key={index}>
-              <button onClick={() => props.onClick(value)}>{value}</button>
-            </td>
-          );
-        })}
+        {props.buttons &&
+          props.buttons.map((value, index) => {
+            return (
+              <td key={index}>
+                <button onClick={() => props.onClick(value)}>{value}</button>
+              </td>
+            );
+          })}
       </tr>
     </tbody>
   </table>

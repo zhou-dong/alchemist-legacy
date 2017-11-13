@@ -54,33 +54,34 @@ table {
   margin-bottom: 1em;
 }
 
-.info {
+.TABLE_ELEMENT_ON_GOING_STYLE {
   background-color: lightblue;
   color: white;
 }
 
-.default {
+.TABLE_ELEMENT_DEFAULT_STYLE {
 }
 
-.success {
+.TABLE_ELEMENT_SUCCESS_STYLE {
   background-color: green;
   color: white;
 }
 
-.danger {
+.TABLE_ELEMENT_ERROR_STYLE {
   background-color: red;
   color: white;
 }
 
-.warning {
+.TABLE_ELEMENT_INDICATE_STYLE {
   background-color: brown;
   color: white;
 }
 
-.DISABLE_TABLE_BUTTON {
+.TABLE_ELEMENT_DISABLE_STYLE {
   background-color: orange;
   color: black;
 }
+
 ul {
   padding: 0;
   padding-bottom: 2em;

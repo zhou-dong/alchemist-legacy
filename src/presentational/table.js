@@ -29,9 +29,10 @@ export type tableProps = {
 export default (props: tableProps) => (
   <table>
     <tbody>
-      {props.table.map((row, index) => {
-        return <Row key={index} row={row} styles={props.styles[index]} />;
-      })}
+      {props.table &&
+        props.table.map((row, index) => {
+          return <Row key={index} row={row} styles={props.styles[index]} />;
+        })}
     </tbody>
   </table>
 );

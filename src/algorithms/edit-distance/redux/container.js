@@ -16,8 +16,7 @@ export const createTable = () => {
     table: state.editDistanceReducer.table,
     styles: state.editDistanceReducer.styles
   });
-  const mapDispatchToProps = dispatch => ({});
-  return connect(mapStateToProps, mapDispatchToProps)(Table);
+  return connect(mapStateToProps, {})(Table);
 };
 
 export const createButtons = () => {
@@ -25,13 +24,11 @@ export const createButtons = () => {
     ...state,
     buttons: state.editDistanceReducer.buttons
   });
-  const mapDispatchToProps = dispatch => {
-    return {
-      onClick: buttonValue => {
-        dispatch(buttonClick(buttonValue));
-      }
-    };
-  };
+  const mapDispatchToProps = dispatch => ({
+    onClick: buttonValue => {
+      dispatch(buttonClick(buttonValue));
+    }
+  });
   return connect(mapStateToProps, mapDispatchToProps)(Buttons);
 };
 
@@ -42,8 +39,7 @@ export const createDashboard = () => {
     errors: state.editDistanceReducer.errors,
     steps: state.editDistanceReducer.steps
   });
-  const mapDispatchToProps = dispatch => ({});
-  return connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+  return connect(mapStateToProps, {})(Dashboard);
 };
 
 export const createModal = () => {

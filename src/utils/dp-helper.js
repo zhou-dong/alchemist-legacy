@@ -4,7 +4,8 @@ import {
   TABLE_ELEMENT_DEFAULT_STYLE,
   TABLE_ELEMENT_ON_GOING_STYLE,
   TABLE_ELEMENT_DISABLE_STYLE,
-  TABLE_ELEMENT_INDICATE_STYLE
+  TABLE_ELEMENT_INDICATE_STYLE,
+  TABLE_ELEMENT_HELPER_STYLE
 } from "presentational/constants";
 
 export const createDPTableWithoutIndicator = (
@@ -142,15 +143,15 @@ export const createStyleTableWithIndicator = (
     if (table.length < 2) {
       return;
     }
-    for (let col = 0; col < table[0].length; col += 1) {
-      table[1][col] = TABLE_ELEMENT_DISABLE_STYLE;
+    for (let col = 1; col < table[0].length; col += 1) {
+      table[1][col] = TABLE_ELEMENT_HELPER_STYLE;
     }
   };
 
   const updateSecondColWithDisableStyle = (): void => {
     for (let row = 2; row < table.length; row += 1) {
       if (table[row].length > 1) {
-        table[row][1] = TABLE_ELEMENT_DISABLE_STYLE;
+        table[row][1] = TABLE_ELEMENT_HELPER_STYLE;
       }
     }
   };

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-type Props = { buttons: Array<number>, onClick: Function };
+type Props = { buttons: Array<number | string>, onClick: Function };
 
 export default (props: Props) => (
   <table>

@@ -82,6 +82,11 @@ table {
   color: black;
 }
 
+.TABLE_ELEMENT_HELPER_STYLE {
+  background-color: palegoldenrod;
+  color: black;
+}
+
 ul {
   padding: 0;
   padding-bottom: 2em;

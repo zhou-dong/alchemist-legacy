@@ -71,3 +71,14 @@ export const createHeader = () => {
   });
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };
+
+export const createDictionary = () => {
+  const mapStateToProps = state => ({
+    ...state,
+    buttons: state.wordBreadIReducer.dictionary
+  });
+  const mapDispatchToProps = dispatch => ({
+    onClick: () => {}
+  });
+  return connect(mapStateToProps, mapDispatchToProps)(Buttons);
+};

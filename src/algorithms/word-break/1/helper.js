@@ -6,7 +6,12 @@ import {
 const modalBody =
   "Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words.";
 
-export const createInitialState = word => ({
+const createDictionary = dictionary => {
+  dictionary.unshift("Dictionary:");
+  return dictionary;
+};
+
+export const createInitialState = (word, dictionary) => ({
   table: createDPTableWithIndicator(word),
   styles: createStyleTableWithIndicator(word),
   score: word.length,
@@ -16,5 +21,9 @@ export const createInitialState = word => ({
   title: "Word Break I",
   modalTitle: "Word Break I",
   modalBody: modalBody,
-  showModal: false
+  showModal: false,
+  dictionary: createDictionary(dictionary),
+  row: 2,
+  col: 2,
+  len: 1
 });

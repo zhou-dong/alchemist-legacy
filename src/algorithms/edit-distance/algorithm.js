@@ -53,30 +53,3 @@ export const createDpTable = (
 
   return createTable();
 };
-
-export const createStyleTable = (
-  str1: string,
-  str2: string,
-  defaultStyle: string,
-  goingStyle: string,
-  DISABLE_TABLE_BUTTON: string
-): Array<Array<string>> => {
-  const rowLength = str1.length + 2;
-  const colLength = str2.length + 2;
-  const table: Array<Array<string>> = [];
-  for (let row = 0; row < rowLength; row += 1) {
-    table.push(Array(colLength).fill(defaultStyle));
-  }
-  if (table.length > 0) {
-    for (let col = 0; col < table[0].length; col += 1) {
-      table[0][col] = DISABLE_TABLE_BUTTON;
-    }
-  }
-  for (let row = 0; row < table.length; row += 1) {
-    table[row][0] = DISABLE_TABLE_BUTTON;
-  }
-  if (rowLength > 0 && colLength > 0) {
-    table[1][1] = goingStyle;
-  }
-  return table;
-};

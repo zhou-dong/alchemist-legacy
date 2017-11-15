@@ -6,7 +6,7 @@ const initTable = length => {
   return table;
 };
 
-export default function(str, dict) {
+export default (str, dict) => {
   const table = initTable(str.length);
   for (let len = 1; len <= str.length; len += 1) {
     for (
@@ -28,4 +28,4 @@ export default function(str, dict) {
     }
   }
   return table;
-}
+};

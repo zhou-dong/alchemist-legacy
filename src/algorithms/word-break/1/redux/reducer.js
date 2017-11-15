@@ -6,9 +6,18 @@ import { BUTTON_CLICK, OPEN_MODAL_CLICK, CLOSE_MODAL_CLICK } from "./actions";
 
 import testData from "../__mock__/word-break.json";
 
-const initialState = createInitialState(testData.str, testData.dict);
+const randomMockData = () => {
+  const array = testData;
+  const random = Math.floor(Math.random() * array.length);
+  return array[random];
+};
 
-export default (state = initialState, action: Action) => {
+const initialState = () => {
+  const data = randomMockData();
+  return createInitialState(data.str, data.dict);
+};
+
+export default (state = initialState(), action: Action) => {
   switch (action.type) {
     case BUTTON_CLICK:
       return updateSteps(state, action);

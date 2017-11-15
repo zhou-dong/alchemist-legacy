@@ -11,7 +11,7 @@ export default function(str, dict) {
   for (let len = 1; len <= str.length; len += 1) {
     for (
       let start = 0, end = start + len - 1;
-      end <= str.length - 1;
+      end < str.length;
       start += 1, end += 1
     ) {
       const sub = str.substring(start, end + 1);

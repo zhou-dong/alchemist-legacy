@@ -1,7 +1,11 @@
 import {
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_HELPER_STYLE,
-  TABLE_ELEMENT_INDICATE_STYLE
+  TABLE_ELEMENT_INDICATE_STYLE,
+  TABLE_ELEMENT_ERROR_STYLE,
+  TABLE_ELEMENT_SUCCESS_STYLE,
+  TABLE_ELEMENT_ON_GOING_STYLE,
+  TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
 const isRowEnd = state => {
@@ -37,41 +41,58 @@ const reverseFirstRowAndColStyles = styles => {
 const updateIndicateStyles = (styles, row, len) => {
   for (let i = row; i < row + len; i += 1) {
     styles[0][i] = TABLE_ELEMENT_INDICATE_STYLE;
-    styles[1][i] = TABLE_ELEMENT_INDICATE_STYLE;
+    styles[1][i] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
     styles[i][0] = TABLE_ELEMENT_INDICATE_STYLE;
-    styles[i][1] = TABLE_ELEMENT_INDICATE_STYLE;
+    styles[i][1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   }
 };
 
-export default function(state, action) {
-  const createNextRow = (row, col) => {
-    return col + 1 === state.styles.length ? 2 : row + 1;
-  };
+const nonCorrect = (comparedTable, row, col, payload) => {
+  const value = payload === "TRUE" ? true : false;
+  return comparedTable[row - 2][col - 2] !== value;
+};
 
-  const createNextLen = len => {
-    return col + 1 === state.styles.length ? len + 1 : len;
-  };
+export default function(state, action) {
+  const comparedTable = state.compared;
+  const row = state.row;
+  const col = state.col;
+  const len = state.len;
+
+  const table = clone2DArray(state.table);
+  const styles = clone2DArray(state.styles);
+  const steps = state.steps + 1;
+  table[row][col] = action.payload === "TRUE" ? "T" : "F";
+
+  if (nonCorrect(comparedTable, row, col, action.payload)) {
+    styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
+    return { ...state, table, styles, steps, errors: state.errors + 1 };
+  }
+
+  styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+
+  if (isSuccess(state)) {
+    return { ...state, table, styles, steps };
+  }
 
   const createNextCol = (col, len) => {
     const nextCol = (col + 1) % state.styles.length;
     return nextCol < 2 ? 1 + len : nextCol;
   };
-
-  if (isSuccess(state)) {
-    return state;
-  }
-
-  const styles = clone2DArray(state.styles);
-  const row = state.row;
-  const col = state.col;
-  const len = state.len;
-
-  let nextRow = createNextRow(row, col);
-  let nextLen = createNextLen(len);
-  let nextCol = createNextCol(col, nextLen);
+  const nextRow = col + 1 === state.styles.length ? 2 : row + 1;
+  const nextLen = col + 1 === state.styles.length ? len + 1 : len;
+  const nextCol = createNextCol(col, nextLen);
 
   reverseFirstRowAndColStyles(styles);
   updateIndicateStyles(styles, nextRow, nextLen);
+  styles[nextRow][nextCol] = TABLE_ELEMENT_ON_GOING_STYLE;
 
-  return { ...state, styles, row: nextRow, col: nextCol, len: nextLen };
+  return {
+    ...state,
+    table,
+    styles,
+    steps,
+    row: nextRow,
+    col: nextCol,
+    len: nextLen
+  };
 }

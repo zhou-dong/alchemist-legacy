@@ -5,7 +5,8 @@ import {
   TABLE_ELEMENT_ON_GOING_STYLE,
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_INDICATE_STYLE,
-  TABLE_ELEMENT_HELPER_STYLE
+  TABLE_ELEMENT_HELPER_STYLE,
+  TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
 export const createDPTableWithoutIndicator = (
@@ -165,6 +166,8 @@ export const createStyleTableWithIndicator = (
   const setupFirstIndicate = (): void => {
     table[2][0] = TABLE_ELEMENT_INDICATE_STYLE;
     table[0][2] = TABLE_ELEMENT_INDICATE_STYLE;
+    table[2][1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+    table[1][2] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   };
 
   updateSecondRowWithDisableStyle();

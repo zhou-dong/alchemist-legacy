@@ -87,6 +87,11 @@ table {
   color: black;
 }
 
+.TABLE_ELEMENT_SUB_INDICATE_STYLE {
+  background-color: lightgreen;
+  color: black;
+}
+
 ul {
   padding: 0;
   padding-bottom: 2em;

@@ -39,5 +39,6 @@ export default (
 
   initTable();
   execute();
+
   return table;
 };

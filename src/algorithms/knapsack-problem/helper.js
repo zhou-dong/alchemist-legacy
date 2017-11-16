@@ -27,7 +27,7 @@ items.push(new Item(1, 1));
 items.push(new Item(4, 5));
 
 // items.sort((a,b) => a.weight - b.weight);
-console.log(items);
+// console.log(items);
 
 export default () => ({
   title: "Knapsack Problem",

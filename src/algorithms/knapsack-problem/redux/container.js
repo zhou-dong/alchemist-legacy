@@ -8,6 +8,15 @@ import Header from "presentational/Header";
 
 import { buttonClick, closeModal, openModal } from "./actions";
 
+export const createTable = () => {
+  const mapStateToProps = (state, ownProps) => ({
+    ...state,
+    table: state.knapsackProblemReducer.table,
+    styles: state.knapsackProblemReducer.styles
+  });
+  return connect(mapStateToProps, {})(Table);
+};
+
 export const createDashboard = () => {
   const mapStateToProps = (state, ownProps) => ({
     ...state,

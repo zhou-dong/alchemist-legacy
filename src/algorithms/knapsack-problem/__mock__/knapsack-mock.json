@@ -1,0 +1,9 @@
+{
+  "totalWeight": 7,
+  "items": [
+    { "weight": 1, "value": 1 },
+    { "weight": 3, "value": 4 },
+    { "weight": 5, "value": 7 },
+    { "weight": 4, "value": 5 }
+  ]
+}

@@ -52,7 +52,7 @@ const nonCorrect = (comparedTable, row, col, payload) => {
   return comparedTable[row - 2][col - 2] !== value;
 };
 
-export default function(state, action) {
+export default (state, action) => {
   const comparedTable = state.compared;
   const row = state.row;
   const col = state.col;
@@ -65,13 +65,14 @@ export default function(state, action) {
 
   if (nonCorrect(comparedTable, row, col, action.payload)) {
     styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
-    return { ...state, table, styles, steps, errors: state.errors + 1 };
+    const errors = state.errors + 1;
+    return { ...state, table, styles, steps, errors };
   }
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(state)) {
-    return { ...state, table, styles, steps };
+    return { ...state, table, styles };
   }
 
   const createNextCol = (col, len) => {
@@ -95,4 +96,4 @@ export default function(state, action) {
     col: nextCol,
     len: nextLen
   };
-}
+};

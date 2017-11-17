@@ -6,14 +6,14 @@ import { BUTTON_CLICK, OPEN_MODAL_CLICK, CLOSE_MODAL_CLICK } from "./actions";
 
 import testData from "../__mock__/word-break.json";
 
-const randomMockData = () => {
-  const array = testData;
-  const random = Math.floor(Math.random() * array.length);
-  return array[random];
-};
-
 const initialState = () => {
-  const data = randomMockData();
+  const getRandomMockData = () => {
+    const array = testData;
+    const random = Math.floor(Math.random() * array.length);
+    return array[random];
+  };
+
+  const data = getRandomMockData();
   return createInitialState(data.str, data.dict);
 };
 

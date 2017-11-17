@@ -7,7 +7,8 @@ import {
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_SUB_INDICATE_STYLE
+  TABLE_ELEMENT_SUB_INDICATE_STYLE,
+  TABLE_ELEMENT_HELPER_STYLE
 } from "presentational/constants";
 
 export const createTable = (
@@ -57,7 +58,13 @@ export const createStyleTable = (
   table[0][2] = TABLE_ELEMENT_DISABLE_STYLE;
   table[2][3] = TABLE_ELEMENT_ON_GOING_STYLE;
   table[0][3] = TABLE_ELEMENT_INDICATE_STYLE;
-  table[2][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   table[2][1] = TABLE_ELEMENT_INDICATE_STYLE;
+
+  table[1][3] = TABLE_ELEMENT_HELPER_STYLE;
+
+  if (items[0].weight === 1) {
+    table[2][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+    table[1][2] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  }
   return table;
 };

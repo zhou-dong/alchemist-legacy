@@ -1,14 +1,4 @@
-[
-  {
-    "str": "iamace",
-    "dict": ["i", "a", "am", "ace"]
-  },
-  {
-    "str": "catsanddog",
-    "dict": ["a", "an", "at", "cat", "cats", "and", "sand", "dog"]
-  },
-  {
-    "str": "ilovecoding",
-    "dict": ["i", "love", "coding"]
-  }
-]
+{
+  "str": "iamace",
+  "dict": ["i", "a", "am", "ace"]
+}

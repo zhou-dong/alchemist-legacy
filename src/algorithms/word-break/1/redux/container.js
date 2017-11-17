@@ -8,7 +8,7 @@ import Dashboard from "presentational/Dashboard";
 import Modal from "presentational/Modal";
 import Header from "presentational/Header";
 
-import { buttonClick, closeModal, openModal } from "./actions";
+import { buttonClick, closeModal, openModal, refreshClick } from "./actions";
 
 export const createTable = () => {
   const mapStateToProps = state => ({
@@ -55,7 +55,12 @@ export const createDashboard = () => {
     errors: state.wordBreadIReducer.errors,
     steps: state.wordBreadIReducer.steps
   });
-  return connect(mapStateToProps, {})(Dashboard);
+  const mapDispatchToProps = dispatch => ({
+    onClick: () => {
+      dispatch(refreshClick());
+    }
+  });
+  return connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 };
 
 export const createHeader = () => {

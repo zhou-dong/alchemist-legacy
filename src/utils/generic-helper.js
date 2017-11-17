@@ -13,16 +13,20 @@ export const clone2DArray = (array: Array<any>): Array<any> => {
 };
 
 export const arrayShuffle = (array: Array<any>): Array<any> => {
-  const swap = (array: Array<any>, i: number, j: number) => {
-    //[array[i], array[j]] = [array[j], array[i]];
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  };
-
   for (let i = array.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     swap(array, i, j);
   }
   return array;
+};
+
+export const stringShuffle = (str: string): string => {
+  return arrayShuffle(str.split("")).join("");
+};
+
+const swap = (array: Array<any>, i: number, j: number) => {
+  //[array[i], array[j]] = [array[j], array[i]];
+  const temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
 };

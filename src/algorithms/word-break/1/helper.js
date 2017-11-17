@@ -3,6 +3,9 @@ import {
   createStyleTableWithIndicator
 } from "utils/dp-helper";
 
+import { stringShuffle } from "utils/generic-helper";
+
+import mock from "./__mock__/word-break.json";
 import createComparedTable from "./algorithm";
 
 const equation = `
@@ -31,20 +34,25 @@ const modalBody =
   "<b>Introduction: </b></br>Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. </br></br><b> Equation: </b></br>" +
   equation;
 
-export const createInitialState = (word, dictionary) => ({
-  table: createDPTableWithIndicator(word),
-  styles: createStyleTableWithIndicator(word),
-  compared: createComparedTable(word, dictionary),
-  score: word.length,
-  steps: 0,
-  errors: 0,
-  buttons: ["TRUE", "FALSE"],
-  title: "Word Break I",
-  modalTitle: "Word Break I",
-  modalBody: modalBody,
-  showModal: false,
-  dictionary: ["Dictionary :"].concat(dictionary),
-  row: 2,
-  col: 2,
-  len: 1
-});
+export default () => {
+  const word: string = stringShuffle(mock.str);
+  const dictionary: number = mock.dict;
+
+  return {
+    table: createDPTableWithIndicator(word),
+    styles: createStyleTableWithIndicator(word),
+    compared: createComparedTable(word, dictionary),
+    score: word.length,
+    steps: 0,
+    errors: 0,
+    buttons: ["TRUE", "FALSE"],
+    title: "Word Break I",
+    modalTitle: "Word Break I",
+    modalBody: modalBody,
+    showModal: false,
+    dictionary: ["Dictionary :"].concat(dictionary),
+    row: 2,
+    col: 2,
+    len: 1
+  };
+};

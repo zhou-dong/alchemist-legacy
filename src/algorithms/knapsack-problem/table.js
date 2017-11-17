@@ -16,9 +16,7 @@ export const createTable = (
   totalWeight: number
 ): Array<Array<string | number>> => {
   const table: Array<Array<string | number>> = [];
-  table.push(
-    ["VALUE", "WEIGHT"].concat(Array.from(Array(totalWeight + 1).keys()))
-  );
+  table.push(["VAL", "WT"].concat(Array.from(Array(totalWeight + 1).keys())));
   table.push(Array(3 + totalWeight).fill(0));
   items.forEach(item =>
     table.push([item.value, item.weight, 0].concat(Array(totalWeight).fill("")))

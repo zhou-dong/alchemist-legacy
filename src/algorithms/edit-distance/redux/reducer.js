@@ -4,10 +4,11 @@ import type { State, Action } from "./constants";
 import {
   EDIT_DISTANCE_BUTTON_CLICK,
   CLOSE_MODAL_CLICK,
-  OPEN_MODAL_CLICK
+  OPEN_MODAL_CLICK,
+  REFRESH_CLICK
 } from "./constants";
-import { createInitialState } from "../helper";
-import getData from "utils/data";
+
+import createInitialState from "../helper";
 
 import {
   TABLE_ELEMENT_ON_GOING_STYLE,
@@ -65,14 +66,15 @@ const updateTable = (state: State, action: Action): State => {
   let nextRow = row;
   let nextCol = col;
 
-  if (compared[row - 1][col - 1] !== action.value) {
+  table[row][col] = action.payload;
+
+  if (compared[row - 1][col - 1] !== action.payload) {
     styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
     state.score = state.score === 0 ? 0 : state.score - 1;
     state.errors += 1;
     return { ...state, table, styles };
   }
 
-  table[row][col] = action.value;
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(table, row, col)) {
@@ -103,10 +105,7 @@ const updateTable = (state: State, action: Action): State => {
   return { ...state, table: table, col: nextCol, row: nextRow, styles };
 };
 
-const pair = getData();
-const initialState = createInitialState(pair.word1, pair.word2);
-
-export default (state: State = initialState, action: Action): State => {
+export default (state: State = createInitialState(), action: Action): State => {
   switch (action.type) {
     case EDIT_DISTANCE_BUTTON_CLICK:
       return updateTable(state, action);
@@ -114,6 +113,8 @@ export default (state: State = initialState, action: Action): State => {
       return { ...state, showModal: false };
     case OPEN_MODAL_CLICK:
       return { ...state, showModal: true };
+    case REFRESH_CLICK:
+      return createInitialState();
     default:
       return state;
   }

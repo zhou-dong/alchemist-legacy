@@ -1,8 +1,9 @@
 // @flow
 
 export const EDIT_DISTANCE_BUTTON_CLICK: string = "EDIT_DISTANCE_BUTTON_CLICK";
-export const CLOSE_MODAL_CLICK: string = "CLOSE_MODAL_CLICK";
-export const OPEN_MODAL_CLICK: string = "OPEN_MODAL_CLICK";
+export const CLOSE_MODAL_CLICK: string = "EDIT_DISTANCE_CLOSE_MODAL_CLICK";
+export const OPEN_MODAL_CLICK: string = "EDIT_DISTANCE_OPEN_MODAL_CLICK";
+export const REFRESH_CLICK: string = "EDIT_DISTANCE_REFRESH_CLICK";
 
 export type State = {
   table: Array<Array<string | number>>,
@@ -18,5 +19,5 @@ export type State = {
 
 export type Action = {
   type: string,
-  value: number
+  payload: number
 };

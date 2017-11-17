@@ -8,7 +8,7 @@ import Dashboard from "presentational/Dashboard";
 import Modal from "presentational/Modal";
 import Header from "presentational/Header";
 
-import { buttonClick, closeModal, openModal } from "./actions";
+import { buttonClick, closeModal, openModal, refreshClick } from "./actions";
 
 export const createTable = () => {
   const mapStateToProps = (state, ownProps) => ({
@@ -39,7 +39,12 @@ export const createDashboard = () => {
     errors: state.editDistanceReducer.errors,
     steps: state.editDistanceReducer.steps
   });
-  return connect(mapStateToProps, {})(Dashboard);
+  const mapDispatchToProps = dispatch => ({
+    onClick: () => {
+      dispatch(refreshClick());
+    }
+  });
+  return connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 };
 
 export const createModal = () => {

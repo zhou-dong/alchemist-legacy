@@ -7,15 +7,15 @@ const magenta = chalk.magenta;
 const yellow = chalk.yellow;
 const red = chalk.bold.red;
 const blue = chalk.blueBright;
-
 const log = console.log;
 
-const name = process.argv[2];
-if (!name) {
-  red("Please type in algorithm name");
-  process.exit();
-}
+// const name = process.argv[2];
+// if (!name) {
+//   red("Please type in algorithm name");
+//   process.exit();
+// }
 
+const name = "dp-template";
 const createDir = (basePath, dirName) => {
   log(magenta("making directory"), yellow(dirName), "at path", basePath);
   const dirPath = path.join(basePath, dirName);
@@ -41,12 +41,7 @@ const createFile = (basePath, fileName) => {
   return filepath;
 };
 
-const workingDirectory = path.join(
-  path.resolve(__dirname),
-  "../",
-  "algorithms"
-);
-
+const workingDirectory = path.join(path.resolve(__dirname));
 log(blue("WorkingDirectory"), yellow(workingDirectory));
 
 const baseDir = createDir(workingDirectory, name);
@@ -64,6 +59,7 @@ createFile(reduxDir, "update-steps.js");
 const mockDir = createDir(baseDir, "__mock__");
 createFile(mockDir, `${name}-mock.json`);
 
-const test = createDir(baseDir, "__test__");
+const testsDir = createDir(baseDir, "__tests__");
+createFile(testsDir, `${name}.spec.js`);
 
 log(green("Create Template Finished :)"));

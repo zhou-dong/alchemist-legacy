@@ -91,7 +91,7 @@ const renderActionsJs = () => {
   const render = ejs.render(ejsTemplate, {
     UNDERSCORE_UPPERCASE_NAME: UNDERSCORE_UPPERCASE_NAME()
   });
-  write(path.join(reduxDir, "action.js"), render);
+  write(path.join(reduxDir, "actions.js"), render);
 };
 
 const renderContainerJs = () => {

@@ -14,6 +14,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import EditDistance from "algorithms/edit-distance";
 import WordBreakI from "algorithms/word-break/1";
 import KnapsackProblem from "algorithms/knapsack-problem";
+import MinimumPathSum from "algorithms/minimum-path-sum";
 
 export function* helloSaga() {
   console.log("Hello Sagas!");
@@ -30,6 +31,7 @@ ReactDOM.render(
       <EditDistance />
       <WordBreakI />
       <KnapsackProblem />
+      <MinimumPathSum />
     </div>
   </Provider>,
   document.getElementById("redux-test")

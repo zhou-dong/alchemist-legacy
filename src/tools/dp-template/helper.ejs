@@ -28,8 +28,6 @@ const createDisplayTable = () => {};
 
 const createStyleTable = () => {};
 
-const createComparedTable = () => {};
-
 const getTotalScore = () => {};
 
 const getStartRowIndex = () => {};

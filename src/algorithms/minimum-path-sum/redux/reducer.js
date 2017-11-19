@@ -20,9 +20,6 @@ export default (state = createInitialState(), action: Action) => {
     case REFRESH_DATA_CLICK:
       return createInitialState();
     default:
-      console.log("cheng ren da dian............");
-      console.log(state);
-
       return state;
   }
 };

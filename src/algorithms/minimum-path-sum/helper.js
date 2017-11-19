@@ -4,15 +4,9 @@ import {
 } from "utils/dp-helper";
 
 import {
-  TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_HELPER_STYLE,
-  TABLE_ELEMENT_INDICATE_STYLE,
-  TABLE_ELEMENT_ERROR_STYLE,
-  TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE,
-  TABLE_ELEMENT_SUB_INDICATE_STYLE
+  TABLE_ELEMENT_ON_GOING_STYLE
 } from "presentational/constants";
-
 import { arrayShuffle } from "utils/generic-helper";
 
 import mock from "./__mock__/minimum-path-sum-mock.json";
@@ -53,18 +47,18 @@ const createTable = (grid, toFilled) => {
 const createButtons = () => {};
 
 const createDisplayTable = grid => createTable(grid, "");
-const createStyleTable = grid => createTable(grid, "");
 
+const createStyleTable = grid => {
+  const result = createTable(grid, "");
+  result[0][0] = TABLE_ELEMENT_ON_GOING_STYLE;
+  return result;
+};
 const getTotalScore = grid => {
   if (!grid || grid.length === 0) {
     return 0;
   }
   return grid.length === 1 ? grid.length : grid.length * grid[0].length;
 };
-
-const getStartRowIndex = () => {};
-
-const getStartColIndex = () => {};
 
 const getDisplayTableStyles = table => {
   if (!table) {
@@ -82,14 +76,14 @@ export default () => {
   return {
     table: createDisplayTable(data),
     styles: createStyleTable(data),
-    compared: createComparedTable(),
+    compared: createComparedTable(data),
     score: getTotalScore(data),
     buttons: createButtons(),
     title: "Minimum Path Sum",
     modalTitle: "Minimum Path Sum",
     modalBody: modalBody,
-    row: getStartRowIndex(),
-    col: getStartColIndex(),
+    row: 0,
+    col: 0,
     displayTable: data,
     displayTableStyles: getDisplayTableStyles(data),
     steps: 0,

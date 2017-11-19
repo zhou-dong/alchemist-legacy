@@ -4,8 +4,8 @@ import React from "react";
 
 type Props = { buttons: Array<number | string>, onClick: Function };
 
-const tr = (props: Props, items: Array<number | string>) => (
-  <tr>
+const tr = (props: Props, items: Array<number | string>, rowKey: number) => (
+  <tr key={rowKey}>
     {items.map((value, index) => {
       return (
         <td key={index}>
@@ -17,18 +17,12 @@ const tr = (props: Props, items: Array<number | string>) => (
 );
 
 const tbody = (props: Props) => {
-  const maxLength = 10;
-  if (props.buttons.length <= maxLength) {
-    return <tbody>{tr(props, props.buttons)}</tbody>;
-  } else {
-    const half = Math.ceil(props.buttons.length / 2);
-    return (
-      <tbody>
-        {tr(props, props.buttons.slice(0, half))}
-        {tr(props, props.buttons.slice(half))}
-      </tbody>
-    );
+  const rowLength = 8;
+  const table: Array<Array<number | string>> = [];
+  for (let start = 0; start < props.buttons.length; start += rowLength) {
+    table.push(props.buttons.slice(start, start + rowLength));
   }
+  return <tbody>{table.map((row, index) => tr(props, row, index))}</tbody>;
 };
 
 export default (props: Props) => <table>{props.buttons && tbody(props)}</table>;

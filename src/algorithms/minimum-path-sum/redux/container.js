@@ -8,6 +8,15 @@ import Header from "presentational/Header";
 
 import { buttonClick, closeModal, openModal, refreshData } from "./actions";
 
+export const createDataDisplay = () => {
+  const mapStateToProps = (state, ownProps) => ({
+    ...state,
+    table: state.minimumPathSumReducer.displayTable,
+    styles: state.minimumPathSumReducer.displayTableStyles
+  });
+  return connect(mapStateToProps, {})(Table);
+};
+
 export const createTable = () => {
   const mapStateToProps = (state, ownProps) => ({
     ...state,

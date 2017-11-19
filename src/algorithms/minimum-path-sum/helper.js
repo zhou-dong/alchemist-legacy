@@ -8,12 +8,29 @@ import mock from "./__mock__/minimum-path-sum-mock.json";
 import createComparedTable from "./algorithm";
 
 const equation = `
-<pre><code>
-  ... code ...
+<pre><code>table[0] = table[0].reduce((result, current, index) => {
+  result[index] = index === 0 ? table[0][0] : result[index - 1] + current;
+  return result;
+}, []);
+
+table.forEach((row, index) => {
+  if (index !== 0) {
+    row[0] = table[index - 1][0] + row[0];
+  }
+});
+
+for (let row = 1; row < table.length; row += 1) {
+  for (let col = 1; col < table[row].length; col += 1) {
+    const min = Math.min(table[row - 1][col], table[row][col - 1]);
+    table[row][col] = table[row][col] + min;
+  }
+}
 </code></pre>
 `;
 
-const introduction = "... introduction ...";
+const introduction = `Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.<br>
+<b>Note</b>: You can only move either down or right at any point in time.`;
+
 const modalBody = `
 <b>Introduction: </b>
 </br>

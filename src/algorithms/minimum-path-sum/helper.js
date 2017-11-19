@@ -44,7 +44,22 @@ const createTable = (grid, toFilled) => {
   }
   return table;
 };
-const createButtons = () => {};
+
+const createButtons = data => {
+  let min = Number.MAX_SAFE_INTEGER;
+  let sum = 0;
+  data.forEach(row => {
+    row.forEach(element => {
+      min = Math.min(min, element);
+      sum += element;
+    });
+  });
+  const result = [];
+  for (let i = min; i <= sum; i += 1) {
+    result.push(i);
+  }
+  return result;
+};
 
 const createDisplayTable = grid => createTable(grid, "");
 
@@ -53,6 +68,7 @@ const createStyleTable = grid => {
   result[0][0] = TABLE_ELEMENT_ON_GOING_STYLE;
   return result;
 };
+
 const getTotalScore = grid => {
   if (!grid || grid.length === 0) {
     return 0;
@@ -78,7 +94,7 @@ export default () => {
     styles: createStyleTable(data),
     compared: createComparedTable(data),
     score: getTotalScore(data),
-    buttons: createButtons(),
+    buttons: createButtons(data),
     title: "Minimum Path Sum",
     modalTitle: "Minimum Path Sum",
     modalBody: modalBody,

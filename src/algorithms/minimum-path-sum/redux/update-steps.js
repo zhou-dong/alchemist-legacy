@@ -11,6 +11,7 @@ import {
 import { clone2DArray } from "utils/generic-helper";
 
 const nonCorrect = (state, action) => {
+  const compared = state.compared;
   return false;
 };
 

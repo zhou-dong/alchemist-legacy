@@ -1,11 +1,8 @@
 import {
   TABLE_ELEMENT_DISABLE_STYLE,
-  TABLE_ELEMENT_HELPER_STYLE,
-  TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE,
-  TABLE_ELEMENT_SUB_INDICATE_STYLE
+  TABLE_ELEMENT_ON_GOING_STYLE
 } from "presentational/constants";
 
 import { clone2DArray } from "utils/generic-helper";
@@ -20,19 +17,32 @@ const isSuccess = state => {
   return state.row === rowLen - 1 && state.col === colLen - 1;
 };
 
-const updateStyles = (styles, row, col, nextRow, nextCol) => {
+const updateStyles = (
+  styles,
+  displayTableStyles,
+  row,
+  col,
+  nextRow,
+  nextCol
+) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   styles[nextRow][nextCol] = TABLE_ELEMENT_ON_GOING_STYLE;
+  displayTableStyles[row][col] = TABLE_ELEMENT_DISABLE_STYLE;
+  displayTableStyles[nextRow][nextCol] = TABLE_ELEMENT_ON_GOING_STYLE;
   return styles;
 };
 
-const cleanStyles = styles => {
-  return styles;
+const cleanStyles = displayTableStyles => {
+  const row = displayTableStyles.length;
+  const col = displayTableStyles[row - 1].length;
+  displayTableStyles[row - 1][col - 1] = TABLE_ELEMENT_DISABLE_STYLE;
+  return displayTableStyles;
 };
 
 export default (state, action) => {
   const styles = clone2DArray(state.styles);
   const table = clone2DArray(state.table);
+  const displayTableStyles = clone2DArray(state.displayTableStyles);
   const row = state.row;
   const col = state.col;
   const steps = state.steps + 1;
@@ -46,8 +56,8 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
-    cleanStyles(styles);
-    return { ...state, table, styles };
+    cleanStyles(displayTableStyles);
+    return { ...state, table, styles, displayTableStyles };
   }
 
   const isColEnd = col === state.table[row].length - 1;
@@ -83,7 +93,7 @@ export default (state, action) => {
   };
 
   next();
-  updateStyles(styles, row, col, nextRow, nextCol);
+  updateStyles(styles, displayTableStyles, row, col, nextRow, nextCol);
 
   return {
     ...state,
@@ -91,6 +101,7 @@ export default (state, action) => {
     styles,
     steps,
     row: nextRow,
-    col: nextCol
+    col: nextCol,
+    displayTableStyles
   };
 };

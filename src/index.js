@@ -16,14 +16,14 @@ import WordBreakI from "algorithms/word-break/1";
 import KnapsackProblem from "algorithms/knapsack-problem";
 import MinimumPathSum from "algorithms/minimum-path-sum";
 
-export function* helloSaga() {
-  console.log("Hello Sagas!");
-}
+// export function* helloSaga() {
+//   console.log("Hello Sagas!");
+// }
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(helloSaga);
+// sagaMiddleware.run(helloSaga);
 
 ReactDOM.render(
   <Provider store={store}>

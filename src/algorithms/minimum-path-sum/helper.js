@@ -1,9 +1,4 @@
 import {
-  createDPTableWithIndicator,
-  createStyleTableWithIndicator
-} from "utils/dp-helper";
-
-import {
   TABLE_ELEMENT_HELPER_STYLE,
   TABLE_ELEMENT_ON_GOING_STYLE
 } from "presentational/constants";
@@ -84,6 +79,7 @@ const getDisplayTableStyles = table => {
   for (let row = 0; row < table.length; row += 1) {
     styles.push(Array(table[row].length).fill(TABLE_ELEMENT_HELPER_STYLE));
   }
+  styles[0][0] = TABLE_ELEMENT_ON_GOING_STYLE;
   return styles;
 };
 

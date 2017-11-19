@@ -61,15 +61,15 @@ const createTable = (grid, toFilled) => {
 
 const createButtons = data => {
   let min = Number.MAX_SAFE_INTEGER;
-  let sum = 0;
+  let max = 0;
   data.forEach(row => {
     row.forEach(element => {
       min = Math.min(min, element);
-      sum += element;
+      max = Math.max(max, element);
     });
   });
   const result = [];
-  for (let i = min; i <= sum; i += 1) {
+  for (let i = min; i <= max; i += 1) {
     result.push(i);
   }
   return result;
@@ -106,12 +106,13 @@ const getDisplayTableStyles = table => {
 
 export default () => {
   const data = getShuffledData();
+  const compared = createComparedTable(data);
   return {
     table: createDisplayTable(data),
     styles: createStyleTable(data),
-    compared: createComparedTable(data),
+    compared: compared,
     score: getTotalScore(data),
-    buttons: createButtons(data),
+    buttons: createButtons(compared),
     title: "Minimum Path Sum",
     modalTitle: "Minimum Path Sum",
     modalBody: modalBody,

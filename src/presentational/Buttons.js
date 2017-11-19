@@ -17,7 +17,7 @@ const tr = (props: Props, items: Array<number | string>, rowKey: number) => (
 );
 
 const tbody = (props: Props) => {
-  const rowLength = 8;
+  const rowLength = 7;
   const table: Array<Array<number | string>> = [];
   for (let start = 0; start < props.buttons.length; start += rowLength) {
     table.push(props.buttons.slice(start, start + rowLength));

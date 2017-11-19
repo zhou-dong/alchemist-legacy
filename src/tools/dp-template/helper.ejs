@@ -5,22 +5,7 @@ import {
 
 import mock from "./__mock__/<%=mockFileName%>";
 import createComparedTable from "./algorithm";
-
-const formula = `
-<pre><code>
-  ... code ...
-</code></pre>
-`;
-
-const introduction = "... introduction ...";
-const modalBody = `
-<b>Introduction: </b>
-</br>
-${introduction}
-</br>
-<b>Formula: </b>
-</br>
-${formula}`;
+import { modalBody } from "./introduction";
 
 const createButtons = () => {};
 

@@ -15,6 +15,7 @@ import EditDistance from "algorithms/edit-distance";
 import WordBreakI from "algorithms/word-break/1";
 import KnapsackProblem from "algorithms/knapsack-problem";
 import MinimumPathSum from "algorithms/minimum-path-sum";
+import IsSubsequence from "algorithms/is-subsequence/";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -32,6 +33,7 @@ ReactDOM.render(
       <WordBreakI />
       <KnapsackProblem />
       <MinimumPathSum />
+      <IsSubsequence />
     </div>
   </Provider>,
   document.getElementById("redux-test")

@@ -24,6 +24,16 @@ export const stringShuffle = (str: string): string => {
   return arrayShuffle(str.split("")).join("");
 };
 
+export const isLastElementOfTable = (
+  array: Array<Array<any>>,
+  row: number,
+  col: number
+): boolean => {
+  const rowLen = array.length;
+  const colLen = array[rowLen - 1].length;
+  return row + 1 === rowLen && col + 1 === colLen;
+};
+
 const swap = (array: Array<any>, i: number, j: number) => {
   //[array[i], array[j]] = [array[j], array[i]];
   const temp = array[i];

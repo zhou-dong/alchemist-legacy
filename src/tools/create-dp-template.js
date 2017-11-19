@@ -124,6 +124,12 @@ const cpConstantsJs = () => {
   cp(source, target);
 };
 
+const cpIntroductionJs = () => {
+  const source = path.join(templateDir, "introduction.js");
+  const target = path.join(destDir, "introduction.js");
+  cp(source, target);
+};
+
 cpIndexJs();
 renderHelperJs();
 renderActionsJs();
@@ -132,3 +138,4 @@ cpReducerJs();
 cpUpdateStepsJs();
 cpAlgorithmJs();
 cpConstantsJs();
+cpIntroductionJs();

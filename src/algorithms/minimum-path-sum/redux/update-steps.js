@@ -2,7 +2,8 @@ import {
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE
+  TABLE_ELEMENT_ON_GOING_STYLE,
+  TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
 import { clone2DArray } from "utils/generic-helper";
@@ -32,11 +33,15 @@ const updateStyles = (
   return styles;
 };
 
-const cleanStyles = displayTableStyles => {
+const cleanStyles = (displayTableStyles, styles) => {
   const row = displayTableStyles.length;
   const col = displayTableStyles[row - 1].length;
   displayTableStyles[row - 1][col - 1] = TABLE_ELEMENT_DISABLE_STYLE;
-  return displayTableStyles;
+  for (let row = 0; row < styles.length; row += 1) {
+    for (let col = 0; col < styles[row].length; col += 1) {
+      styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+    }
+  }
 };
 
 export default (state, action) => {
@@ -56,7 +61,7 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
-    cleanStyles(displayTableStyles);
+    cleanStyles(displayTableStyles, styles);
     return { ...state, table, styles, displayTableStyles };
   }
 
@@ -95,6 +100,31 @@ export default (state, action) => {
   next();
   updateStyles(styles, displayTableStyles, row, col, nextRow, nextCol);
 
+  if (row === 0 && !isColEnd) {
+    styles[row][col - 1] = TABLE_ELEMENT_SUCCESS_STYLE;
+    styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  }
+  if (row === 0 && isColEnd) {
+    styles[row][col - 1] = TABLE_ELEMENT_SUCCESS_STYLE;
+    styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+    styles[0][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  }
+  if (col === 0 && !isRowEnd) {
+    styles[row - 1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+    styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  }
+  if (col === 0 && isRowEnd) {
+    styles[row - 1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+    styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+  }
+  if (row !== 0 && col !== 0) {
+    styles[row - 1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+    styles[row][col - 1] = TABLE_ELEMENT_SUCCESS_STYLE;
+  }
+  if (nextRow !== 0 && nextCol !== 0) {
+    styles[nextRow - 1][nextCol] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+    styles[nextRow][nextCol - 1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  }
   return {
     ...state,
     table,

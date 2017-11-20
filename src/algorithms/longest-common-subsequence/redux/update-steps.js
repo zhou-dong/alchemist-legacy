@@ -3,7 +3,8 @@ import {
   TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE
+  TABLE_ELEMENT_ON_GOING_STYLE,
+  TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
 import {
@@ -29,7 +30,8 @@ const updateStyles = (styles, row, col, nextRow, nextCol) => {
   return styles;
 };
 
-const cleanStyles = styles => {
+const cleanStyles = (styles, row, col) => {
+  styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;
 };
 
@@ -49,7 +51,7 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(table, row, col)) {
-    cleanStyles(styles);
+    cleanStyles(styles, row, col);
     return { ...state, table, styles, steps };
   }
 

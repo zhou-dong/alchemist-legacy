@@ -34,8 +34,10 @@ const updateStyles = (styles, row, col, nextRow, nextCol) => {
 };
 
 const cleanStyles = (state, styles) => {
-  const { row, col } = resultPoint(state.compared);
-  styles[row + 1][col + 1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  const results = resultPoint(state.compared);
+  results.forEach(result => {
+    styles[result.row + 1][result.col + 1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  });
   return styles;
 };
 

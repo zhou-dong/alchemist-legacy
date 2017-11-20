@@ -3,7 +3,8 @@ import {
   TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE
+  TABLE_ELEMENT_ON_GOING_STYLE,
+  TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
 import { clone2DArray, isLastElementOfTable } from "utils/generic-helper";
@@ -32,11 +33,12 @@ const updateStyles = (styles, row, col, nextRow, nextCol, compared) => {
   return styles;
 };
 
-const cleanStyles = styles => {
+const cleanStyles = (styles, row, col) => {
   const rowLen = styles.length;
   const colLen = styles[0].length;
   styles[0][colLen - 1] = TABLE_ELEMENT_DISABLE_STYLE;
   styles[rowLen - 1][0] = TABLE_ELEMENT_DISABLE_STYLE;
+  styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;
 };
 
@@ -57,7 +59,7 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
-    cleanStyles(styles);
+    cleanStyles(styles, row, col);
     return { ...state, table, styles, steps };
   }
 

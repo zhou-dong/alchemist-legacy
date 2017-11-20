@@ -72,6 +72,7 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(state)) {
+    styles[row][col] = TABLE_ELEMENT_DISABLE_STYLE;
     return { ...state, table, styles };
   }
 

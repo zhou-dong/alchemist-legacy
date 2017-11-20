@@ -33,7 +33,7 @@ const updateStyles = (
   return styles;
 };
 
-const cleanStyles = (displayTableStyles, styles) => {
+const cleanStyles = (displayTableStyles, styles, rowIndex, colIndex) => {
   const row = displayTableStyles.length;
   const col = displayTableStyles[row - 1].length;
   displayTableStyles[row - 1][col - 1] = TABLE_ELEMENT_DISABLE_STYLE;
@@ -42,6 +42,7 @@ const cleanStyles = (displayTableStyles, styles) => {
       styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
     }
   }
+  styles[rowIndex][colIndex] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
 };
 
 export default (state, action) => {
@@ -61,7 +62,7 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
-    cleanStyles(displayTableStyles, styles);
+    cleanStyles(displayTableStyles, styles, row, col);
     return { ...state, table, styles, displayTableStyles, steps };
   }
 

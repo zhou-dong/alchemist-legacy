@@ -9,24 +9,19 @@ const initTable = (str1, str2) => {
 };
 
 export const resultPoint = table => {
-  let rowIndex = 0;
-  let colIndex = 0;
   let max = 0;
   table.forEach(row => {
-    row.forEach(element => {
-      max = Math.max(max, element);
+    max = Math.max(max, row.reduce((a, b) => Math.max(a, b)));
+  });
+  const result = [];
+  table.forEach((row, rowIndex) => {
+    row.forEach((element, colIndex) => {
+      if (element === max) {
+        result.push({ row: rowIndex, col: colIndex });
+      }
     });
   });
-  for (let row = 0; row < table.length; row += 1) {
-    for (let col = 0; col < table[row].length; col += 1) {
-      max = Math.max(max, table[row][col]);
-    }
-  }
-  return {
-    max: max,
-    row: 0,
-    col: 0
-  };
+  return result;
 };
 
 export default (str1, str2) => {

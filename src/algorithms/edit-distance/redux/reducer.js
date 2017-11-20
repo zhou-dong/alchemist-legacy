@@ -15,7 +15,8 @@ import {
   TABLE_ELEMENT_SUCCESS_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_INDICATE_STYLE,
-  TABLE_ELEMENT_DISABLE_STYLE
+  TABLE_ELEMENT_DISABLE_STYLE,
+  TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
 const isSuccess = (
@@ -78,7 +79,7 @@ const updateTable = (state: State, action: Action): State => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(table, row, col)) {
-    console.log("success");
+    styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
     return { ...state, table: table, col: nextCol, row: nextRow, styles };
   }
 

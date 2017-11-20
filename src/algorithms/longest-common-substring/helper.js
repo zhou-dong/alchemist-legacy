@@ -6,7 +6,7 @@ import {
 import mock from "./__mock__/longest-common-substring-mock.json";
 import createComparedTable from "./algorithm";
 import { modalBody } from "./introduction";
-import { longestString } from "utils/generic-helper";
+import { longestString, stringShuffle } from "utils/generic-helper";
 import {
   TABLE_ELEMENT_SUCCESS_STYLE,
   TABLE_ELEMENT_DISABLE_STYLE
@@ -40,8 +40,8 @@ const createStyleTable = (str1, str2) => {
 const getTotalScore = (str1, str2) => longestString(str1, str2).length;
 
 export default () => {
-  const str1 = mock.s1;
-  const str2 = mock.s2;
+  const str1 = stringShuffle(mock.s1);
+  const str2 = stringShuffle(mock.s2);
   return {
     table: createDisplayTable(str1, str2),
     styles: createStyleTable(str1, str2),

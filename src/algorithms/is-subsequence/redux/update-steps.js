@@ -34,10 +34,6 @@ const updateStyles = (styles, row, col, nextRow, nextCol, compared) => {
 };
 
 const cleanStyles = (styles, row, col) => {
-  const rowLen = styles.length;
-  const colLen = styles[0].length;
-  styles[0][colLen - 1] = TABLE_ELEMENT_DISABLE_STYLE;
-  styles[rowLen - 1][0] = TABLE_ELEMENT_DISABLE_STYLE;
   styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;
 };

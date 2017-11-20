@@ -24,6 +24,12 @@ export const stringShuffle = (str: string): string => {
   return arrayShuffle(str.split("")).join("");
 };
 
+export const isEndColInTable = (
+  array: Array<Array<any>>,
+  row: number,
+  col: number
+): boolean => col === array[row].length - 1;
+
 export const isLastElementOfTable = (
   array: Array<Array<any>>,
   row: number,

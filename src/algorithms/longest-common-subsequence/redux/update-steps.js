@@ -1,11 +1,9 @@
 import {
   TABLE_ELEMENT_DISABLE_STYLE,
-  TABLE_ELEMENT_HELPER_STYLE,
   TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE,
-  TABLE_ELEMENT_SUB_INDICATE_STYLE
+  TABLE_ELEMENT_ON_GOING_STYLE
 } from "presentational/constants";
 
 import {
@@ -14,17 +12,20 @@ import {
   isLastElementOfTable
 } from "utils/generic-helper";
 
-const nonCorrect = (state, action) => {
-  return false;
-};
+const nonCorrect = (state, action) =>
+  state.compared[state.row - 1][state.col - 1] !== action.payload;
 
-const isSuccess = state => {
-  return false;
-};
+const isSuccess = (table, row, col) => isLastElementOfTable(table, row, col);
 
 const updateStyles = (styles, row, col, nextRow, nextCol) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   styles[nextRow][nextCol] = TABLE_ELEMENT_ON_GOING_STYLE;
+
+  styles[row][0] = TABLE_ELEMENT_DISABLE_STYLE;
+  styles[0][col] = TABLE_ELEMENT_DISABLE_STYLE;
+
+  styles[nextRow][0] = TABLE_ELEMENT_INDICATE_STYLE;
+  styles[0][nextCol] = TABLE_ELEMENT_INDICATE_STYLE;
   return styles;
 };
 
@@ -47,13 +48,14 @@ export default (state, action) => {
   }
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
-  if (isSuccess(state)) {
+  if (isSuccess(table, row, col)) {
     cleanStyles(styles);
     return { ...state, table, styles };
   }
 
-  const nextRow = "???";
-  const nextCol = "???";
+  const isEnd = isEndColInTable(table, row, col);
+  const nextRow = isEnd ? row + 1 : row;
+  const nextCol = isEnd ? 2 : col + 1;
 
   updateStyles(styles, row, col, nextRow, nextCol);
 

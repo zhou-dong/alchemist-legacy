@@ -62,7 +62,7 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
     cleanStyles(displayTableStyles, styles);
-    return { ...state, table, styles, displayTableStyles };
+    return { ...state, table, styles, displayTableStyles, steps };
   }
 
   const isColEnd = col === state.table[row].length - 1;

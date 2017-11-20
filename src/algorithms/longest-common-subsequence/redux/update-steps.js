@@ -50,7 +50,7 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(table, row, col)) {
     cleanStyles(styles);
-    return { ...state, table, styles };
+    return { ...state, table, styles, steps };
   }
 
   const isEnd = isEndColInTable(table, row, col);

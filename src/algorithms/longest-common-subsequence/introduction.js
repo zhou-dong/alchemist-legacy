@@ -1,6 +1,9 @@
 const formula = `
-<pre><code>
-  ... code ...
+<pre><code>if (a === b) {
+    table[row][col] = table[row - 1][col - 1] + 1;
+} else {
+    table[row][col] = Math.max(table[row][col - 1], table[row - 1][col]);
+}
 </code></pre>
 `;
 

@@ -45,7 +45,7 @@ export default () => {
   return {
     table: createDisplayTable(str1, str2),
     styles: createStyleTable(str1, str2),
-    compared: createComparedTable(),
+    compared: createComparedTable(str1, str2),
     score: getTotalScore(str1, str2),
     buttons: createButtons(str1, str2),
     title: "Longest Common Substring",

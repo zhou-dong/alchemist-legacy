@@ -12,19 +12,20 @@ export const resultPoint = table => {
   let rowIndex = 0;
   let colIndex = 0;
   let max = 0;
+  table.forEach(row => {
+    row.forEach(element => {
+      max = Math.max(max, element);
+    });
+  });
   for (let row = 0; row < table.length; row += 1) {
     for (let col = 0; col < table[row].length; col += 1) {
-      if (table[row][col] >= max) {
-        max = table[row][col];
-        rowIndex = row;
-        colIndex = col;
-      }
+      max = Math.max(max, table[row][col]);
     }
   }
   return {
     max: max,
-    row: rowIndex,
-    col: colIndex
+    row: 0,
+    col: 0
   };
 };
 

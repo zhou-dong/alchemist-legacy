@@ -6,6 +6,7 @@ import knapsackProblemReducer from "algorithms/knapsack-problem/redux/reducer";
 import minimumPathSumReducer from "algorithms/minimum-path-sum/redux/reducer";
 import isSubsequenceReducer from "algorithms/is-subsequence/redux/reducer";
 import longestCommonSubsequenceReducer from "algorithms/longest-common-subsequence/redux/reducer";
+import longestCommonSubstringReducer from "algorithms/longest-common-substring/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   knapsackProblemReducer,
   minimumPathSumReducer,
   isSubsequenceReducer,
-  longestCommonSubsequenceReducer
+  longestCommonSubsequenceReducer,
+  longestCommonSubstringReducer
 });

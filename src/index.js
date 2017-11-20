@@ -17,6 +17,7 @@ import KnapsackProblem from "algorithms/knapsack-problem";
 import MinimumPathSum from "algorithms/minimum-path-sum";
 import IsSubsequence from "algorithms/is-subsequence/";
 import LongestCommonSubsequence from "algorithms/longest-common-subsequence";
+import LongestCommonSubstring from "algorithms/longest-common-substring";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -36,6 +37,7 @@ ReactDOM.render(
       <MinimumPathSum />
       <IsSubsequence />
       <LongestCommonSubsequence />
+      <LongestCommonSubstring />
     </div>
   </Provider>,
   document.getElementById("redux-test")

@@ -40,7 +40,7 @@ ReactDOM.render(
       <LongestCommonSubstring />
     </div>
   </Provider>,
-  document.getElementById("redux-test")
+  document.getElementById("algorithms")
 );
 
 registerServiceWorker();

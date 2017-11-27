@@ -7,7 +7,7 @@ import minimumPathSumReducer from "algorithms/minimum-path-sum/redux/reducer";
 import isSubsequenceReducer from "algorithms/is-subsequence/redux/reducer";
 import longestCommonSubsequenceReducer from "algorithms/longest-common-subsequence/redux/reducer";
 import longestCommonSubstringReducer from "algorithms/longest-common-substring/redux/reducer";
-
+import coinChangingReducer from "algorithms/coin-changing/redux/reducer";
 export default combineReducers({
   editDistanceReducer,
   wordBreadIReducer,
@@ -15,5 +15,6 @@ export default combineReducers({
   minimumPathSumReducer,
   isSubsequenceReducer,
   longestCommonSubsequenceReducer,
-  longestCommonSubstringReducer
+  longestCommonSubstringReducer,
+  coinChangingReducer
 });

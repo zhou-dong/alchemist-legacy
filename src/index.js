@@ -18,6 +18,7 @@ import MinimumPathSum from "algorithms/minimum-path-sum";
 import IsSubsequence from "algorithms/is-subsequence/";
 import LongestCommonSubsequence from "algorithms/longest-common-subsequence";
 import LongestCommonSubstring from "algorithms/longest-common-substring";
+import CoinChanging from "algorithms/coin-changing";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -38,6 +39,7 @@ ReactDOM.render(
       <IsSubsequence />
       <LongestCommonSubsequence />
       <LongestCommonSubstring />
+      <CoinChanging />
     </div>
   </Provider>,
   document.getElementById("algorithms")

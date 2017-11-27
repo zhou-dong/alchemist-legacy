@@ -7,10 +7,9 @@ class WordPair {
 
 const other = [];
 other.push(new WordPair("apple", "oppa"));
-other.push(new WordPair("honda", "hyundai"));
 other.push(new WordPair("zeil", "trial"));
-other.push(new WordPair("kitten", "sitting"));
-other.push(new WordPair("AGGCT", "TGACCTC"));
+other.push(new WordPair("kitten", "kitty"));
+other.push(new WordPair("AGGCT", "GACCTC"));
 
 const randomInt = max => Math.floor(Math.random() * max);
 

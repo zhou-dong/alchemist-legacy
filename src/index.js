@@ -33,13 +33,13 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <EditDistance />
-      <WordBreakI />
-      <KnapsackProblem />
-      <MinimumPathSum />
       <IsSubsequence />
       <LongestCommonSubsequence />
       <LongestCommonSubstring />
+      <WordBreakI />
+      <KnapsackProblem />
       <CoinChanging />
+      <MinimumPathSum />
     </div>
   </Provider>,
   document.getElementById("algorithms")

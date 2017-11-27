@@ -1,6 +1,5 @@
 import {
   TABLE_ELEMENT_DISABLE_STYLE,
-  TABLE_ELEMENT_HELPER_STYLE,
   TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
@@ -55,7 +54,7 @@ const cleanStyles = styles => {
     styles[rows - 1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
     styles[rows - 2][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   }
-  styles[rows - 1][cols - 1] = TABLE_ELEMENT_HELPER_STYLE;
+  styles[rows - 1][cols - 1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;
 };
 

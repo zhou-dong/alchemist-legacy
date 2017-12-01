@@ -7,37 +7,45 @@ import mock from "./__mock__/maximum-subarray-problem-mock.json";
 import createComparedTable from "./algorithm";
 import { modalBody } from "./introduction";
 
-import { TABLE_ELEMENT_DISABLE_STYLE } from "presentational/constants";
+import {
+  TABLE_ELEMENT_DISABLE_STYLE,
+  TABLE_ELEMENT_HELPER_STYLE
+} from "presentational/constants";
 
 const random = max => Math.floor(Math.random() * max);
 const randomInclude = max => random(max) + 1;
-const randomNegativePostive = max =>
+const randomInt = max =>
   random(2) == 1 ? randomInclude(max) : 0 - randomInclude(max);
+const concatEmpty = (array, size) => array.concat(Array(size).fill(""));
 
 const createButtons = (size, max) => {};
 
 const createDisplayTable = (size, max) => {
-  const first = Array(size)
-    .fill(max)
-    .map(num => randomNegativePostive(num));
-  const second = Array(size).fill("");
-  return [first, second];
+  const values = ["VALUE"].concat(
+    Array(size)
+      .fill(max)
+      .map(num => randomInt(num))
+  );
+  const currentMax = concatEmpty(["CUR_MAX"], size);
+  const globalMax = concatEmpty(["GLO_MAX"], size);
+  return [values, currentMax, globalMax];
 };
 
 const createStyleTable = size => {
-  const first = Array(size).fill(TABLE_ELEMENT_DISABLE_STYLE);
-  const second = Array(size).fill("");
-  return [first, second];
+  const first = Array(size + 1).fill(TABLE_ELEMENT_DISABLE_STYLE);
+  const second = concatEmpty([TABLE_ELEMENT_HELPER_STYLE], size);
+  const third = concatEmpty([TABLE_ELEMENT_HELPER_STYLE], size);
+  return [first, second, third];
 };
 
 export default () => {
-  const size = 8;
+  const size = 7;
   const max = 15;
   const table = createDisplayTable(size, max);
   return {
     table: table,
     styles: createStyleTable(size),
-    compared: createComparedTable(table),
+    compared: createComparedTable(table[0]),
     score: size,
     buttons: createButtons(),
     title: "Maximum Subarray Problem Kadane's algorithm",

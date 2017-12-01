@@ -8,6 +8,8 @@ import isSubsequenceReducer from "algorithms/is-subsequence/redux/reducer";
 import longestCommonSubsequenceReducer from "algorithms/longest-common-subsequence/redux/reducer";
 import longestCommonSubstringReducer from "algorithms/longest-common-substring/redux/reducer";
 import coinChangingReducer from "algorithms/coin-changing/redux/reducer";
+import maximumSubarrayProblemReducer from "algorithms/maximum-subarray-problem/redux/reducer";
+
 export default combineReducers({
   editDistanceReducer,
   wordBreadIReducer,
@@ -16,5 +18,6 @@ export default combineReducers({
   isSubsequenceReducer,
   longestCommonSubsequenceReducer,
   longestCommonSubstringReducer,
-  coinChangingReducer
+  coinChangingReducer,
+  maximumSubarrayProblemReducer
 });

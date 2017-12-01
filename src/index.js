@@ -19,6 +19,7 @@ import IsSubsequence from "algorithms/is-subsequence/";
 import LongestCommonSubsequence from "algorithms/longest-common-subsequence";
 import LongestCommonSubstring from "algorithms/longest-common-substring";
 import CoinChanging from "algorithms/coin-changing";
+import MaximumSubarrayProblem from "algorithms/maximum-subarray-problem";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -40,6 +41,7 @@ ReactDOM.render(
       <KnapsackProblem />
       <CoinChanging />
       <MinimumPathSum />
+      <MaximumSubarrayProblem />
     </div>
   </Provider>,
   document.getElementById("algorithms")

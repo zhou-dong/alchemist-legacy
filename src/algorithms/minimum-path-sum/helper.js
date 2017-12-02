@@ -10,8 +10,10 @@ import mock from "./__mock__/minimum-path-sum-mock.json";
 import createComparedTable from "./algorithm";
 
 const equation = `
-<pre><code>const min = Math.min(table[row - 1][col], table[row][col - 1])
-table[row][col] = table[row][col] + min
+<pre><code>table[row][col] = table[row][col] + Min(
+  table[row - 1][col],
+  table[row][col - 1]
+)
 </code></pre>
 `;
 

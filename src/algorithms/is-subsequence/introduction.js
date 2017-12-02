@@ -1,8 +1,8 @@
 const formula = `
 <pre><code>if (ch1 === ch2 && table[row - 1][col - 1]) {
-    table[row][col] = true;
+    table[row][col] = true
 } else {
-    table[row][col] = table[row][col - 1];
+    table[row][col] = table[row][col - 1]
 }
 </code></pre>
 `;

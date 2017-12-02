@@ -10,8 +10,7 @@ import { modalBody } from "./introduction";
 
 const createButtons = total => {
   const buttons = Array.from(Array(total + 1).keys());
-  buttons.shift();
-  buttons.push("∞");
+  buttons[0] = "-1";
   return buttons;
 };
 
@@ -21,7 +20,7 @@ const createDisplayTable = (total, coins) => {
   const rowLen = firstRow.length;
   const table = [];
   table.push(firstRow);
-  table.push(["", ""].concat(Array(rowLen - 2).fill("∞")));
+  table.push(["", ""].concat(Array(rowLen - 2).fill("-1")));
   coins.forEach(coin => {
     table.push([coin, 0].concat(Array(rowLen - 2).fill("")));
   });

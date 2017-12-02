@@ -14,7 +14,7 @@ import {
 } from "utils/generic-helper";
 
 const nonCorrect = (state, action) => {
-  const payload = "∞" === action.payload ? Infinity : action.payload;
+  const payload = "-1" === action.payload ? Infinity : action.payload;
   return state.compared[state.row - 1][state.col - 1] !== payload;
 };
 

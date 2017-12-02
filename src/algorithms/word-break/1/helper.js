@@ -9,25 +9,20 @@ import mock from "./__mock__/word-break.json";
 import createComparedTable from "./algorithm";
 
 const equation = `
-<pre><code>for (let len = 1; len <= str.length; len += 1) {
-  for (
-    let start = 0, end = start + len - 1;
-    end < str.length;
-    start += 1, end += 1
+<pre><code>if (dict.includes(sub)) {
+  table[start][end] = true;
+  continue;
+}
+for (let i = start; i < end; i += 1) {
+  if (
+    table[start][i] &&
+    table[i + 1][end]
   ) {
-    const sub = str.substring(start, end + 1);
-    if (dict.includes(sub)) {
-      table[start][end] = true;
-      continue;
-    }
-    for (let i = start; i < end; i += 1) {
-      if (table[start][i] && table[i + 1][end]) {
-        table[start][end] = true;
-        break;
-      }
-    }
+    table[start][end] = true;
+    break;
   }
-}</code></pre>
+}
+</code></pre>
 `;
 
 const modalBody =

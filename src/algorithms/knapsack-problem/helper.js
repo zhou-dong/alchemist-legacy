@@ -11,10 +11,9 @@ const equation = `
 } else {
   table[row][col] = Math.max(
     table[row - 1][col],
-    itemValue + table[row - 1][currentWeight - itemWeight]
+    table[row - 1][currentWeight - itemWeight] + itemValue
   );
-}
-</code></pre>
+}</code></pre>
 `;
 
 const introduction = `Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack.`;

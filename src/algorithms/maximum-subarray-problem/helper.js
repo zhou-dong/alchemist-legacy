@@ -7,6 +7,8 @@ import {
   TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
+import mock from "./__mock__/maximum-subarray-problem-mock.json";
+
 const random = max => Math.floor(Math.random() * max);
 const randomInclude = max => random(max) + 1;
 const randomInt = max =>
@@ -48,8 +50,8 @@ const createStyleTable = size => {
 };
 
 export default () => {
-  const size = 7;
-  const max = 15;
+  const size = mock.size;
+  const max = mock.max;
   const table = createDisplayTable(size, max);
   const compared = createComparedTable(table[1]);
   return {

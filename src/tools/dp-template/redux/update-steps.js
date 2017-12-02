@@ -49,7 +49,7 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
     cleanStyles(styles);
-    return { ...state, table, styles };
+    return { ...state, table, styles, steps };
   }
 
   const nextRow = "???";

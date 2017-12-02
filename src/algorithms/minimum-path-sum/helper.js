@@ -59,20 +59,16 @@ const createTable = (grid, toFilled) => {
   return table;
 };
 
-const createButtons = data => {
-  let min = Number.MAX_SAFE_INTEGER;
-  let max = 0;
-  data.forEach(row => {
-    row.forEach(element => {
-      min = Math.min(min, element);
-      max = Math.max(max, element);
-    });
-  });
+const createButtons = compared => {
   const result = [];
-  for (let i = min; i <= max; i += 1) {
-    result.push(i);
-  }
-  return result;
+  compared.forEach(row =>
+    row.forEach(element => {
+      if (!result.includes(element)) {
+        result.push(element);
+      }
+    })
+  );
+  return result.sort((a, b) => a - b);
 };
 
 const createDisplayTable = grid => clone2DArray(grid);

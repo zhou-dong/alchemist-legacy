@@ -21,7 +21,7 @@ const createButtons = table => {
     .forEach(value => {
       if (!result.includes(value)) result.push(value);
     });
-  return result;
+  return result.sort((a, b) => a - b);
 };
 
 const createDisplayTable = (size, max) => {
@@ -58,7 +58,7 @@ export default () => {
     compared: compared,
     score: size,
     buttons: createButtons(compared),
-    title: "Maximum Subarray Problem Kadane's algorithm",
+    title: "Maximum Subarray Kadane's algorithm",
     modalTitle: "Maximum Subarray Problem (Kadane's algorithm)",
     modalBody: modalBody,
     steps: 0,

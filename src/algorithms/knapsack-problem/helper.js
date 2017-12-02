@@ -5,8 +5,6 @@ import { arrayShuffle } from "utils/generic-helper";
 
 import mock from "./__mock__/knapsack-mock.json";
 
-import type { Item } from "./constants";
-
 const equation = `
 <pre><code>if (itemWeight > currentWeight) {
   table[row][col] = table[row - 1][col];
@@ -30,15 +28,23 @@ ${introduction}
 </br>
 ${equation}`;
 
+const createButtons = compared => {
+  const result = [];
+  for (let row = 2; row < compared.length; row += 1) {
+    for (let col = 1; col < compared[row].length; col += 1) {
+      const element = compared[row][col];
+      if (!result.includes(element)) {
+        result.push(element);
+      }
+    }
+  }
+  return result.sort((a, b) => a - b);
+};
+
 export default () => {
   const items: Array<number> = arrayShuffle(mock.items);
   const totalWeight: number = mock.totalWeight;
-
-  const createButtons = (items: Array<Item>): Array<number> => {
-    const sum = items.reduce((total, item) => total + item.value, 0);
-    return Array.from(Array(sum + 1).keys());
-  };
-
+  const compared = createComparedTable(items, totalWeight);
   return {
     title: "Knapsack Problem",
     modalTitle: "Knapsack Problem",
@@ -51,8 +57,8 @@ export default () => {
     score: totalWeight,
     table: createTable(items, totalWeight),
     styles: createStyleTable(items, totalWeight),
-    compared: createComparedTable(items, totalWeight),
-    buttons: createButtons(items),
+    compared: compared,
+    buttons: createButtons(compared),
     items: items
   };
 };

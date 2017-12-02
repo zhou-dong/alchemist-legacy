@@ -15,7 +15,6 @@ const concatEmpty = (array, size) => array.concat(Array(size).fill(""));
 
 const createButtons = table => {
   const result = [];
-  console.log(table);
   table[2]
     .slice(1)
     .concat(table[3].slice(1))

@@ -32,6 +32,8 @@ const updateStyles = (styles, row, col, nextRow, nextCol, state) => {
 
 const cleanStyles = styles => {
   styles[1][styles[1].length - 1] = TABLE_ELEMENT_DISABLE_STYLE;
+  const lastRow = styles[styles.length - 1];
+  lastRow[lastRow.length - 1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;
 };
 

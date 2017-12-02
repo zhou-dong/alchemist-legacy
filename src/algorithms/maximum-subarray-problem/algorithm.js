@@ -1,3 +1,12 @@
+/**
+这个算法稍微有点难度的地方是计算最大区间的起始位置和结束位置。
+首先结束位置容易计算，当每次更新最大值的时候，同时更新结束位置就行。
+起始位置比较麻烦：
+1. 首先定义一个 maybelaststart
+2. 每次当 current > current + currentMaxs[index - 1];
+  maybelaststart = index;
+3. 每次更新最大值的时候，start = maybelaststart
+ */
 export default array => {
   const indexes = [];
   const currentMaxs = ["CURRENT_MAX", array[1]];

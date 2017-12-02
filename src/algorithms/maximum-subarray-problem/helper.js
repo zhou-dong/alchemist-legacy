@@ -59,7 +59,7 @@ export default () => {
     score: size,
     buttons: createButtons(compared),
     title: "Maximum Subarray Problem Kadane's algorithm",
-    modalTitle: "Maximum Subarray Problem",
+    modalTitle: "Maximum Subarray Problem (Kadane's algorithm)",
     modalBody: modalBody,
     steps: 0,
     errors: 0,

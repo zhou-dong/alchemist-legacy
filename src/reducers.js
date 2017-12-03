@@ -10,6 +10,7 @@ import longestCommonSubstringReducer from "algorithms/longest-common-substring/r
 import coinChangingReducer from "algorithms/coin-changing/redux/reducer";
 import maximumSubarrayProblemReducer from "algorithms/maximum-subarray-problem/redux/reducer";
 import subsetSumProblemReducer from "algorithms/subset-sum-problem/redux/reducer";
+import longestPalindromicSubsequenceReducer from "algorithms/longest-palindromic-subsequence/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -21,5 +22,6 @@ export default combineReducers({
   longestCommonSubstringReducer,
   coinChangingReducer,
   maximumSubarrayProblemReducer,
-  subsetSumProblemReducer
+  subsetSumProblemReducer,
+  longestPalindromicSubsequenceReducer
 });

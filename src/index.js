@@ -21,6 +21,7 @@ import LongestCommonSubstring from "algorithms/longest-common-substring";
 import CoinChanging from "algorithms/coin-changing";
 import MaximumSubarrayProblem from "algorithms/maximum-subarray-problem";
 import SubsetSumProblem from "algorithms/subset-sum-problem";
+import LongestPalindromicSubsequence from "algorithms/longest-palindromic-subsequence";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -44,6 +45,7 @@ ReactDOM.render(
       <MinimumPathSum />
       <MaximumSubarrayProblem />
       <SubsetSumProblem />
+      <LongestPalindromicSubsequence />
     </div>
   </Provider>,
   document.getElementById("algorithms")

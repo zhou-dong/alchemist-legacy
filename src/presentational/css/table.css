@@ -83,7 +83,7 @@ table {
 }
 
 .TABLE_ELEMENT_HELPER_STYLE {
-  background-color: palegoldenrod;
+  background-color: azure;
   color: black;
 }
 
@@ -92,6 +92,15 @@ table {
   color: black;
 }
 
+.TABLE_ELEMENT_HELPER_STYLE_TWO {
+  background-color: greenyellow;
+  color: black;
+}
+
+.TABLE_ELEMENT_HELPER_STYLE_THREE {
+  background-color: aqua;
+  color: black;
+}
 ul {
   padding: 0;
   padding-bottom: 2em;

@@ -12,8 +12,10 @@ import {
 
 import { clone2DArray } from "utils/generic-helper";
 
-const nonCorrect = (state, action) =>
-  state.compared[state.row - 2][state.col - 2] !== action.payload;
+const nonCorrect = (state, action) => {
+  const payload = action.payload === "TRUE" ? true : false;
+  return state.compared[state.row - 2][state.col - 2] !== payload;
+};
 
 const isSuccess = state =>
   state.row === 2 && state.col === state.table[2].length - 1;
@@ -42,13 +44,6 @@ const addIndicateStyle = (styles, nextRow, nextLength, table) => {
     styles[1][nextRow + nextLength - 1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
     styles[nextRow][1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
     styles[nextRow + nextLength - 1][1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
-  } else if (nextLength > 2) {
-    const left = table[nextRow][nextRow + nextLength - 2];
-    const right = table[nextRow + 1][nextRow + nextLength - 1];
-    if (left < 2 && right < 2) return;
-    const start = left > right ? nextRow : nextRow + 1;
-    const style = TABLE_ELEMENT_HELPER_STYLE_THREE;
-    updateRange(styles, 1, start, nextLength - 1, style);
   }
 };
 
@@ -82,6 +77,7 @@ const updateStyles = (
   resetIndicateStyle(styles);
   addIndicateStyle(styles, nextRow, nextLength, table);
   updateHelpers(styles, helpers, nextHelpers);
+  styles[0][0] = TABLE_ELEMENT_HELPER_STYLE_THREE;
   return styles;
 };
 
@@ -97,10 +93,11 @@ export default (state, action) => {
   const row = state.row;
   const col = state.col;
   const steps = state.steps + 1;
-  const length = state.length;
   const helpers = state.helpers;
+  const length = state.length;
   const nextHelpers = [];
-  table[row][col] = action.payload;
+  const marks = state.marks;
+  table[row][col] = action.payload === "TRUE" ? "T" : "F";
 
   if (nonCorrect(state, action)) {
     styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
@@ -125,16 +122,14 @@ export default (state, action) => {
   const nextRow = isNextLen ? 2 : row + 1;
   const nextCol = isNextLen ? nextRow + nextLength - 1 : col + 1;
 
-  if (nextLength > 2) {
-    if (table[1][nextRow] === table[1][nextRow + nextLength - 1]) {
-      const r = nextRow + 1;
-      const c = nextRow + nextLength - 2;
-      nextHelpers.push([r, c]);
-    } else {
-      nextHelpers.push([nextRow, nextRow + nextLength - 2]);
-      nextHelpers.push([nextRow + 1, nextRow + nextLength - 1]);
-    }
+  if (
+    nextLength > 2 &&
+    table[1][nextRow] === table[1][nextRow + nextLength - 1]
+  ) {
+    nextHelpers.push([nextRow + 1, nextRow + nextLength - 2]);
   }
+
+  table[0][0] = marks[row - 2][col - 2];
 
   updateStyles(
     styles,

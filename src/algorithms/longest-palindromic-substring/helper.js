@@ -4,24 +4,19 @@ import {
   TABLE_ELEMENT_SUB_INDICATE_STYLE,
   TABLE_ELEMENT_DEFAULT_STYLE,
   TABLE_ELEMENT_ON_GOING_STYLE,
-  TABLE_ELEMENT_HELPER_STYLE
+  TABLE_ELEMENT_HELPER_STYLE,
+  TABLE_ELEMENT_HELPER_STYLE_THREE
 } from "presentational/constants";
 
-import mock from "./__mock__/longest-palindromic-subsequence-mock.json";
+import mock from "./__mock__/longest-palindromic-substring-mock.json";
 import createComparedTable from "./algorithm";
 import { modalBody } from "./introduction";
-
-const createButtons = sequence => {
-  const result = Array.from(Array(sequence.length + 1).keys());
-  result.shift();
-  return result;
-};
 
 const createDisplayTable = sequence => {
   const table = [];
   const length = sequence.length;
   const chars = sequence.split("");
-  table.push(["", ""].concat(Array.from(Array(length).keys())));
+  table.push([1, ""].concat(Array.from(Array(length).keys())));
   table.push(["", ""].concat(Array.from(chars)));
   chars.forEach((ch, i) => {
     table.push([i, ch].concat(Array(length).fill("")));
@@ -41,6 +36,7 @@ const createStyleTable = sequence => {
       )
     );
   }
+  table[0][0] = TABLE_ELEMENT_HELPER_STYLE_THREE;
   table[1][0] = TABLE_ELEMENT_HELPER_STYLE;
 
   table[2][2] = TABLE_ELEMENT_ON_GOING_STYLE;
@@ -52,6 +48,7 @@ const createStyleTable = sequence => {
 };
 
 const random = max => Math.floor(Math.random() * max);
+
 export default () => {
   const size = mock.size;
   const resource = mock.resource;
@@ -59,14 +56,17 @@ export default () => {
     .fill(resource.length)
     .map(num => resource[random(num)])
     .join("");
+
+  const compared = createComparedTable(sequence);
   return {
     table: createDisplayTable(sequence),
     styles: createStyleTable(sequence),
-    compared: createComparedTable(sequence),
-    score: sequence.length,
-    buttons: createButtons(sequence),
-    title: "Longest Palindromic Subsequence",
-    modalTitle: "Longest Palindromic Subsequence",
+    compared: compared.truth,
+    marks: compared.marks,
+    score: size,
+    buttons: ["TRUE", "FALSE"],
+    title: "Longest Palindromic Substring",
+    modalTitle: "Longest Palindromic Substring",
     modalBody: modalBody,
     row: 2,
     col: 2,

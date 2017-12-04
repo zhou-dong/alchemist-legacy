@@ -11,6 +11,7 @@ import coinChangingReducer from "algorithms/coin-changing/redux/reducer";
 import maximumSubarrayProblemReducer from "algorithms/maximum-subarray-problem/redux/reducer";
 import subsetSumProblemReducer from "algorithms/subset-sum-problem/redux/reducer";
 import longestPalindromicSubsequenceReducer from "algorithms/longest-palindromic-subsequence/redux/reducer";
+import longestPalindromicSubstringReducer from "algorithms/longest-palindromic-substring/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -23,5 +24,6 @@ export default combineReducers({
   coinChangingReducer,
   maximumSubarrayProblemReducer,
   subsetSumProblemReducer,
-  longestPalindromicSubsequenceReducer
+  longestPalindromicSubsequenceReducer,
+  longestPalindromicSubstringReducer
 });

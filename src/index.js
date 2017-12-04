@@ -22,6 +22,7 @@ import CoinChanging from "algorithms/coin-changing";
 import MaximumSubarrayProblem from "algorithms/maximum-subarray-problem";
 import SubsetSumProblem from "algorithms/subset-sum-problem";
 import LongestPalindromicSubsequence from "algorithms/longest-palindromic-subsequence";
+import LongestPalindromicSubstring from "algorithms/longest-palindromic-substring";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -45,6 +46,7 @@ ReactDOM.render(
       <MinimumPathSum />
       <MaximumSubarrayProblem />
       <SubsetSumProblem />
+      <LongestPalindromicSubstring />
       <LongestPalindromicSubsequence />
     </div>
   </Provider>,

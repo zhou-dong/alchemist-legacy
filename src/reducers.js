@@ -12,6 +12,7 @@ import maximumSubarrayProblemReducer from "algorithms/maximum-subarray-problem/r
 import subsetSumProblemReducer from "algorithms/subset-sum-problem/redux/reducer";
 import longestPalindromicSubsequenceReducer from "algorithms/longest-palindromic-subsequence/redux/reducer";
 import longestPalindromicSubstringReducer from "algorithms/longest-palindromic-substring/redux/reducer";
+import palindromePartitioningReducer from "algorithms/palindrome-partitioning/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -25,5 +26,6 @@ export default combineReducers({
   maximumSubarrayProblemReducer,
   subsetSumProblemReducer,
   longestPalindromicSubsequenceReducer,
-  longestPalindromicSubstringReducer
+  longestPalindromicSubstringReducer,
+  palindromePartitioningReducer
 });

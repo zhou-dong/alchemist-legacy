@@ -23,6 +23,7 @@ import MaximumSubarrayProblem from "algorithms/maximum-subarray-problem";
 import SubsetSumProblem from "algorithms/subset-sum-problem";
 import LongestPalindromicSubsequence from "algorithms/longest-palindromic-subsequence";
 import LongestPalindromicSubstring from "algorithms/longest-palindromic-substring";
+import PalindromePartitioning from "algorithms/palindrome-partitioning";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -48,6 +49,7 @@ ReactDOM.render(
       <SubsetSumProblem />
       <LongestPalindromicSubstring />
       <LongestPalindromicSubsequence />
+      <PalindromePartitioning />
     </div>
   </Provider>,
   document.getElementById("algorithms")

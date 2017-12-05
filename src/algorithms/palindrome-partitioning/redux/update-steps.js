@@ -76,6 +76,7 @@ const updateStyles = (
 };
 
 const cleanStyles = (styles, helpers, row, col) => {
+  resetIndicateStyle(styles);
   cleanHelper(styles, helpers);
   styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;

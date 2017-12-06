@@ -18,16 +18,17 @@ const isSuccess = state =>
   isLastElementOfTable(state.table, state.row, state.col + 1);
 
 const clearPreviousIndicate = (styles, row, col) => {
-  styles[0][col] = TABLE_ELEMENT_HELPER_STYLE;
   styles[row][0] = TABLE_ELEMENT_HELPER_STYLE;
-  styles[1][col] = TABLE_ELEMENT_DISABLE_STYLE;
   styles[row][1] = TABLE_ELEMENT_DISABLE_STYLE;
+  styles[col - 1][0] = TABLE_ELEMENT_HELPER_STYLE;
+  styles[col - 1][1] = TABLE_ELEMENT_DISABLE_STYLE;
 };
 
 const addNextIndicate = (styles, nextRow, nextCol) => {
-  styles[0][nextCol] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
-  styles[nextRow][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
-  styles[1][nextCol] = TABLE_ELEMENT_HELPER_STYLE_TWO;
+  styles[nextCol - 1][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  styles[nextCol - 1][1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+
+  styles[nextRow][0] = TABLE_ELEMENT_HELPER_STYLE_TWO;
   styles[nextRow][1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
 };
 

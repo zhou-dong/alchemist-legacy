@@ -10,8 +10,7 @@ import {
   TABLE_ELEMENT_HELPER_STYLE_TWO,
   TABLE_ELEMENT_HELPER_STYLE_THREE,
   TABLE_ELEMENT_DISABLE_STYLE,
-  TABLE_ELEMENT_DEFAULT_STYLE,
-  TABLE_ELEMENT_INDICATE_STYLE
+  TABLE_ELEMENT_DEFAULT_STYLE
 } from "presentational/constants";
 
 const createButtons = size => {
@@ -36,9 +35,9 @@ const createTable = sequence => {
 };
 
 const addIndicate = styles => {
-  styles[0][3] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
-  styles[1][3] = TABLE_ELEMENT_HELPER_STYLE_TWO;
-  styles[3][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  styles[2][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  styles[2][1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  styles[3][0] = TABLE_ELEMENT_HELPER_STYLE_TWO;
   styles[3][1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
 };
 
@@ -61,7 +60,7 @@ const createStyles = (sequence, helpers) => {
   for (let i = 2; i < table.length; i += 1) {
     table[i][i + 1] = TABLE_ELEMENT_SUCCESS_STYLE;
   }
-  table[0][0] = TABLE_ELEMENT_INDICATE_STYLE;
+  table[0][0] = TABLE_ELEMENT_HELPER_STYLE_TWO;
   table[1][0] = TABLE_ELEMENT_HELPER_STYLE;
   table[2][0] = TABLE_ELEMENT_HELPER_STYLE;
   table[3][3] = TABLE_ELEMENT_ON_GOING_STYLE;

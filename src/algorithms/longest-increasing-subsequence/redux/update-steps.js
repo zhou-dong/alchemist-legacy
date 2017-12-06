@@ -95,10 +95,13 @@ export default (state, action) => {
 
   const rowValue = table[nextRow][1];
   const colValue = table[nextCol - 3][1];
-  if (rowValue <= colValue) {
-    nextHelpers.push([nextRow, nextCol - 1]);
-  } else {
+  if (
+    rowValue > colValue &&
+    table[nextCol - 3][nextCol - 1] + 1 > table[nextRow][nextCol - 1]
+  ) {
     nextHelpers.push([nextCol - 3, nextCol - 1]);
+  } else {
+    nextHelpers.push([nextRow, nextCol - 1]);
   }
 
   updateStyles(styles, row, col, nextRow, nextCol);

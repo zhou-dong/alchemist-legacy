@@ -1,6 +1,13 @@
 const formula = `
-<pre><code>
-  ... code ...
+<pre><code>if (sequence[row] > sequence[col - 1]) {
+    table[row][col] = Math.max(
+        table[row][col - 1],
+        table[col - 1][col - 1] + 1
+    );
+} else {
+    table[row][col] =
+        table[row][col - 1];
+}
 </code></pre>
 `;
 

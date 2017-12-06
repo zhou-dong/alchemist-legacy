@@ -51,7 +51,10 @@ export default () => {
   const total = mock.total;
   const coins = arrayShuffle(mock.coins);
   const compared = createComparedTable(total, coins);
-  const helpers = coins[0] === 1 ? [[2, 1]] : [[1, 2]];
+  const helpers = [[1, 2]];
+  if (coins[0] === 1) {
+    helpers.push([2, 1]);
+  }
   return {
     table: createDisplayTable(total, coins),
     styles: createStyleTable(total, coins, helpers),

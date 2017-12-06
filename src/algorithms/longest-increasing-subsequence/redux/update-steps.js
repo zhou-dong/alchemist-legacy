@@ -12,21 +12,22 @@ import {
 import { clone2DArray, isLastElementOfTable } from "utils/generic-helper";
 
 const nonCorrect = (state, action) =>
-  state.compared[state.row - 2][state.col - 2] !== action.payload;
+  state.compared[state.row][state.col - 2] !== action.payload;
 
 const isSuccess = state =>
-  isLastElementOfTable(state.table, state.row, state.col + 1);
+  isLastElementOfTable(state.table, state.row, state.col);
 
 const clearPreviousIndicate = (styles, row, col) => {
+  styles[col - 3][0] = TABLE_ELEMENT_HELPER_STYLE;
+  styles[col - 3][1] = TABLE_ELEMENT_DISABLE_STYLE;
+
   styles[row][0] = TABLE_ELEMENT_HELPER_STYLE;
   styles[row][1] = TABLE_ELEMENT_DISABLE_STYLE;
-  styles[col - 1][0] = TABLE_ELEMENT_HELPER_STYLE;
-  styles[col - 1][1] = TABLE_ELEMENT_DISABLE_STYLE;
 };
 
 const addNextIndicate = (styles, nextRow, nextCol) => {
-  styles[nextCol - 1][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
-  styles[nextCol - 1][1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  styles[nextCol - 3][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  styles[nextCol - 3][1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
 
   styles[nextRow][0] = TABLE_ELEMENT_HELPER_STYLE_TWO;
   styles[nextRow][1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
@@ -56,13 +57,12 @@ const updateHelpers = (styles, helpers, nextHelpers) => {
 const cleanStyles = (styles, row, col, helpers) => {
   clearPreviousIndicate(styles, row, col);
   cleanHelper(styles, helpers);
-  const lastRow = styles[styles.length - 1];
-  lastRow[lastRow.length - 2] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
   return styles;
 };
 
 const updateMax = (state, table, row, col) => {
-  table[0][0] = state.maxTable[row - 2][col - 2];
+  const cols = table[0].length;
+  table[0][cols - 1] = state.maxTable[row][col - 2];
 };
 
 export default (state, action) => {
@@ -89,16 +89,16 @@ export default (state, action) => {
     return { ...state, table, styles, steps };
   }
 
-  const isEnd = row === col ? true : false;
+  const isEnd = row + 2 === col ? true : false;
   const nextRow = isEnd ? row + 1 : row;
   const nextCol = isEnd ? 3 : col + 1;
 
   const rowValue = table[nextRow][1];
-  const colValue = table[1][nextCol];
+  const colValue = table[nextCol - 3][1];
   if (rowValue <= colValue) {
     nextHelpers.push([nextRow, nextCol - 1]);
   } else {
-    nextHelpers.push([nextCol - 1, nextCol - 1]);
+    nextHelpers.push([nextCol - 3, nextCol - 1]);
   }
 
   updateStyles(styles, row, col, nextRow, nextCol);

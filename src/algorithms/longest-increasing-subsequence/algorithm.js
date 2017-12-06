@@ -1,6 +1,6 @@
 const initTable = sequence => {
   const table = [];
-  const length = sequence.length + 1;
+  const length = sequence.length;
   for (let row = 0; row < length; row += 1) {
     table.push(Array(length).fill(1));
   }
@@ -19,7 +19,7 @@ const createMaxTable = (sequence, table) => {
   return maxTable;
 };
 
-export default sequence => {
+const createComparedTable = sequence => {
   const table = initTable(sequence);
   for (let row = 1; row < table.length; row += 1) {
     for (let col = 1; col < row + 1; col += 1) {
@@ -33,5 +33,13 @@ export default sequence => {
       }
     }
   }
-  return { compared: table, maxTable: createMaxTable(sequence, table) };
+  return table;
+};
+
+export default sequence => {
+  const compared = createComparedTable(sequence);
+  return {
+    compared: compared,
+    maxTable: createMaxTable(sequence, compared)
+  };
 };

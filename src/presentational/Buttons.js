@@ -8,7 +8,7 @@ const tr = (props: Props, items: Array<number | string>, rowKey: number) => (
   <tr key={rowKey}>
     {items.map((value, index) => {
       return (
-        <td key={index}>
+        <td key={`${index}-${value}`}>
           <button onClick={() => props.onClick(value)}>{value}</button>
         </td>
       );

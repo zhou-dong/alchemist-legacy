@@ -25,6 +25,7 @@ import LongestPalindromicSubsequence from "algorithms/longest-palindromic-subseq
 import LongestPalindromicSubstring from "algorithms/longest-palindromic-substring";
 import PalindromePartitioning from "algorithms/palindrome-partitioning";
 import LongestIncreasingSubsequence from "algorithms/longest-increasing-subsequence/";
+import CoinChange from "algorithms/coin-change";
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
 // }
@@ -44,6 +45,7 @@ ReactDOM.render(
       <WordBreakI />
       <KnapsackProblem />
       <CoinChanging />
+      <CoinChange />
       <MinimumPathSum />
       <MaximumSubarrayProblem />
       <SubsetSumProblem />

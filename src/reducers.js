@@ -13,6 +13,7 @@ import subsetSumProblemReducer from "algorithms/subset-sum-problem/redux/reducer
 import longestPalindromicSubsequenceReducer from "algorithms/longest-palindromic-subsequence/redux/reducer";
 import longestPalindromicSubstringReducer from "algorithms/longest-palindromic-substring/redux/reducer";
 import palindromePartitioningReducer from "algorithms/palindrome-partitioning/redux/reducer";
+import longestIncreasingSubsequenceReducer from "algorithms/longest-increasing-subsequence/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -27,5 +28,6 @@ export default combineReducers({
   subsetSumProblemReducer,
   longestPalindromicSubsequenceReducer,
   longestPalindromicSubstringReducer,
-  palindromePartitioningReducer
+  palindromePartitioningReducer,
+  longestIncreasingSubsequenceReducer
 });

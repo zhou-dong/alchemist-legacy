@@ -24,7 +24,7 @@ import SubsetSumProblem from "algorithms/subset-sum-problem";
 import LongestPalindromicSubsequence from "algorithms/longest-palindromic-subsequence";
 import LongestPalindromicSubstring from "algorithms/longest-palindromic-substring";
 import PalindromePartitioning from "algorithms/palindrome-partitioning";
-
+import LongestIncreasingSubsequence from "algorithms/longest-increasing-subsequence/";
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
 // }
@@ -50,6 +50,7 @@ ReactDOM.render(
       <LongestPalindromicSubstring />
       <LongestPalindromicSubsequence />
       <PalindromePartitioning />
+      <LongestIncreasingSubsequence />
     </div>
   </Provider>,
   document.getElementById("algorithms")

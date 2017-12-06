@@ -6,7 +6,8 @@ import {
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_INDICATE_STYLE,
   TABLE_ELEMENT_HELPER_STYLE,
-  TABLE_ELEMENT_SUB_INDICATE_STYLE
+  TABLE_ELEMENT_SUB_INDICATE_STYLE,
+  TABLE_ELEMENT_HELPER_STYLE_TWO
 } from "presentational/constants";
 
 export const createDPTableWithoutIndicator = (
@@ -174,5 +175,38 @@ export const createStyleTableWithIndicator = (
   updateSecondColWithDisableStyle();
   setupFirstOpearteTableElement();
   setupFirstIndicate();
+  return table;
+};
+
+export const createBasicSquare = (array: Array<any>) => {
+  const table: Array<Array<string>> = [];
+  const length = array.length;
+  table.push(["", ""].concat(Array.from(Array(length).keys())));
+  table.push(["", ""].concat(Array.from(array)));
+  array.forEach((ch, i) => {
+    table.push([i, ch].concat(Array(length).fill("")));
+  });
+  return table;
+};
+
+export const createBasicSquareStyles = (array: Array<any>) => {
+  const table: Array<Array<string>> = [];
+
+  const length = array.length + 2;
+  table.push(Array(length).fill(TABLE_ELEMENT_HELPER_STYLE));
+  table.push(Array(length).fill(TABLE_ELEMENT_DISABLE_STYLE));
+  for (let row = 2; row < length; row += 1) {
+    table.push(
+      [TABLE_ELEMENT_HELPER_STYLE, TABLE_ELEMENT_DISABLE_STYLE].concat(
+        Array(length - 2).fill(TABLE_ELEMENT_DEFAULT_STYLE)
+      )
+    );
+  }
+  table[1][0] = TABLE_ELEMENT_HELPER_STYLE;
+  table[2][2] = TABLE_ELEMENT_ON_GOING_STYLE;
+  table[0][2] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  table[1][2] = TABLE_ELEMENT_HELPER_STYLE_TWO;
+  table[2][0] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  table[2][1] = TABLE_ELEMENT_HELPER_STYLE_TWO;
   return table;
 };

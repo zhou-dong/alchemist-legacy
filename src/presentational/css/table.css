@@ -101,6 +101,12 @@ table {
   background-color: aqua;
   color: black;
 }
+
+.TABLE_ELEMENT_HELPER_STYLE_FOUR {
+  background-color: lightcoral;
+  color: black;
+}
+
 ul {
   padding: 0;
   padding-bottom: 2em;

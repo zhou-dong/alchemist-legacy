@@ -2,7 +2,6 @@ import {
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_SUB_INDICATE_STYLE,
   TABLE_ELEMENT_DEFAULT_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE,
   TABLE_ELEMENT_HELPER_STYLE_TWO,
   TABLE_ELEMENT_HELPER_STYLE_THREE
 } from "presentational/constants";
@@ -45,7 +44,7 @@ const initTable = sequence => {
 const createStyleTable = sequence => {
   const table = initTable(sequence);
   table[1][0] = TABLE_ELEMENT_HELPER_STYLE_THREE;
-  table[1][1] = TABLE_ELEMENT_ON_GOING_STYLE;
+  table[1][1] = TABLE_ELEMENT_HELPER_STYLE_THREE;
   addIndicates(table);
   return table;
 };

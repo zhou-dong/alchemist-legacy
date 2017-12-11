@@ -2,7 +2,6 @@ import {
   TABLE_ELEMENT_DISABLE_STYLE,
   TABLE_ELEMENT_ERROR_STYLE,
   TABLE_ELEMENT_SUCCESS_STYLE,
-  TABLE_ELEMENT_ON_GOING_STYLE,
   TABLE_ELEMENT_SUB_INDICATE_STYLE,
   TABLE_ELEMENT_HELPER_STYLE_TWO,
   TABLE_ELEMENT_HELPER_STYLE_THREE
@@ -26,7 +25,7 @@ const addIndicates = (styles, nextRow, nextCol) => {
     styles,
     nextRow,
     TABLE_ELEMENT_HELPER_STYLE_TWO,
-    TABLE_ELEMENT_ON_GOING_STYLE
+    TABLE_ELEMENT_HELPER_STYLE_THREE
   );
   addIndicate(
     styles,
@@ -46,20 +45,35 @@ const removeIndicates = (styles, row, col) => {
   removeIndicate(styles, col);
 };
 
-const updateStyles = (styles, row, col, nextRow, nextCol) => {
-  styles[1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
-  styles[1][nextRow] = TABLE_ELEMENT_ON_GOING_STYLE;
-  removeIndicates(styles, row, col - 1);
-  addIndicates(styles, nextRow, nextCol - 1);
-  return styles;
+const getMax = maxTable => {
+  const lastRow = maxTable[maxTable.length - 1];
+  return lastRow[lastRow.length - 1];
 };
 
-const cleanStyles = (styles, row, col) => {
+const highLightResult = (table, maxTable, styles) => {
+  const max = getMax(maxTable);
+  table[table.length - 1].forEach((val, i) => {
+    styles[1][i] = TABLE_ELEMENT_SUCCESS_STYLE;
+    if (val === max) {
+      styles[1][i] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+    }
+  });
+};
+
+const updateStyles = (styles, row, col, nextRow, nextCol) => {
+  styles[1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
+  styles[1][nextRow] = TABLE_ELEMENT_HELPER_STYLE_THREE;
+  removeIndicates(styles, row, col - 1);
+  addIndicates(styles, nextRow, nextCol - 1);
+};
+
+const cleanStyles = (styles, row, col, maxTable, table) => {
   removeIndicates(styles, row, col);
   const colIndex = styles[0].length - 2;
   styles[0][colIndex] = TABLE_ELEMENT_DISABLE_STYLE;
   styles[1][colIndex] = TABLE_ELEMENT_SUCCESS_STYLE;
   styles[1][colIndex + 1] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
+  highLightResult(table, maxTable, styles);
 };
 
 export default (state, action) => {
@@ -78,7 +92,7 @@ export default (state, action) => {
 
   styles[1][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
-    cleanStyles(styles, row, col);
+    cleanStyles(styles, row, col, state.maxTable, table);
     return { ...state, table, styles, steps };
   }
 

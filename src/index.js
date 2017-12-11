@@ -26,6 +26,8 @@ import LongestPalindromicSubstring from "algorithms/longest-palindromic-substrin
 import PalindromePartitioning from "algorithms/palindrome-partitioning";
 import LongestIncreasingSubsequence from "algorithms/longest-increasing-subsequence/";
 import CoinChange from "algorithms/coin-change";
+import LongestIncreasingSubsequenceII from "algorithms/longest-increasing-subsequence-ii";
+
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
 // }
@@ -53,6 +55,7 @@ ReactDOM.render(
       <LongestPalindromicSubsequence />
       <PalindromePartitioning />
       <LongestIncreasingSubsequence />
+      <LongestIncreasingSubsequenceII />
     </div>
   </Provider>,
   document.getElementById("algorithms")

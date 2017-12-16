@@ -15,16 +15,28 @@ import {
 } from "utils/generic-helper";
 
 const nonCorrect = (state, action) => {
-  return false;
+  const payload = action.payload === "TRUE" ? true : false;
+  return state.compared[state.row - 1][state.col - 1] !== payload;
 };
 
-const isSuccess = state => {
-  return false;
+const isSuccess = state =>
+  isLastElementOfTable(state.table, state.row, state.col);
+
+const removeIndicates = (styles, row, col) => {
+  styles[0][col] = TABLE_ELEMENT_DISABLE_STYLE;
+  styles[row][0] = TABLE_ELEMENT_DISABLE_STYLE;
+};
+
+const addIndicates = (styles, nextRow, nextCol) => {
+  styles[0][nextCol] = TABLE_ELEMENT_INDICATE_STYLE;
+  styles[nextRow][0] = TABLE_ELEMENT_INDICATE_STYLE;
 };
 
 const updateStyles = (styles, row, col, nextRow, nextCol) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   styles[nextRow][nextCol] = TABLE_ELEMENT_ON_GOING_STYLE;
+  removeIndicates(styles, row, col);
+  addIndicates(styles, nextRow, nextCol);
   return styles;
 };
 
@@ -44,7 +56,7 @@ export default (state, action) => {
   const row = state.row;
   const col = state.col;
   const steps = state.steps + 1;
-  table[row][col] = action.payload;
+  table[row][col] = action.payload === "TRUE" ? "T" : "F";
 
   if (nonCorrect(state, action)) {
     styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
@@ -58,8 +70,9 @@ export default (state, action) => {
     return { ...state, table, styles, steps };
   }
 
-  const nextRow = "???";
-  const nextCol = "???";
+  const isEnd = isEndColInTable(table, row, col);
+  const nextRow = isEnd ? row + 1 : row;
+  const nextCol = isEnd ? 2 : col + 1;
 
   updateStyles(styles, row, col, nextRow, nextCol);
 

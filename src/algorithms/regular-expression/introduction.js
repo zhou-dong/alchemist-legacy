@@ -1,15 +1,15 @@
 const formula = `
 <pre><code>const p = pattern.charAt(col - 1);
+const prevP = pattern.charAt(col - 2);
+
 if (p === "." || p === t) {
     table[row][col] =
         table[row - 1][col - 1];
 } else if (p === "*") {
-    if (table[row][col - 2]) {
-        table[row][col] =
-            table[row][col - 2];
+    if (table[row][col - 2] === true) {
+        table[row][col] = true
     } else if (
-        pattern.charAt(col - 2) === "." ||
-        pattern.charAt(col - 2) === t
+        prevP === "." || prevP === t
     ) {
         table[row][col] =
             table[row - 1][col];

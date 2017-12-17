@@ -17,6 +17,7 @@ import palindromePartitioningReducer from "algorithms/palindrome-partitioning/re
 import longestIncreasingSubsequenceReducer from "algorithms/longest-increasing-subsequence/redux/reducer";
 import longestIncreasingSubsequenceIiReducer from "algorithms/longest-increasing-subsequence-ii/redux/reducer";
 import regularExpressionReducer from "algorithms/regular-expression/redux/reducer";
+import wildcardMatchingReducer from "algorithms/wildcard-matching/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -35,5 +36,6 @@ export default combineReducers({
   longestIncreasingSubsequenceReducer,
   coinChangeReducer,
   longestIncreasingSubsequenceIiReducer,
-  regularExpressionReducer
+  regularExpressionReducer,
+  wildcardMatchingReducer
 });

@@ -18,11 +18,17 @@ if (p === "." || p === t) {
 </code></pre>
 `;
 
-const introduction = "... introduction ...";
+const introduction = `'.' Matches any single character. <br>
+'*' Matches zero or more of the preceding element. <br>
+The matching should cover the entire input string (not partial).`;
 
 const example = `
-<pre><code>
-  ... code ...
+<pre><code>"aa","a" → false
+"aa","aa" → true
+"aa", "a*" → true
+"aa", ".*" → true
+"ab", ".*" → true
+"aab", "c*a*b" → true
 </code></pre>`;
 
 export const modalBody = `

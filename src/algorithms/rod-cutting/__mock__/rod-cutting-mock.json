@@ -1,0 +1,9 @@
+{
+  "totalLength": 6,
+  "prices": [
+    { "length": 1, "price": 2 },
+    { "length": 2, "price": 5 },
+    { "length": 3, "price": 7 },
+    { "length": 4, "price": 8 }
+  ]
+}

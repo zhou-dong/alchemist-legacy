@@ -18,6 +18,7 @@ import longestIncreasingSubsequenceReducer from "algorithms/longest-increasing-s
 import longestIncreasingSubsequenceIiReducer from "algorithms/longest-increasing-subsequence-ii/redux/reducer";
 import regularExpressionReducer from "algorithms/regular-expression/redux/reducer";
 import wildcardMatchingReducer from "algorithms/wildcard-matching/redux/reducer";
+import rodCuttingReducer from "algorithms/rod-cutting/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -37,5 +38,6 @@ export default combineReducers({
   coinChangeReducer,
   longestIncreasingSubsequenceIiReducer,
   regularExpressionReducer,
-  wildcardMatchingReducer
+  wildcardMatchingReducer,
+  rodCuttingReducer
 });

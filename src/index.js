@@ -29,6 +29,7 @@ import CoinChange from "algorithms/coin-change";
 import LongestIncreasingSubsequenceII from "algorithms/longest-increasing-subsequence-ii";
 import RegularExpression from "algorithms/regular-expression";
 import WildcardMatching from "algorithms/wildcard-matching";
+import RodCutting from "algorithms/rod-cutting";
 
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
@@ -64,6 +65,7 @@ ReactDOM.render(
       <LongestIncreasingSubsequenceII />
       <RegularExpression />
       <WildcardMatching />
+      <RodCutting />
     </div>
   </Provider>,
   document.getElementById("algorithms")

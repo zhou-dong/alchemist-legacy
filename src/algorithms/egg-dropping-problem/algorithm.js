@@ -23,6 +23,5 @@ export default (eggs, floors) => {
       }
     }
   }
-  console.log(table);
   return table;
 };

@@ -30,7 +30,7 @@ import LongestIncreasingSubsequenceII from "algorithms/longest-increasing-subseq
 import RegularExpression from "algorithms/regular-expression";
 import WildcardMatching from "algorithms/wildcard-matching";
 import RodCutting from "algorithms/rod-cutting";
-
+import EggDroppingProblem from "algorithms/egg-dropping-problem";
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
 // }
@@ -66,6 +66,7 @@ ReactDOM.render(
       <RegularExpression />
       <WildcardMatching />
       <RodCutting />
+      <EggDroppingProblem />
     </div>
   </Provider>,
   document.getElementById("algorithms")

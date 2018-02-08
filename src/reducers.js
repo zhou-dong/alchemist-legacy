@@ -19,6 +19,7 @@ import longestIncreasingSubsequenceIiReducer from "algorithms/longest-increasing
 import regularExpressionReducer from "algorithms/regular-expression/redux/reducer";
 import wildcardMatchingReducer from "algorithms/wildcard-matching/redux/reducer";
 import rodCuttingReducer from "algorithms/rod-cutting/redux/reducer";
+import eggDroppingProblemReducer from "algorithms/egg-dropping-problem/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -39,5 +40,6 @@ export default combineReducers({
   longestIncreasingSubsequenceIiReducer,
   regularExpressionReducer,
   wildcardMatchingReducer,
-  rodCuttingReducer
+  rodCuttingReducer,
+  eggDroppingProblemReducer
 });

@@ -31,6 +31,8 @@ import RegularExpression from "algorithms/regular-expression";
 import WildcardMatching from "algorithms/wildcard-matching";
 import RodCutting from "algorithms/rod-cutting";
 import EggDroppingProblem from "algorithms/egg-dropping-problem";
+import MinimumNumberOfJumpsToReachEnd from "algorithms/minimum-number-of-jumps-to-reach-end";
+
 // export function* helloSaga() {
 //   console.log("Hello Sagas!");
 // }
@@ -67,6 +69,7 @@ ReactDOM.render(
       <WildcardMatching />
       <RodCutting />
       <EggDroppingProblem />
+      <MinimumNumberOfJumpsToReachEnd />
     </div>
   </Provider>,
   document.getElementById("algorithms")

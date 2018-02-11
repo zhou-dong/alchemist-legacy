@@ -20,6 +20,7 @@ import regularExpressionReducer from "algorithms/regular-expression/redux/reduce
 import wildcardMatchingReducer from "algorithms/wildcard-matching/redux/reducer";
 import rodCuttingReducer from "algorithms/rod-cutting/redux/reducer";
 import eggDroppingProblemReducer from "algorithms/egg-dropping-problem/redux/reducer";
+import minimumNumberOfJumpsToReachEndReducer from "algorithms/minimum-number-of-jumps-to-reach-end/redux/reducer";
 
 export default combineReducers({
   editDistanceReducer,
@@ -41,5 +42,6 @@ export default combineReducers({
   regularExpressionReducer,
   wildcardMatchingReducer,
   rodCuttingReducer,
-  eggDroppingProblemReducer
+  eggDroppingProblemReducer,
+  minimumNumberOfJumpsToReachEndReducer
 });

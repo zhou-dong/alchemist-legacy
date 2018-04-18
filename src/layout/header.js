@@ -29,16 +29,13 @@ const getLogins = () => (
 );
 
 const getAvatar = user => {
-  return (user && user.avatar) || (user && user.username) || "Log In";
+  const image = () => <img src={user.avatar} alt={user.username} width="30" />;
+  return (user && user.avatar && image()) || "Log In";
 };
 
 const getUserInfo = (user, updateUser) => (
   <Nav pullRight>
-    <NavDropdown
-      eventKey={3}
-      title={getAvatar(user) + ""}
-      id="basic-nav-dropdown"
-    >
+    <NavDropdown eventKey={3} title={getAvatar(user)} id="basic-nav-dropdown">
       <MenuItem eventKey={3.1}>{user && user.username}</MenuItem>
       <MenuItem eventKey={3.2} onClick={() => logOut(updateUser)}>
         Log Out

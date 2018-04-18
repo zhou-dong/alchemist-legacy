@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
+import { updateUserReducer } from "layout/header";
+
 import editDistanceReducer from "algorithms/edit-distance/redux/reducer";
 import wordBreadIReducer from "algorithms/word-break/1/redux/reducer";
 import knapsackProblemReducer from "algorithms/knapsack-problem/redux/reducer";
@@ -23,6 +25,7 @@ import eggDroppingProblemReducer from "algorithms/egg-dropping-problem/redux/red
 import minimumNumberOfJumpsToReachEndReducer from "algorithms/minimum-number-of-jumps-to-reach-end/redux/reducer";
 
 export default combineReducers({
+  updateUserReducer,
   editDistanceReducer,
   wordBreadIReducer,
   knapsackProblemReducer,

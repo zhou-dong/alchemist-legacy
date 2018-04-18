@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/css/bootstrap-theme.css";
+// import "bootstrap/dist/css/bootstrap-theme.css";
 import "index.css";
 
 import React from "react";
@@ -9,7 +9,11 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "reducers";
-import registerServiceWorker from "./registerServiceWorker";
+import rootSaga from "saga";
+import registerServiceWorker from "registerServiceWorker";
+
+import Header from "layout/header";
+import Footer from "layout/footer";
 
 import EditDistance from "algorithms/edit-distance";
 import WordBreakI from "algorithms/word-break/1";
@@ -33,10 +37,6 @@ import RodCutting from "algorithms/rod-cutting";
 import EggDroppingProblem from "algorithms/egg-dropping-problem";
 import MinimumNumberOfJumpsToReachEnd from "algorithms/minimum-number-of-jumps-to-reach-end";
 
-// export function* helloSaga() {
-//   console.log("Hello Sagas!");
-// }
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -44,11 +44,12 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-// sagaMiddleware.run(helloSaga);
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
     <div>
+      <Header />
       <EditDistance />
       <IsSubsequence />
       <LongestCommonSubsequence />
@@ -70,6 +71,7 @@ ReactDOM.render(
       <RodCutting />
       <EggDroppingProblem />
       <MinimumNumberOfJumpsToReachEnd />
+      <Footer />
     </div>
   </Provider>,
   document.getElementById("algorithms")

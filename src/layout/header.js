@@ -30,7 +30,9 @@ const getLogins = () => (
 
 const getAvatar = user => {
   const image = () => <img src={user.avatar} alt={user.username} width="30" />;
-  return (user && user.avatar && image()) || "Log In";
+  return (
+    (user && user.avatar && image()) || (user && user.username) || "Log In"
+  );
 };
 
 const getUserInfo = (user, updateUser) => (

@@ -1,18 +1,14 @@
 import { call, put, all, take, fork } from "redux-saga/effects";
 import axios from "./axios";
-
-const getParameterByName = (name, url) => {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return "";
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
-};
+import { getParameterByName, locationReplace } from "utils/window-helper";
 
 const getAuthToken = () => {
-  return getParameterByName("auth_token") || localStorage.getItem("auth_token");
+  const authToken =
+    getParameterByName("auth_token") || localStorage.getItem("auth_token");
+  if (getParameterByName("auth_token")) {
+    locationReplace();
+  }
+  return authToken;
 };
 
 export function* getUser(authToken) {

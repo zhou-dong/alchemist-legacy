@@ -6,8 +6,10 @@ export default () => (
     <Navbar.Header>
       <Navbar.Brand>Alchemist</Navbar.Brand>
     </Navbar.Header>
-    <Nav pullRight>
-      <NavItem eventKey={2}>Dong</NavItem>
-    </Nav>
+    <Navbar.Collapse>
+      <Nav pullRight>
+        <NavItem eventKey={2}>Dong</NavItem>
+      </Nav>
+    </Navbar.Collapse>
   </Navbar>
 );

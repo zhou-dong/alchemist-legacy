@@ -29,7 +29,7 @@ const getLogins = () => (
 );
 
 const getAvatar = user => {
-  return (user && user.avatar) || (user && user.username);
+  return (user && user.avatar) || (user && user.username) || "Log In";
 };
 
 const getUserInfo = (user, updateUser) => (
@@ -40,7 +40,7 @@ const getUserInfo = (user, updateUser) => (
       id="basic-nav-dropdown"
     >
       <MenuItem eventKey={3.1}>{user && user.username}</MenuItem>
-      <MenuItem eventKey={3.2} onClick={logOut(updateUser)}>
+      <MenuItem eventKey={3.2} onClick={() => logOut(updateUser)}>
         Log Out
       </MenuItem>
     </NavDropdown>
@@ -48,7 +48,7 @@ const getUserInfo = (user, updateUser) => (
 );
 
 const getUser = (user, updateUser) => {
-  return user ? getUserInfo(user) : getLogins();
+  return user ? getUserInfo(user, updateUser) : getLogins();
 };
 const Header = ({ user, updateUser }) => {
   return (

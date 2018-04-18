@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import { herokuBaseURL, returnUrl } from "configs/config";
 import { MenuItem, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
+const logOut = updateUser => {
+  localStorage.removeItem("auth_token");
+  updateUser();
+};
+
 const createLoginUrl = authName => {
   return herokuBaseURL + "/auth/" + authName + "?return=" + returnUrl;
 };
@@ -23,21 +28,36 @@ const getLogins = () => (
   </Nav>
 );
 
-const getUserInfo = user => (
-  <Navbar.Text pullRight>{user && user.username}</Navbar.Text>
+const getAvatar = user => {
+  return (user && user.avatar) || (user && user.username);
+};
+
+const getUserInfo = (user, updateUser) => (
+  <Nav pullRight>
+    <NavDropdown
+      eventKey={3}
+      title={getAvatar(user) + ""}
+      id="basic-nav-dropdown"
+    >
+      <MenuItem eventKey={3.1}>{user && user.username}</MenuItem>
+      <MenuItem eventKey={3.2} onClick={logOut(updateUser)}>
+        Log Out
+      </MenuItem>
+    </NavDropdown>
+  </Nav>
 );
 
-const getUser = user => {
+const getUser = (user, updateUser) => {
   return user ? getUserInfo(user) : getLogins();
 };
-const Header = ({ user }) => {
+const Header = ({ user, updateUser }) => {
   return (
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>Alchemist</Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
-      <Navbar.Collapse>{getUser(user)}</Navbar.Collapse>
+      <Navbar.Collapse>{getUser(user, updateUser)}</Navbar.Collapse>
     </Navbar>
   );
 };
@@ -45,10 +65,12 @@ const Header = ({ user }) => {
 const mapStateToProps = (state, ownProps) => ({
   user: state.updateUserReducer.user
 });
+
 const mapDispatchToProps = dispatch => {
   dispatch({ type: "GET_USER" });
-  return {};
+  return { updateUser: () => dispatch({ type: "UPDATE_USER", user: {} }) };
 };
+
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case "UPDATE_USER":

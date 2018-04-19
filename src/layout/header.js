@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { herokuBaseURL, returnUrl } from "configs/config";
 import { MenuItem, Nav, Navbar, NavDropdown } from "react-bootstrap";
-
-const logOut = updateUser => {
+import { locationReplace } from "utils/window-helper";
+const logOut = () => {
   localStorage.removeItem("auth_token");
-  updateUser();
+  locationReplace();
 };
 
 const createLoginUrl = authName => {

@@ -21,11 +21,7 @@ import {
 
 import axios from "../../../axios";
 
-const increaseCount = () => {
-  axios.post("/record/algorithm/1").then(response => {
-    return (response.data && response.data.count) || 0;
-  });
-};
+const increaseCount = id => axios.post("/record/algorithm/" + id);
 
 const isSuccess = (
   table: Array<Array<string | number>>,
@@ -77,8 +73,6 @@ const updateTable = (state: State, action: Action): State => {
 
   table[row][col] = action.payload;
 
-  console.log(increaseCount());
-
   if (compared[row - 1][col - 1] !== action.payload) {
     styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
     state.score = state.score === 0 ? 0 : state.score - 1;
@@ -89,8 +83,18 @@ const updateTable = (state: State, action: Action): State => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(table, row, col)) {
+    if (state.success) return state;
+    increaseCount(state.id);
     styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
-    return { ...state, table: table, col: nextCol, row: nextRow, styles };
+    return {
+      ...state,
+      table: table,
+      col: nextCol,
+      row: nextRow,
+      count: state.count + 1,
+      success: true,
+      styles
+    };
   }
 
   if (inInitialCol(row, col)) {

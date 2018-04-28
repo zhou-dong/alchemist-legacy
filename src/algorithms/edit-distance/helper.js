@@ -42,6 +42,8 @@ export default () => {
     showModal: false,
     modalTitle: "Edit Distance",
     title: "Edit Distance",
-    modalBody: modalBody
+    modalBody: modalBody,
+    count: 0,
+    id: 1
   };
 };

@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "reducers";
-import rootSaga from "saga";
+import rootSaga from "sagas";
 import registerServiceWorker from "registerServiceWorker";
 
 import Header from "layout/header";

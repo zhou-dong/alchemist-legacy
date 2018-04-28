@@ -9,14 +9,19 @@ export type Props = {
   count: number
 };
 
-const getSuccessCount = (count: number) => (
-  <small>
-    <Label bsStyle="success">
-      <Glyphicon glyph="ok" />
-      {count}
-    </Label>
-  </small>
-);
+const getSuccessCount = (props: Props) => {
+  const count = props && props.count;
+  if (count) {
+    return (
+      <small>
+        <Label bsStyle="success">
+          <Glyphicon glyph="ok" />
+          {count}
+        </Label>
+      </small>
+    );
+  }
+};
 
 export default (props: Props) => (
   <div>
@@ -28,7 +33,7 @@ export default (props: Props) => (
             <Glyphicon glyph="question-sign" />
           </Label>&nbsp;
         </small>
-        {props.count && getSuccessCount(props.count)}
+        {getSuccessCount(props)}
       </h1>
     </header>
     <hr />

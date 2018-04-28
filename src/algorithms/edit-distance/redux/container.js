@@ -67,12 +67,12 @@ export const createHeader = () => {
   const mapStateToProps = (state, ownProps) => ({
     ...state,
     title: state.editDistanceReducer.title,
-    openModal: state.editDistanceReducer.openModal
+    openModal: state.editDistanceReducer.openModal,
+    count: state.editDistanceReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_EDIT_DISTANCE_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

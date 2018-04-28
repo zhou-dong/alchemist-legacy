@@ -1,5 +1,5 @@
-import { call, put, all, take, fork } from "redux-saga/effects";
-import axios from "./axios";
+import { call, put, take, fork } from "redux-saga/effects";
+import axios from "../axios";
 import { getParameterByName, locationReplace } from "utils/window-helper";
 
 const getAuthToken = () => {
@@ -24,8 +24,4 @@ export function* watchGetUser() {
   if (authToken) {
     yield fork(getUser, authToken);
   }
-}
-
-export default function* rootSaga() {
-  yield all([watchGetUser()]);
 }

@@ -19,6 +19,14 @@ import {
   TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
+import axios from "../../../axios";
+
+const increaseCount = () => {
+  axios.post("/record/algorithm/1").then(response => {
+    return (response.data && response.data.count) || 0;
+  });
+};
+
 const isSuccess = (
   table: Array<Array<string | number>>,
   row: number,
@@ -69,6 +77,8 @@ const updateTable = (state: State, action: Action): State => {
 
   table[row][col] = action.payload;
 
+  console.log(increaseCount());
+
   if (compared[row - 1][col - 1] !== action.payload) {
     styles[row][col] = TABLE_ELEMENT_ERROR_STYLE;
     state.score = state.score === 0 ? 0 : state.score - 1;
@@ -116,6 +126,10 @@ export default (state: State = createInitialState(), action: Action): State => {
       return { ...state, showModal: true };
     case REFRESH_CLICK:
       return createInitialState();
+    case "RECEIVED_EDIT_DISTANCE_COUNT": {
+      const count = action.record.count || 0;
+      return { ...state, count: count };
+    }
     default:
       return state;
   }

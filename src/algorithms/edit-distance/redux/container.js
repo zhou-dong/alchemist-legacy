@@ -25,9 +25,7 @@ export const createButtons = () => {
     buttons: state.editDistanceReducer.buttons
   });
   const mapDispatchToProps = dispatch => ({
-    onClick: buttonValue => {
-      dispatch(buttonClick(buttonValue));
-    }
+    onClick: buttonValue => dispatch(buttonClick(buttonValue))
   });
   return connect(mapStateToProps, mapDispatchToProps)(Buttons);
 };

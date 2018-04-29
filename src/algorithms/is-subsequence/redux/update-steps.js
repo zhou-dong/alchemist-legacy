@@ -9,6 +9,8 @@ import {
 
 import { clone2DArray, isLastElementOfTable } from "utils/generic-helper";
 
+import { increaseCount } from "../../../axios";
+
 const payloadStr = action => (action.payload === "TRUE" ? "T" : "F");
 const payloadVal = action => (action.payload === "TRUE" ? true : false);
 
@@ -57,8 +59,16 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
+    increaseCount(state.id);
     cleanStyles(styles, row, col);
-    return { ...state, table, styles, steps, count: state.count + 1 };
+    return {
+      ...state,
+      table,
+      styles,
+      steps,
+      count: state.count + 1,
+      success: true
+    };
   }
 
   const isEnd = col === table[row].length - 1;

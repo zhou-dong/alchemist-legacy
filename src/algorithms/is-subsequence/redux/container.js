@@ -68,10 +68,9 @@ export const createHeader = () => {
     openModal: state.isSubsequenceReducer.openModal,
     count: state.isSubsequenceReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_IS_SUBSEQUENCE_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

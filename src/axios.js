@@ -10,4 +10,6 @@ const baseURL = isLocal ? localBaseURL : herokuBaseURL;
 const instance = axios.create({ baseURL: baseURL });
 instance.defaults.timeout = 2500;
 
+export const increaseCount = id => instance.post("/record/algorithm/" + id);
+
 export default instance;

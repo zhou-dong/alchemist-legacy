@@ -70,6 +70,6 @@ export default () => {
     showModal: false,
     success: false,
     id: 2,
-    count: 1
+    count: 0
   };
 };

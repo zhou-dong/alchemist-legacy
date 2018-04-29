@@ -65,7 +65,8 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.isSubsequenceReducer.title,
-    openModal: state.isSubsequenceReducer.openModal
+    openModal: state.isSubsequenceReducer.openModal,
+    count: state.isSubsequenceReducer.count
   });
   const mapDispatchToProps = dispatch => ({
     openModal: () => {

@@ -61,6 +61,8 @@ const updateSytles = (
 };
 
 const updateTable = (state: State, action: Action): State => {
+  if (state.success) return state;
+
   state.steps += 1;
 
   const table = state.table;
@@ -83,7 +85,6 @@ const updateTable = (state: State, action: Action): State => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(table, row, col)) {
-    if (state.success) return state;
     increaseCount(state.id);
     styles[row][col] = TABLE_ELEMENT_SUB_INDICATE_STYLE;
     return {

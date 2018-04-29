@@ -39,6 +39,8 @@ const cleanStyles = (styles, row, col) => {
 };
 
 export default (state, action) => {
+  if (state.success) return state;
+
   const payload = payloadStr(action);
   const styles = clone2DArray(state.styles);
   const table = clone2DArray(state.table);
@@ -56,7 +58,7 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
     cleanStyles(styles, row, col);
-    return { ...state, table, styles, steps };
+    return { ...state, table, styles, steps, count: state.count + 1 };
   }
 
   const isEnd = col === table[row].length - 1;

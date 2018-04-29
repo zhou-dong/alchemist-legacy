@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.longestCommonSubsequenceReducer.title,
-    openModal: state.longestCommonSubsequenceReducer.openModal
+    openModal: state.longestCommonSubsequenceReducer.openModal,
+    count: state.longestCommonSubsequenceReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_LONGEST_COMMON_SUBSEQUENCE_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

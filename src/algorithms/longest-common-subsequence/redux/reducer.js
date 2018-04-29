@@ -19,6 +19,10 @@ export default (state = createInitialState(), action: Action) => {
       return { ...state, showModal: false };
     case REFRESH_DATA_CLICK:
       return createInitialState();
+    case "RECEIVED_LONGEST_COMMON_SUBSEQUENCE_COUNT": {
+      const count = action.record.count || 0;
+      return { ...state, count: count };
+    }
     default:
       return state;
   }

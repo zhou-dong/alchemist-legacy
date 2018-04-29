@@ -14,6 +14,7 @@ import {
 } from "utils/generic-helper";
 
 import { resultPoint } from "../algorithm";
+import { increaseCount } from "../../../axios";
 
 const nonCorrect = (state, action) =>
   state.compared[state.row - 1][state.col - 1] !== action.payload;
@@ -42,6 +43,8 @@ const cleanStyles = (state, styles) => {
 };
 
 export default (state, action) => {
+  if (state.success) return state;
+
   const styles = clone2DArray(state.styles);
   const table = clone2DArray(state.table);
   const row = state.row;
@@ -57,8 +60,16 @@ export default (state, action) => {
 
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
+    increaseCount(state.id);
     cleanStyles(state, styles);
-    return { ...state, table, styles, steps };
+    return {
+      ...state,
+      table,
+      styles,
+      steps,
+      count: state.count + 1,
+      success: true
+    };
   }
 
   const isEnd = isEndColInTable(table, row, col);

@@ -55,6 +55,9 @@ export default () => {
     col: 2,
     steps: 0,
     errors: 0,
-    showModal: false
+    showModal: false,
+    id: 4,
+    success: false,
+    count: 0
   };
 };

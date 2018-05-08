@@ -39,9 +39,10 @@ const createStyleTable = (str1, str2) => {
 
 const getTotalScore = (str1, str2) => longestString(str1, str2).length;
 
-export default () => {
+export default state => {
   const str1 = stringShuffle(mock.s1);
   const str2 = stringShuffle(mock.s2);
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(str1, str2),
     styles: createStyleTable(str1, str2),
@@ -58,6 +59,6 @@ export default () => {
     showModal: false,
     id: 4,
     success: false,
-    count: 0
+    count: count
   };
 };

@@ -40,7 +40,6 @@ export const createDashboard = () => {
   const mapDispatchToProps = dispatch => ({
     onClick: () => {
       dispatch(refreshClick());
-      dispatch({ type: "GET_EDIT_DISTANCE_COUNT" });
     }
   });
   return connect(mapStateToProps, mapDispatchToProps)(Dashboard);

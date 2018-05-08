@@ -130,7 +130,7 @@ export default (state: State = createInitialState(), action: Action): State => {
     case OPEN_MODAL_CLICK:
       return { ...state, showModal: true };
     case REFRESH_CLICK:
-      return createInitialState();
+      return createInitialState(state);
     case "RECEIVED_EDIT_DISTANCE_COUNT": {
       const count = action.record.count || 0;
       return { ...state, count: count };

@@ -24,11 +24,12 @@ const modalBody =
   " <b>Use Case</b><br>1. Find applications in natural language processing, where automatic spelling correction can determine candidate corrections for a misspelled word by selecting words from a dictionary that have a low distance to the word in question. <br><br>2. In bioinformatics, it can be used to quantify the similarity of DNA sequences, which can be viewed as strings of the letters A, C, G and T. <br><br> <b>Example</b> <br> The distance between kitten and sitting is 3. A minimal edit script that transforms the former into the latter is: <br> &nbsp;&nbsp; 1. kitten → sitten (substitution of 's' for 'k') <br> &nbsp;&nbsp; 2. sitten → sittin (substitution of 'i' for 'e') <br> &nbsp;&nbsp; 3. sittin → sitting (insertion of 'g' at the end). <br><br>" +
   formula;
 
-export default () => {
+export default state => {
   const data = mock();
   const wordOne = data.word1;
   const wordTwo = data.word2;
   const longerStr: string = longestString(wordOne, wordTwo);
+  const count = (state && state.count) || 0;
   return {
     table: createDPTableWithoutIndicator(wordOne, wordTwo),
     compared: comparedTable(wordOne, wordTwo),
@@ -43,7 +44,7 @@ export default () => {
     modalTitle: "Edit Distance",
     title: "Edit Distance",
     modalBody: modalBody,
-    count: 0,
+    count: count,
     id: 1,
     success: false
   };

@@ -41,9 +41,10 @@ const createStyleTable = (str1, str2) => {
 
 const getTotalScore = (str1, str2) => longerLength(str1, str2);
 
-export default () => {
+export default state => {
   const str1 = stringShuffle(mock.s1);
   const str2 = stringShuffle(mock.s2);
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(str1, str2),
     styles: createStyleTable(str1, str2),
@@ -58,7 +59,7 @@ export default () => {
     steps: 0,
     errors: 0,
     showModal: false,
-    count: 0,
+    count: count,
     success: false,
     id: 3
   };

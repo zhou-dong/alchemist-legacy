@@ -5,20 +5,20 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
-    "chalk": "^2.3.0",
-    "ejs": "^2.5.7",
+    "chalk": "^2.4.1",
+    "ejs": "^2.6.1",
     "flow-bin": "^0.56.0",
-    "gh-pages": "^1.0.0",
+    "gh-pages": "^1.1.0",
     "husky": "^0.14.3",
     "jest-cli": "^21.2.1",
     "jquery": "^3.3.1",
-    "lint-staged": "^4.2.3",
+    "lint-staged": "^4.3.0",
     "popper.js": "^1.14.3",
     "raf": "^3.4.0",
-    "react": "^16.0.0",
+    "react": "^16.3.2",
     "react-bootstrap": "^0.31.5",
-    "react-dom": "^16.0.0",
-    "react-redux": "^5.0.6",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
@@ -41,7 +41,7 @@
     "*.{js,json,css}": ["prettier --write", "git add"]
   },
   "devDependencies": {
-    "eslint-config-prettier": "^2.6.0",
+    "eslint-config-prettier": "^2.9.0",
     "prettier": "1.7.4",
     "redux-devtools": "^3.4.1"
   }

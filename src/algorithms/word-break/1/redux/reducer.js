@@ -18,7 +18,11 @@ export default (state = createInitialState(), action: Action) => {
     case CLOSE_MODAL_CLICK:
       return { ...state, showModal: false };
     case REFRESH_CLICK:
-      return createInitialState();
+      return createInitialState(state);
+    case "RECEIVED_WORD_BREAK_ONE_COUNT": {
+      const count = action.record.count || 0;
+      return { ...state, count: count };
+    }
     default:
       return state;
   }

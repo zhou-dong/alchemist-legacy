@@ -67,13 +67,13 @@ export const createHeader = () => {
   const mapStateToProps = (state, ownProps) => ({
     ...state,
     title: state.wordBreadIReducer.title,
-    openModal: state.wordBreadIReducer.openModal
+    openModal: state.wordBreadIReducer.openModal,
+    count: state.wordBreadIReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_WORD_BREAK_ONE_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };
 

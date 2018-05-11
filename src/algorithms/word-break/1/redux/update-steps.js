@@ -8,6 +8,8 @@ import {
   TABLE_ELEMENT_SUB_INDICATE_STYLE
 } from "presentational/constants";
 
+import { increaseCount } from "../../../../axios";
+
 const isRowEnd = state => {
   return state.col === state.table[0].length - 1;
 };
@@ -53,6 +55,8 @@ const nonCorrect = (comparedTable, row, col, payload) => {
 };
 
 export default (state, action) => {
+  if (state.success) return state;
+
   const comparedTable = state.compared;
   const row = state.row;
   const col = state.col;
@@ -72,8 +76,9 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
 
   if (isSuccess(state)) {
+    increaseCount(state.id);
     styles[row][col] = TABLE_ELEMENT_DISABLE_STYLE;
-    return { ...state, table, styles };
+    return { ...state, table, styles, count: state.count + 1, success: true };
   }
 
   const createNextCol = (col, len) => {

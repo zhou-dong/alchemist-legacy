@@ -29,10 +29,10 @@ const modalBody =
   "<b>Introduction: </b></br>Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. </br></br><b> Equation: </b></br>" +
   equation;
 
-export default () => {
+export default state => {
   const word: string = stringShuffle(mock.str);
   const dictionary: number = mock.dict;
-
+  const count = (state && state.count) || 0;
   return {
     table: createDPTableWithIndicator(word),
     styles: createStyleTableWithIndicator(word),
@@ -48,6 +48,9 @@ export default () => {
     dictionary: ["Dictionary :"].concat(dictionary),
     row: 2,
     col: 2,
-    len: 1
+    len: 1,
+    id: 5,
+    success: false,
+    count: count
   };
 };

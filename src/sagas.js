@@ -6,6 +6,7 @@ import { watchLongestCommonSubsequenceCount } from "algorithms/longest-common-su
 import { watchLongestCommonSubstringCount } from "algorithms/longest-common-substring/redux/saga";
 import { watchGetWordBreakOneCount } from "algorithms/word-break/1/redux/saga";
 import { watchKnapsackProblemCount } from "algorithms/knapsack-problem/redux/saga";
+import { watchCoinChangeFewestNumberCount } from "algorithms/coin-changing/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -15,6 +16,7 @@ export default function* rootSaga() {
     watchLongestCommonSubsequenceCount(),
     watchLongestCommonSubstringCount(),
     watchGetWordBreakOneCount(),
-    watchKnapsackProblemCount()
+    watchKnapsackProblemCount(),
+    watchCoinChangeFewestNumberCount()
   ]);
 }

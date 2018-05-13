@@ -38,9 +38,10 @@ const createStyleTable = (total, coins) => {
   return table;
 };
 
-export default () => {
+export default state => {
   const total = mock.total;
   const coins = arrayShuffle(mock.coins);
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(total, coins),
     styles: createStyleTable(total, coins),
@@ -55,6 +56,9 @@ export default () => {
     steps: 0,
     errors: 0,
     showModal: false,
-    coins: coins
+    coins: coins,
+    id: 7,
+    success: false,
+    count: count
   };
 };

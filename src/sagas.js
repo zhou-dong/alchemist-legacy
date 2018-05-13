@@ -10,6 +10,7 @@ import { watchCoinChangeFewestNumberCount } from "algorithms/coin-changing/redux
 import { watchCoinChangeHowManyWaysCount } from "algorithms/coin-change/redux/saga";
 import { watchMinimumPathSumCount } from "algorithms/minimum-path-sum/redux/saga";
 import { watchMaximumSubarrayCount } from "algorithms/maximum-subarray-problem/redux/saga";
+import { watchSubsetSumCount } from "algorithms/subset-sum-problem/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -23,6 +24,7 @@ export default function* rootSaga() {
     watchCoinChangeFewestNumberCount(),
     watchCoinChangeHowManyWaysCount(),
     watchMinimumPathSumCount(),
-    watchMaximumSubarrayCount()
+    watchMaximumSubarrayCount(),
+    watchSubsetSumCount()
   ]);
 }

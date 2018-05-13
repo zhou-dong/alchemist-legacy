@@ -47,7 +47,7 @@ const createStyleTable = (totals, array, hepler) => {
   return table;
 };
 
-export default () => {
+export default state => {
   const [size, total, max] = [mock.size, mock.total, mock.max];
   const totals = Array.from(Array(total + 1).keys());
   totals.shift();
@@ -55,6 +55,7 @@ export default () => {
     .fill(max)
     .map(n => random(n));
   const helper = array[0] === 1 ? [1, 1] : [1, 2];
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(totals, array),
     styles: createStyleTable(totals, array, helper),
@@ -69,6 +70,9 @@ export default () => {
     steps: 0,
     errors: 0,
     showModal: false,
-    helpers: [helper]
+    helpers: [helper],
+    id: 11,
+    success: false,
+    count: count
   };
 };

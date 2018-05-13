@@ -12,6 +12,7 @@ import { watchMinimumPathSumCount } from "algorithms/minimum-path-sum/redux/saga
 import { watchMaximumSubarrayCount } from "algorithms/maximum-subarray-problem/redux/saga";
 import { watchSubsetSumCount } from "algorithms/subset-sum-problem/redux/saga";
 import { watchLongestPalindromicSubstringCount } from "algorithms/longest-palindromic-substring/redux/saga";
+import { watchLongestPalindromicSubsequenceCount } from "algorithms/longest-palindromic-subsequence/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -27,6 +28,7 @@ export default function* rootSaga() {
     watchMinimumPathSumCount(),
     watchMaximumSubarrayCount(),
     watchSubsetSumCount(),
-    watchLongestPalindromicSubstringCount()
+    watchLongestPalindromicSubstringCount(),
+    watchLongestPalindromicSubsequenceCount()
   ]);
 }

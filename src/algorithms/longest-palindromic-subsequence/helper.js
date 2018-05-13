@@ -52,13 +52,15 @@ const createStyleTable = sequence => {
 };
 
 const random = max => Math.floor(Math.random() * max);
-export default () => {
+
+export default state => {
   const size = mock.size;
   const resource = mock.resource;
   const sequence = Array(size)
     .fill(resource.length)
     .map(num => resource[random(num)])
     .join("");
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(sequence),
     styles: createStyleTable(sequence),
@@ -74,6 +76,9 @@ export default () => {
     errors: 0,
     showModal: false,
     length: 1,
-    helpers: []
+    helpers: [],
+    count: count,
+    id: 13,
+    success: false
   };
 };

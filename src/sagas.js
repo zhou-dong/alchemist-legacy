@@ -11,6 +11,7 @@ import { watchCoinChangeHowManyWaysCount } from "algorithms/coin-change/redux/sa
 import { watchMinimumPathSumCount } from "algorithms/minimum-path-sum/redux/saga";
 import { watchMaximumSubarrayCount } from "algorithms/maximum-subarray-problem/redux/saga";
 import { watchSubsetSumCount } from "algorithms/subset-sum-problem/redux/saga";
+import { watchLongestPalindromicSubstringCount } from "algorithms/longest-palindromic-substring/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -25,6 +26,7 @@ export default function* rootSaga() {
     watchCoinChangeHowManyWaysCount(),
     watchMinimumPathSumCount(),
     watchMaximumSubarrayCount(),
-    watchSubsetSumCount()
+    watchSubsetSumCount(),
+    watchLongestPalindromicSubstringCount()
   ]);
 }

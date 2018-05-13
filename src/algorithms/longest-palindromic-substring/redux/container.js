@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.longestPalindromicSubstringReducer.title,
-    openModal: state.longestPalindromicSubstringReducer.openModal
+    openModal: state.longestPalindromicSubstringReducer.openModal,
+    count: state.longestPalindromicSubstringReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_LONGEST_PALINDROMIC_SUBSTRING_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

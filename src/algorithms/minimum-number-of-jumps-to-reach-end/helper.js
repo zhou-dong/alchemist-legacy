@@ -63,7 +63,7 @@ const rewriteCompared = table => {
   }
 };
 
-export default () => {
+export default state => {
   const length = mock.length;
   const max = mock.max;
 
@@ -74,6 +74,7 @@ export default () => {
 
   // const array = [2, 3, 1, 1, 2, 4, 2, 0, 1, 1];
   const compared = createComparedTable(array);
+  const count = (state && state.count) || 0;
   rewriteCompared(compared);
   return {
     table: createDisplayTable(array),
@@ -88,6 +89,9 @@ export default () => {
     col: 2,
     steps: 0,
     errors: 0,
-    showModal: false
+    showModal: false,
+    count: count,
+    id: 21,
+    success: false
   };
 };

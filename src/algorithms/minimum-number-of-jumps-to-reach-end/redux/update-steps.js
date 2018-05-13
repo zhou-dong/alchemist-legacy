@@ -8,6 +8,7 @@ import {
 } from "presentational/constants";
 
 import { clone2DArray, isLastElementOfTable } from "utils/generic-helper";
+import { increaseCount } from "../../../axios";
 
 const nonCorrect = (state, action) =>
   state.compared[state.row - 2][state.col - 1] !== action.payload;
@@ -47,6 +48,7 @@ const cleanStyles = styles => {
 };
 
 export default (state, action) => {
+  if (state.success) return state;
   const styles = clone2DArray(state.styles);
   const table = clone2DArray(state.table);
   const row = state.row;
@@ -63,7 +65,15 @@ export default (state, action) => {
   styles[2][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
     cleanStyles(styles);
-    return { ...state, table, styles, steps };
+    increaseCount(state.id);
+    return {
+      ...state,
+      table,
+      styles,
+      steps,
+      count: state.count + 1,
+      success: true
+    };
   }
 
   let nextRow = 0;

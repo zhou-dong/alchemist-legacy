@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.minimumNumberOfJumpsToReachEndReducer.title,
-    openModal: state.minimumNumberOfJumpsToReachEndReducer.openModal
+    openModal: state.minimumNumberOfJumpsToReachEndReducer.openModal,
+    count: state.minimumNumberOfJumpsToReachEndReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_MINIMUM_NUMBER_OF_JUMPS_TO_REACH_END_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

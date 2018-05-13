@@ -75,10 +75,11 @@ function shuffle(a) {
   return a;
 }
 
-export default () => {
+export default state => {
   const totalLength = mock.totalLength;
   const prices = shuffle(mock.prices);
   const compared = createComparedTable(totalLength, prices);
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(totalLength, prices),
     styles: createStyleTable(totalLength, prices),
@@ -92,6 +93,9 @@ export default () => {
     col: 3,
     steps: 0,
     errors: 0,
-    showModal: false
+    showModal: false,
+    count: count,
+    id: 19,
+    success: false
   };
 };

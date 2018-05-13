@@ -18,6 +18,9 @@ import { watchLongestIncreasingSubsequenceCount } from "algorithms/longest-incre
 import { watchLongestIncreasingSubsequenceTwoCount } from "algorithms/longest-increasing-subsequence-ii/redux/saga";
 import { watchRegularExpressionCount } from "algorithms/regular-expression/redux/saga";
 import { watchWildcardMatchingCount } from "algorithms/wildcard-matching/redux/saga";
+import { watchRodCuttingCount } from "algorithms/rod-cutting/redux/saga";
+
+import { watchMinimumNumberOfJumpsToReachEndCount } from "algorithms/minimum-number-of-jumps-to-reach-end/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -39,6 +42,8 @@ export default function* rootSaga() {
     watchLongestIncreasingSubsequenceCount(),
     watchLongestIncreasingSubsequenceTwoCount(),
     watchRegularExpressionCount(),
-    watchWildcardMatchingCount()
+    watchWildcardMatchingCount(),
+    watchRodCuttingCount(),
+    watchMinimumNumberOfJumpsToReachEndCount()
   ]);
 }

@@ -40,10 +40,11 @@ const createButtons = compared => {
   return result.sort((a, b) => a - b);
 };
 
-export default () => {
+export default state => {
   const items: Array<number> = arrayShuffle(mock.items);
   const totalWeight: number = mock.totalWeight;
   const compared = createComparedTable(items, totalWeight);
+  const count = (state && state.count) || 0;
   return {
     title: "Knapsack Problem",
     modalTitle: "Knapsack Problem",
@@ -58,6 +59,9 @@ export default () => {
     styles: createStyleTable(items, totalWeight),
     compared: compared,
     buttons: createButtons(compared),
-    items: items
+    items: items,
+    id: 6,
+    count: count,
+    success: false
   };
 };

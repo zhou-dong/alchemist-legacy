@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.knapsackProblemReducer.title,
-    openModal: state.knapsackProblemReducer.openModal
+    openModal: state.knapsackProblemReducer.openModal,
+    count: state.knapsackProblemReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_KNAPSACK_PROBLEM_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

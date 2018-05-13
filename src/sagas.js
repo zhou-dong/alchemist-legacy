@@ -8,6 +8,9 @@ import { watchGetWordBreakOneCount } from "algorithms/word-break/1/redux/saga";
 import { watchKnapsackProblemCount } from "algorithms/knapsack-problem/redux/saga";
 import { watchCoinChangeFewestNumberCount } from "algorithms/coin-changing/redux/saga";
 import { watchCoinChangeHowManyWaysCount } from "algorithms/coin-change/redux/saga";
+import { watchMinimumPathSumCount } from "algorithms/minimum-path-sum/redux/saga";
+import { watchMaximumSubarrayCount } from "algorithms/maximum-subarray-problem/redux/saga";
+
 export default function* rootSaga() {
   yield all([
     watchGetUser(),
@@ -18,6 +21,8 @@ export default function* rootSaga() {
     watchGetWordBreakOneCount(),
     watchKnapsackProblemCount(),
     watchCoinChangeFewestNumberCount(),
-    watchCoinChangeHowManyWaysCount()
+    watchCoinChangeHowManyWaysCount(),
+    watchMinimumPathSumCount(),
+    watchMaximumSubarrayCount()
   ]);
 }

@@ -74,12 +74,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.minimumPathSumReducer.title,
-    openModal: state.minimumPathSumReducer.openModal
+    openModal: state.minimumPathSumReducer.openModal,
+    count: state.minimumPathSumReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_MINIMUM_PATH_SUM_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

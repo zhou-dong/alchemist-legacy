@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.maximumSubarrayProblemReducer.title,
-    openModal: state.maximumSubarrayProblemReducer.openModal
+    openModal: state.maximumSubarrayProblemReducer.openModal,
+    count: state.maximumSubarrayProblemReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_MAXIMUM_SUBARRAY_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

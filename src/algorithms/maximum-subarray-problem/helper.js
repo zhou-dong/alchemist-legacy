@@ -49,11 +49,12 @@ const createStyleTable = size => {
   return [indexes, values, currentMaxs, globalMaxs];
 };
 
-export default () => {
+export default state => {
   const size = mock.size;
   const max = mock.max;
   const table = createDisplayTable(size, max);
   const compared = createComparedTable(table[1]);
+  const count = (state && state.count) || 0;
   return {
     table: table,
     styles: createStyleTable(size),
@@ -71,6 +72,9 @@ export default () => {
     start: 1,
     end: 1,
     max: 0,
-    currMax: 0
+    currMax: 0,
+    id: 10,
+    success: false,
+    count: count
   };
 };

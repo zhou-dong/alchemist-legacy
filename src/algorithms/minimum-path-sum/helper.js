@@ -87,9 +87,10 @@ const getDisplayTableStyles = table => {
   return styles;
 };
 
-export default () => {
+export default state => {
   const data = getShuffledData();
   const compared = createComparedTable(data);
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(data),
     styles: createStyleTable(data),
@@ -105,6 +106,9 @@ export default () => {
     displayTableStyles: getDisplayTableStyles(data),
     steps: 0,
     errors: 0,
-    showModal: false
+    showModal: false,
+    id: 9,
+    success: false,
+    count: count
   };
 };

@@ -72,6 +72,8 @@ const cleanStyles = (styles, helpers) => {
 };
 
 export default (state, action) => {
+  if (state.success) return state;
+
   const styles = clone2DArray(state.styles);
   const table = clone2DArray(state.table);
   const row = state.row;

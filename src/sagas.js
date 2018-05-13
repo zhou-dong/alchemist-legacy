@@ -17,6 +17,7 @@ import { watchPalindromePartitioningCount } from "algorithms/palindrome-partitio
 import { watchLongestIncreasingSubsequenceCount } from "algorithms/longest-increasing-subsequence/redux/saga";
 import { watchLongestIncreasingSubsequenceTwoCount } from "algorithms/longest-increasing-subsequence-ii/redux/saga";
 import { watchRegularExpressionCount } from "algorithms/regular-expression/redux/saga";
+import { watchWildcardMatchingCount } from "algorithms/wildcard-matching/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -37,6 +38,7 @@ export default function* rootSaga() {
     watchPalindromePartitioningCount(),
     watchLongestIncreasingSubsequenceCount(),
     watchLongestIncreasingSubsequenceTwoCount(),
-    watchRegularExpressionCount()
+    watchRegularExpressionCount(),
+    watchWildcardMatchingCount()
   ]);
 }

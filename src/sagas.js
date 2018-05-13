@@ -7,7 +7,7 @@ import { watchLongestCommonSubstringCount } from "algorithms/longest-common-subs
 import { watchGetWordBreakOneCount } from "algorithms/word-break/1/redux/saga";
 import { watchKnapsackProblemCount } from "algorithms/knapsack-problem/redux/saga";
 import { watchCoinChangeFewestNumberCount } from "algorithms/coin-changing/redux/saga";
-
+import { watchCoinChangeHowManyWaysCount } from "algorithms/coin-change/redux/saga";
 export default function* rootSaga() {
   yield all([
     watchGetUser(),
@@ -17,6 +17,7 @@ export default function* rootSaga() {
     watchLongestCommonSubstringCount(),
     watchGetWordBreakOneCount(),
     watchKnapsackProblemCount(),
-    watchCoinChangeFewestNumberCount()
+    watchCoinChangeFewestNumberCount(),
+    watchCoinChangeHowManyWaysCount()
   ]);
 }

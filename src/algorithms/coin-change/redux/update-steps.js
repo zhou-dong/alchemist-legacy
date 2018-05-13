@@ -13,6 +13,8 @@ import {
   isLastElementOfTable
 } from "utils/generic-helper";
 
+import { increaseCount } from "../../../axios";
+
 const nonCorrect = (state, action) => {
   return state.compared[state.row - 1][state.col - 1] !== action.payload;
 };
@@ -88,7 +90,15 @@ export default (state, action) => {
   styles[row][col] = TABLE_ELEMENT_SUCCESS_STYLE;
   if (isSuccess(state)) {
     cleanStyles(styles, helpers);
-    return { ...state, table, styles, steps };
+    increaseCount(state.id);
+    return {
+      ...state,
+      table,
+      styles,
+      steps,
+      count: state.count + 1,
+      success: true
+    };
   }
 
   const isEnd = isEndColInTable(table, row, col);

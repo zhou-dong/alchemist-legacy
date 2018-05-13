@@ -47,7 +47,7 @@ const createStyleTable = (total, coins, helpers) => {
   return table;
 };
 
-export default () => {
+export default state => {
   const total = mock.total;
   const coins = arrayShuffle(mock.coins);
   const compared = createComparedTable(total, coins);
@@ -55,6 +55,7 @@ export default () => {
   if (coins[0] === 1) {
     helpers.push([2, 1]);
   }
+  const count = (state && state.count) || 0;
   return {
     table: createDisplayTable(total, coins),
     styles: createStyleTable(total, coins, helpers),
@@ -69,6 +70,9 @@ export default () => {
     steps: 0,
     errors: 0,
     showModal: false,
-    helpers: helpers
+    helpers: helpers,
+    id: 8,
+    success: false,
+    count: count
   };
 };

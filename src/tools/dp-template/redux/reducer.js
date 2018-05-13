@@ -4,7 +4,8 @@ import {
   BUTTON_CLICK,
   OPEN_MODAL_CLICK,
   CLOSE_MODAL_CLICK,
-  REFRESH_DATA_CLICK
+  REFRESH_DATA_CLICK,
+  RECEIVED_COUNT
 } from "./actions";
 
 import createInitialState from "../helper";
@@ -18,7 +19,10 @@ export default (state = createInitialState(), action: Action) => {
     case CLOSE_MODAL_CLICK:
       return { ...state, showModal: false };
     case REFRESH_DATA_CLICK:
-      return createInitialState();
+      return createInitialState(state);
+    case RECEIVED_COUNT:
+      const count = action.record.count || 0;
+      return { ...state, count: count };
     default:
       return state;
   }

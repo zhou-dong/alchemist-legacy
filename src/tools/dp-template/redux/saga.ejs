@@ -1,0 +1,15 @@
+import { call, put, take, fork } from "redux-saga/effects";
+import { GET_COUNT, RECEIVED_COUNT } from "./actions";
+import axios from "../../../axios";
+
+function* getCount() {
+  const response = yield call(axios.get, "/record/algorithm/<%=id%>");
+  yield put({ type: RECEIVED_COUNT, record: response.data });
+}
+
+export function* watch<%=name%>Count() {
+  yield take(GET_COUNT);
+  yield fork(getCount);
+}
+
+

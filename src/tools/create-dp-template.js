@@ -11,6 +11,11 @@ if (!inputName) {
   throw "Please type in algorithm name";
 }
 
+const id = parseInt(process.argv[3]);
+if (!id) {
+  throw "Please type in algorithm id";
+}
+
 const fileLoader = (basePath, fileName) => {
   const filePath = path.join(basePath, fileName);
   return ejs.fileLoader(filePath).toString("utf-8");
@@ -56,7 +61,7 @@ const srcPath = path.join(path.resolve(__dirname), "../");
 const templateDir = path.join(srcPath, "tools", "dp-template");
 const templateReduxDir = path.join(templateDir, "redux");
 
-if (process.argv[3] === "force") {
+if (process.argv[4] === "force") {
   const toBeRemoved = path.join(srcPath, "algorithms", inputName);
   rimraf.sync(toBeRemoved, fs);
   console.log(chalk.bold.red(`removed directory: ${toBeRemoved}`));
@@ -75,7 +80,8 @@ const renderHelperJs = () => {
   const ejsTemplate = fileLoader(templateDir, "helper.ejs");
   const render = ejs.render(ejsTemplate, {
     mockFileName: mockFileName,
-    title: createTitle()
+    title: createTitle(),
+    id: id
   });
   write(path.join(destDir, "helper.js"), render);
 };
@@ -98,6 +104,17 @@ const renderContainerJs = () => {
   const ejsTemplate = fileLoader(templateReduxDir, "container.ejs");
   const render = ejs.render(ejsTemplate, { reducerName: createReducerName() });
   write(path.join(reduxDir, "container.js"), render);
+};
+
+const renderSagaJs = () => {
+  const cName = camelName();
+  const name = cName.charAt(0).toUpperCase() + cName.substr(1);
+  const ejsTemplate = fileLoader(templateReduxDir, "saga.ejs");
+  const render = ejs.render(ejsTemplate, {
+    name: name,
+    id: id
+  });
+  write(path.join(reduxDir, "saga.js"), render);
 };
 
 const cpReducerJs = () => {
@@ -139,3 +156,4 @@ cpUpdateStepsJs();
 cpAlgorithmJs();
 cpConstantsJs();
 cpIntroductionJs();
+renderSagaJs();

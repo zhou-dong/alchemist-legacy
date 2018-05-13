@@ -6,6 +6,9 @@ export const OPEN_MODAL_CLICK: string = "<%=UNDERSCORE_UPPERCASE_NAME%>_OPEN_MOD
 export const CLOSE_MODAL_CLICK: string = "<%=UNDERSCORE_UPPERCASE_NAME%>_CLOSE_MODAL_CLICK";
 export const REFRESH_DATA_CLICK: string = "<%=UNDERSCORE_UPPERCASE_NAME%>_REFRESH_CLICK";
 
+export const GET_COUNT = "GET_<%=UNDERSCORE_UPPERCASE_NAME%>_COUNT";
+export const RECEIVED_COUNT = "RECEIVED_<%=UNDERSCORE_UPPERCASE_NAME%>_COUNT";;
+
 export const refreshData = (): Action => ({ type: REFRESH_DATA_CLICK });
 export const closeModal = (): Action => ({ type: CLOSE_MODAL_CLICK });
 export const openModal = (): Action => ({ type: OPEN_MODAL_CLICK });

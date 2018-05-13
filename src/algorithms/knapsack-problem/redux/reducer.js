@@ -19,9 +19,10 @@ export default (state = createInitialState(), action: Action) => {
       return { ...state, showModal: false };
     case REFRESH_CLICK:
       return createInitialState(state);
-    case "RECEIVED_KNAPSACK_PROBLEM_COUNT":
+    case "RECEIVED_KNAPSACK_PROBLEM_COUNT": {
       const count = action.record.count || 0;
       return { ...state, count: count };
+    }
     default:
       return state;
   }

@@ -6,7 +6,7 @@ import Dashboard from "presentational/Dashboard";
 import Modal from "presentational/Modal";
 import Header from "presentational/Header";
 
-import { buttonClick, closeModal, openModal, refreshData } from "./actions";
+import { buttonClick, closeModal, openModal, refreshData, GET_COUNT } from "./actions";
 
 export const createTable = () => {
   const mapStateToProps = (state, ownProps) => ({
@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.<%=reducerName%>.title,
-    openModal: state.<%=reducerName%>.openModal
+    openModal: state.<%=reducerName%>.openModal,
+    count: state.<%=reducerName%>.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: GET_COUNT });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

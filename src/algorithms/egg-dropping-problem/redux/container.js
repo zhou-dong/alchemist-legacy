@@ -65,12 +65,12 @@ export const createHeader = () => {
   const mapStateToProps = state => ({
     ...state,
     title: state.eggDroppingProblemReducer.title,
-    openModal: state.eggDroppingProblemReducer.openModal
+    openModal: state.eggDroppingProblemReducer.openModal,
+    count: state.eggDroppingProblemReducer.count
   });
-  const mapDispatchToProps = dispatch => ({
-    openModal: () => {
-      dispatch(openModal());
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    dispatch({ type: "GET_EGG_DROPPING_PROBLEM_COUNT" });
+    return { openModal: () => dispatch(openModal()) };
+  };
   return connect(mapStateToProps, mapDispatchToProps)(Header);
 };

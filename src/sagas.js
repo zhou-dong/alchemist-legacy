@@ -19,7 +19,7 @@ import { watchLongestIncreasingSubsequenceTwoCount } from "algorithms/longest-in
 import { watchRegularExpressionCount } from "algorithms/regular-expression/redux/saga";
 import { watchWildcardMatchingCount } from "algorithms/wildcard-matching/redux/saga";
 import { watchRodCuttingCount } from "algorithms/rod-cutting/redux/saga";
-
+import { watchEggDroppingProbleamCount } from "algorithms/egg-dropping-problem/redux/saga";
 import { watchMinimumNumberOfJumpsToReachEndCount } from "algorithms/minimum-number-of-jumps-to-reach-end/redux/saga";
 
 export default function* rootSaga() {
@@ -44,6 +44,7 @@ export default function* rootSaga() {
     watchRegularExpressionCount(),
     watchWildcardMatchingCount(),
     watchRodCuttingCount(),
+    watchEggDroppingProbleamCount(),
     watchMinimumNumberOfJumpsToReachEndCount()
   ]);
 }

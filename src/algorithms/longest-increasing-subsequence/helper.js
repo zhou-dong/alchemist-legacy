@@ -67,12 +67,13 @@ const makeSequence = (size, max) =>
     .fill(max)
     .map(num => Math.floor(Math.random() * num));
 
-export default () => {
+export default state => {
   const size = mock.size;
   const max = mock.max;
   const sequence = makeSequence(size, max);
   const compared = createComparedTable(sequence);
   const helpers = sequence[1] > sequence[0] ? [[0, 2]] : [[1, 2]];
+  const count = (state && state.count) || 0;
   return {
     table: createTable(sequence),
     styles: createStyles(sequence, helpers),
@@ -88,6 +89,9 @@ export default () => {
     steps: 0,
     errors: 0,
     showModal: false,
-    helpers: helpers
+    helpers: helpers,
+    id: 15,
+    success: false,
+    count: count
   };
 };

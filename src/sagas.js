@@ -14,6 +14,9 @@ import { watchSubsetSumCount } from "algorithms/subset-sum-problem/redux/saga";
 import { watchLongestPalindromicSubstringCount } from "algorithms/longest-palindromic-substring/redux/saga";
 import { watchLongestPalindromicSubsequenceCount } from "algorithms/longest-palindromic-subsequence/redux/saga";
 import { watchPalindromePartitioningCount } from "algorithms/palindrome-partitioning/redux/saga";
+import { watchLongestIncreasingSubsequenceCount } from "algorithms/longest-increasing-subsequence/redux/saga";
+import { watchLongestIncreasingSubsequenceTwoCount } from "algorithms/longest-increasing-subsequence-ii/redux/saga";
+import { watchRegularExpressionCount } from "algorithms/regular-expression/redux/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -31,6 +34,9 @@ export default function* rootSaga() {
     watchSubsetSumCount(),
     watchLongestPalindromicSubstringCount(),
     watchLongestPalindromicSubsequenceCount(),
-    watchPalindromePartitioningCount()
+    watchPalindromePartitioningCount(),
+    watchLongestIncreasingSubsequenceCount(),
+    watchLongestIncreasingSubsequenceTwoCount(),
+    watchRegularExpressionCount()
   ]);
 }

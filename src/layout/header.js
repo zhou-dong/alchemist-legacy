@@ -53,7 +53,9 @@ const Header = ({ user, updateUser }) => {
   return (
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
-        <Navbar.Brand>Alchemist</Navbar.Brand>
+        <Navbar.Brand>
+          <a href="/">Alchemist</a>
+        </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>{getUser(user, updateUser)}</Navbar.Collapse>

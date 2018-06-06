@@ -61,7 +61,7 @@ export default state => {
     compared: compared,
     score: size,
     buttons: createButtons(compared),
-    title: "Maximum Subarray Kadane's algorithm",
+    title: "Maximum Subarray (Kadane's algorithm)",
     modalTitle: "Maximum Subarray Problem (Kadane's algorithm)",
     modalBody: modalBody,
     steps: 0,

@@ -28,7 +28,7 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div>
         <Header />
         <Route exact path="/" component={DynamicProgramming} />

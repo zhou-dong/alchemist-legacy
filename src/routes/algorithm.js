@@ -77,8 +77,6 @@ const Algorithm = ({ match }) => {
   }
 };
 
-const Algorithms = ({ match }) => (
+export default ({ match }) => (
   <Route path={`${match.url}/:name`} component={Algorithm} />
 );
-
-export default Algorithms;

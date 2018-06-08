@@ -14,8 +14,9 @@ import registerServiceWorker from "registerServiceWorker";
 
 import Header from "layout/header";
 import Footer from "layout/footer";
-import DynamicProgramming from "routes/dp";
-import Algorithms from "routes/algorithms";
+import Algorithm from "routes/algorithm";
+import Trees from "routes/trees";
+import DPs from "routes/dp";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
@@ -31,13 +32,10 @@ ReactDOM.render(
     <Router>
       <div>
         <Header />
-        <Route exact path="/" component={DynamicProgramming} />
-        <Route path="/algorithms" component={Algorithms} />
-        <Route
-          exact
-          path="/tag/dynamic-programming"
-          component={DynamicProgramming}
-        />
+        <Route exact path="/" component={DPs} />
+        <Route path="/algorithms" component={Algorithm} />
+        <Route exact path="/tag/trees" component={Trees} />
+        <Route exact path="/tag/dynamic-programming" component={DPs} />
         <Footer />
       </div>
     </Router>

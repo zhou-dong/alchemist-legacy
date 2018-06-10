@@ -18,7 +18,7 @@ class Node {
   }
 }
 
-export default class MaxHeap {
+class MaxHeap {
   constructor() {
     this.array = [];
   }
@@ -90,32 +90,32 @@ export default class MaxHeap {
   }
 }
 
-// const test = () => {
-//   const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+const test = () => {
+  const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
-//   const assertSmaller = array => {
-//     for (let i = 1; i < array.length; i += 1) {
-//       if (array[i - 1].priority < array[i].priority) {
-//         throw "this array is not going smaller";
-//       }
-//     }
-//   };
+  const assertSmaller = array => {
+    for (let i = 1; i < array.length; i += 1) {
+      if (array[i - 1].priority < array[i].priority) {
+        throw "this array is not going smaller";
+      }
+    }
+  };
 
-//   const heap = new MaxHeap();
-//   const size = 20;
-//   const randomMax = 100;
-//   const results = [];
+  const heap = new MaxHeap();
+  const size = 20;
+  const randomMax = 100;
+  const results = [];
 
-//   for (let i = 0; i < size; i += 1) {
-//     const value = getRandomInt(randomMax);
-//     heap.insert(value, value);
-//   }
+  for (let i = 0; i < size; i += 1) {
+    const value = getRandomInt(randomMax);
+    heap.insert(value, value);
+  }
 
-//   for (let i = 0; i < size; i += 1) {
-//     results.push(heap.remove());
-//   }
-//   console.log(results);
-//   assertSmaller(results);
-// };
+  for (let i = 0; i < size; i += 1) {
+    results.push(heap.remove());
+  }
+  console.log(results);
+  assertSmaller(results);
+};
 
-// test();
+test();

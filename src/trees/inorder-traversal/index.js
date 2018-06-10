@@ -4,7 +4,7 @@ import Tree from "react-d3-tree";
 const defaultRadius = 10;
 
 const node = (name, style, children) => ({
-  name: name,
+  name: name + "",
   attributes: {},
   nodeSvgShape: style,
   children: children
@@ -19,7 +19,7 @@ const yellowCircle = circleStyle("yellow");
 const greenCircle = circleStyle("green");
 
 const myTreeData = [
-  node("A", greenCircle, [node("B", yellowCircle), node("C", yellowCircle)])
+  node(10, greenCircle, [node("B", yellowCircle), node("C", yellowCircle)])
 ];
 
 const containerStyles = {

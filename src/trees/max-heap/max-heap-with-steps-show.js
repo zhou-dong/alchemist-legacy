@@ -1,7 +1,7 @@
 import React from "react";
 import Tree from "react-d3-tree";
 
-import Heap from "utils/max-heap";
+import Heap from "./max-heap-with-steps";
 
 const getLeftChildIndex = index => 2 * index + 1;
 const getRightChildIndex = index => 2 * index + 2;
@@ -24,8 +24,20 @@ class Node {
   }
 }
 
-const createTreeData = heap => {
-  const array = heap.array;
+const createHeap = (size, max) => {
+  const heap = new Heap();
+  Array(size)
+    .fill(max)
+    .map(random => getRandomInt(random))
+    .forEach(e => heap.insert(new Node(e, "lightgreen", []), e));
+
+  for (let i = 0; i < size; i += 1) {
+    heap.remove();
+  }
+  return heap.steps.map(array => createTreeData(array));
+};
+
+const createTreeData = array => {
   for (let i = 0; i < array.length; i += 1) {
     const leftChildIndex = getLeftChildIndex(i);
     const rightChildIndex = getRightChildIndex(i);
@@ -45,59 +57,45 @@ const emptyNode = new Node("", "white", []);
 
 const containerStyles = {
   width: "100%",
-  // height: "100vh",
-  height: "35em",
+  height: "50em",
   textAlign: "center"
 };
 
 export default class MyComponent extends React.Component {
   constructor() {
     super();
-    const heap = new Heap();
-    const data = createTreeData(heap);
-    this.state = { data, heap };
+    const datas = createHeap(size, max);
+    const data = createTreeData([]);
+    this.state = { datas, data };
     this.pop = this.pop.bind(this);
-    this.add = this.add.bind(this);
   }
 
   componentDidMount() {
-    const addId = setInterval(this.add, 3000);
-    this.setState({ addId });
+    const popId = setInterval(this.pop, 3000);
+    this.setState({ popId });
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.addId);
     clearInterval(this.state.popId);
   }
 
-  add() {
-    const heap = this.state.heap;
-    if (heap.size < size) {
-      const priority = getRandomInt(max);
-      heap.insert(new Node(priority, "yellow", []), priority);
-      const data = createTreeData(heap);
-      this.setState({ heap, data });
-    } else {
-      clearInterval(this.state.addId);
-      const popId = setInterval(this.pop, 3000);
-      this.setState({ popId });
-    }
-  }
-
   pop() {
-    const heap = this.state.heap;
-    heap.remove();
-    const data = createTreeData(heap);
-    if (heap.size === 0) {
+    if (this.state.datas.length === 0) {
       clearInterval(this.state.popId);
+      this.setState({ data: createTreeData([]), datas: [] });
+      return;
     }
-    this.setState({ heap, data });
+    const datas = this.state.datas;
+    const data = datas.shift();
+    this.setState({ data, datas });
   }
 
   render() {
     return (
       <div id="max-heap" style={containerStyles}>
         <Tree
+          textLayout={{ x: -7, y: 0 }}
+          zoom={1}
           pathFunc="diagonal"
           data={this.state.data}
           orientation="vertical"

@@ -5,10 +5,51 @@ const getRightChildIndex = index => 2 * index + 2;
 const getParentIndex = index => Math.floor((index - 1) / 2);
 
 const isOutOfBound = (array, index) => index >= array.length;
-const swap = (array, index1, index2) => {
+
+class TreeNode {
+  constructor(name, color, children) {
+    this.name = name + "";
+    this.attributes = {};
+    this.nodeSvgShape = {
+      shape: "circle",
+      shapeProps: { r: 10, fill: color }
+    };
+    this.children = children || [];
+  }
+}
+
+const copyNode = node => {
+  return new TreeNode(node.name, node.nodeSvgShape.shapeProps.fill);
+};
+
+const addStep = (array, steps) => {
+  const copy = array
+    .slice(0)
+    .map(node => new Node(copyNode(node.value), node.priority));
+  steps.push(copy);
+};
+
+const nodeSvgShape = color => ({
+  shape: "circle",
+  shapeProps: { r: 10, fill: color }
+});
+
+const updateNodeColor = (node, color) =>
+  (node.value.nodeSvgShape = nodeSvgShape(color));
+
+const clean = array => array.map(node => updateNodeColor(node, "yellow"));
+
+const swap = (array, steps, index1, index2) => {
+  clean(array);
+
   const temp = array[index1];
   array[index1] = array[index2];
   array[index2] = temp;
+
+  array[index1].value.nodeSvgShape = nodeSvgShape("lightgreen");
+  array[index2].value.nodeSvgShape = nodeSvgShape("lightgreen");
+
+  addStep(array, steps);
 };
 
 class Node {
@@ -18,13 +59,16 @@ class Node {
   }
 }
 
-class MaxHeap {
+export default class MaxHeap {
   constructor() {
     this.array = [];
+    this.steps = [];
   }
 
   insert(value, priority) {
+    clean(this.array);
     this.array.push(new Node(value, priority));
+    addStep(this.array, this.steps);
     this.heapifyBottomUp(this.array.length - 1);
   }
 
@@ -36,7 +80,12 @@ class MaxHeap {
       return this.array.pop();
     }
     const max = this.array[0];
+    clean(this.array);
+    updateNodeColor(max, "lightgreen");
+    updateNodeColor(this.array[this.array.length - 1], "lightgreen");
+    addStep(this.array, this.steps);
     this.array[0] = this.array.pop();
+    addStep(this.array, this.steps);
     this.heapifyTopDown(0);
     return max;
   }
@@ -53,7 +102,7 @@ class MaxHeap {
     if (this.array[index].priority <= this.array[parentIndex].priority) {
       return;
     }
-    swap(this.array, index, parentIndex);
+    swap(this.array, this.steps, index, parentIndex);
     this.heapifyBottomUp(parentIndex);
   }
 
@@ -66,7 +115,7 @@ class MaxHeap {
       return;
     }
     if (this.array[index].priority < this.array[biggerChildIndex].priority) {
-      swap(this.array, index, biggerChildIndex);
+      swap(this.array, this.steps, index, biggerChildIndex);
     }
     this.heapifyTopDown(biggerChildIndex);
   }
@@ -89,33 +138,3 @@ class MaxHeap {
       : rightChildIndex;
   }
 }
-
-const test = () => {
-  const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-
-  const assertSmaller = array => {
-    for (let i = 1; i < array.length; i += 1) {
-      if (array[i - 1].priority < array[i].priority) {
-        throw "this array is not going smaller";
-      }
-    }
-  };
-
-  const heap = new MaxHeap();
-  const size = 20;
-  const randomMax = 100;
-  const results = [];
-
-  for (let i = 0; i < size; i += 1) {
-    const value = getRandomInt(randomMax);
-    heap.insert(value, value);
-  }
-
-  for (let i = 0; i < size; i += 1) {
-    results.push(heap.remove());
-  }
-  console.log(results);
-  assertSmaller(results);
-};
-
-test();

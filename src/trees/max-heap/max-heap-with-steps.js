@@ -6,13 +6,15 @@ const getParentIndex = index => Math.floor((index - 1) / 2);
 
 const isOutOfBound = (array, index) => index >= array.length;
 
+const radius = 15;
+
 class TreeNode {
   constructor(name, color, children) {
     this.name = name + "";
     this.attributes = {};
     this.nodeSvgShape = {
       shape: "circle",
-      shapeProps: { r: 10, fill: color }
+      shapeProps: { r: radius, fill: color }
     };
     this.children = children || [];
   }

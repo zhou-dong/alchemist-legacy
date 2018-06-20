@@ -42,6 +42,17 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
+    <!-- to make github pages support single-page-application -->
+    <script>
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110151090-1"></script>
     <script>

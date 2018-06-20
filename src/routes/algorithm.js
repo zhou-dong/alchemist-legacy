@@ -73,7 +73,7 @@ const Algorithm = ({ match }) => {
       return <EggDroppingProblem />;
     case "minimum-jumps":
       return <MinimumNumberOfJumpsToReachEnd />;
-    case "max-heap-shows":
+    case "max-heap":
       return <MaxHeapWithSteps />;
     default:
       return <h3>can not find algorithm: [{match.params.name}]</h3>;

@@ -2,13 +2,7 @@ import React from "react";
 import Tree from "react-d3-tree";
 
 import Heap from "./max-heap-with-steps";
-import {
-  PageHeader,
-  ButtonToolbar,
-  ButtonGroup,
-  Button,
-  Glyphicon
-} from "react-bootstrap";
+import { ButtonToolbar, ButtonGroup, Button, Glyphicon } from "react-bootstrap";
 
 const getLeftChildIndex = index => 2 * index + 1;
 const getRightChildIndex = index => 2 * index + 2;
@@ -40,11 +34,40 @@ const createHeap = (size, max) => {
     .map(random => getRandomInt(random))
     .forEach(e => heap.insert(new Node(e, "lightgreen", []), e));
 
+  const removed = [];
   for (let i = 0; i < size; i += 1) {
-    heap.remove();
+    const max = heap.remove();
+    removed.push(max.priority);
   }
-  return heap.steps.map(array => createTreeData(array));
+  const datas = heap.steps.map(array => createTreeData(array));
+  const data = createTreeData([]);
+  const inHeapMemos = createInHeapMemos(heap.steps);
+  const inHeapMemo = [];
+  const removedMemos = createRemovedMemos(heap.steps, removed);
+  const removedMemo = [];
+  return {
+    datas,
+    data,
+    inHeapMemos,
+    inHeapMemo,
+    removedMemos,
+    removedMemo,
+    removed
+  };
 };
+
+const createRemovedMemos = (steps, removed) => {
+  const result = steps.map(array => []);
+  for (let i = result.length - 1; i >= 0; i--) {
+    if (steps[i].length === size) {
+      return result;
+    }
+    result[i] = removed.slice(0, size - steps[i].length);
+  }
+};
+
+const createInHeapMemos = matrix =>
+  matrix.map(array => array.map(item => item.priority));
 
 const createTreeData = array => {
   for (let i = 0; i < array.length; i += 1) {
@@ -66,7 +89,7 @@ const emptyNode = new Node("", "white", []);
 
 const containerStyles = {
   width: "100%",
-  height: "50em",
+  height: "35em",
   textAlign: "center",
   backgroundColor: ""
 };
@@ -76,15 +99,17 @@ const separation = { siblings: 1, nonSiblings: 1 };
 export default class MyComponent extends React.Component {
   constructor() {
     super();
-    const datas = createHeap(size, max);
-    const data = createTreeData([]);
-    this.state = { datas, data };
+    this.state = Object.assign({}, createHeap(size, max));
     this.pop = this.pop.bind(this);
     this.setTranslate = this.setTranslate.bind(this);
     this.startInterval = this.startInterval.bind(this);
     this.removeInterval = this.removeInterval.bind(this);
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
+    this.refresh = this.refresh.bind(this);
+    this.toolbar = this.toolbar.bind(this);
+    this.getInHeapMemo = this.getInHeapMemo.bind(this);
+    this.getRemovedMemo = this.getRemovedMemo.bind(this);
   }
 
   componentDidMount() {
@@ -99,7 +124,7 @@ export default class MyComponent extends React.Component {
 
   removeInterval() {
     clearInterval(this.state.popId);
-    this.setState({ popId: "" });
+    this.setState({ popId: false });
   }
 
   componentWillUnmount() {
@@ -115,12 +140,28 @@ export default class MyComponent extends React.Component {
   pop() {
     if (this.state.datas.length === 0) {
       this.removeInterval();
-      this.setState({ data: createTreeData([]), datas: [] });
+      this.setState({
+        data: createTreeData([]),
+        datas: [],
+        inHeapMemo: [],
+        removedMemo: this.state.removed
+      });
       return;
     }
     const datas = this.state.datas;
     const data = datas.shift();
-    this.setState({ data, datas });
+    const inHeapMemos = this.state.inHeapMemos;
+    const inHeapMemo = inHeapMemos.shift();
+    const removedMemos = this.state.removedMemos;
+    const removedMemo = removedMemos.shift();
+    this.setState({
+      data,
+      datas,
+      inHeapMemos,
+      inHeapMemo,
+      removedMemos,
+      removedMemo
+    });
   }
 
   play() {
@@ -133,24 +174,62 @@ export default class MyComponent extends React.Component {
     this.removeInterval();
   }
 
+  refresh() {
+    this.removeInterval();
+    this.setState(Object.assign({}, createHeap(size, max)));
+    this.play();
+  }
+
+  getInHeapMemo() {
+    const btns = this.state.inHeapMemo.map((item, i) => (
+      <Button bsSize="small" bsStyle="info" key={i + 1}>
+        {item}
+      </Button>
+    ));
+    btns.unshift(
+      <Button bsSize="small" bsStyle="warning" key={0}>
+        In Heap
+      </Button>
+    );
+    return <ButtonGroup>{btns}</ButtonGroup>;
+  }
+
+  getRemovedMemo() {
+    const btns = this.state.removedMemo.map((item, i) => (
+      <Button bsSize="small" bsStyle="info" key={i + 1}>
+        {item}
+      </Button>
+    ));
+    btns.unshift(
+      <Button bsSize="small" bsStyle="warning" key={0}>
+        Removed From Heap
+      </Button>
+    );
+    return <ButtonGroup>{btns}</ButtonGroup>;
+  }
+
+  toolbar() {
+    return (
+      <ButtonToolbar>
+        <ButtonGroup>
+          <Button bsStyle="success" onClick={this.play}>
+            <Glyphicon glyph="play" /> play
+          </Button>
+          <Button bsStyle="warning" onClick={this.pause}>
+            <Glyphicon glyph="pause" /> pause
+          </Button>
+          <Button bsStyle="danger" onClick={this.refresh}>
+            <Glyphicon glyph="refresh" /> refresh
+          </Button>
+        </ButtonGroup>
+      </ButtonToolbar>
+    );
+  }
+
   render() {
     return (
       <div id={containerId} style={containerStyles}>
-        <PageHeader>
-          Heap <small>Priority Queue</small>
-        </PageHeader>
-
-        <ButtonToolbar>
-          <ButtonGroup>
-            <Button bsSize="large" onClick={this.play}>
-              <Glyphicon glyph="play" /> play
-            </Button>
-            <Button bsSize="large" onClick={this.pause}>
-              <Glyphicon glyph="pause" /> pause
-            </Button>
-          </ButtonGroup>
-        </ButtonToolbar>
-
+        {this.toolbar()}
         <Tree
           textLayout={{ x: -7, y: 0 }}
           zoom={1}
@@ -162,6 +241,10 @@ export default class MyComponent extends React.Component {
           separation={separation}
           transitionDuration={0}
         />
+        <ButtonToolbar>
+          {this.getInHeapMemo()}
+          {this.getRemovedMemo()}
+        </ButtonToolbar>
       </div>
     );
   }

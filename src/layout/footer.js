@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 
-export default () => (
+const footer = () => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>Alchemist</Navbar.Brand>
@@ -13,3 +13,7 @@ export default () => (
     </Navbar.Collapse>
   </Navbar>
 );
+
+footer();
+
+export default () => <div />;

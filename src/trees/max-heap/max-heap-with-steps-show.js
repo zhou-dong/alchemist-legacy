@@ -2,7 +2,13 @@ import React from "react";
 import Tree from "react-d3-tree";
 
 import Heap from "./max-heap-with-steps";
-import { ButtonToolbar, ButtonGroup, Button, Glyphicon } from "react-bootstrap";
+import {
+  PageHeader,
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+  Glyphicon
+} from "react-bootstrap";
 
 const getLeftChildIndex = index => 2 * index + 1;
 const getRightChildIndex = index => 2 * index + 2;
@@ -130,6 +136,10 @@ export default class MyComponent extends React.Component {
   render() {
     return (
       <div id={containerId} style={containerStyles}>
+        <PageHeader>
+          Heap <small>Priority Queue</small>
+        </PageHeader>
+
         <ButtonToolbar>
           <ButtonGroup>
             <Button bsSize="large" onClick={this.play}>

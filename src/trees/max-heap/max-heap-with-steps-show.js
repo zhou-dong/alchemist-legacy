@@ -2,7 +2,13 @@ import React from "react";
 import Tree from "react-d3-tree";
 
 import Heap from "./max-heap-with-steps";
-import { ButtonToolbar, ButtonGroup, Button, Glyphicon } from "react-bootstrap";
+import {
+  PageHeader,
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+  Glyphicon
+} from "react-bootstrap";
 
 const getLeftChildIndex = index => 2 * index + 1;
 const getRightChildIndex = index => 2 * index + 2;
@@ -229,6 +235,9 @@ export default class MyComponent extends React.Component {
   render() {
     return (
       <div id={containerId} style={containerStyles}>
+        <PageHeader>
+          Heap and Priority Queue <small> -Heap Sort</small>
+        </PageHeader>
         {this.toolbar()}
         <Tree
           textLayout={{ x: -7, y: 0 }}

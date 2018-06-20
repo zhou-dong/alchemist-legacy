@@ -14,7 +14,7 @@ class TreeNode {
     this.attributes = {};
     this.nodeSvgShape = {
       shape: "circle",
-      shapeProps: { r: radius, fill: color }
+      shapeProps: { r: radius, fill: color, stroke: color }
     };
     this.children = children || [];
   }
@@ -39,7 +39,7 @@ const nodeSvgShape = color => ({
 const updateNodeColor = (node, color) =>
   (node.value.nodeSvgShape = nodeSvgShape(color));
 
-const clean = array => array.map(node => updateNodeColor(node, "yellow"));
+const clean = array => array.map(node => updateNodeColor(node, "orange"));
 
 const swap = (array, steps, index1, index2) => {
   clean(array);

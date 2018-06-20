@@ -21,7 +21,7 @@ class Node {
     this.attributes = {};
     this.nodeSvgShape = {
       shape: "circle",
-      shapeProps: { r: radius, fill: color }
+      shapeProps: { r: radius, fill: color, stroke: color }
     };
     this.children = children || [];
   }
@@ -150,6 +150,7 @@ export default class MyComponent extends React.Component {
           translate={this.state.translate}
           collapsible={false}
           separation={separation}
+          transitionDuration={0}
         />
       </div>
     );

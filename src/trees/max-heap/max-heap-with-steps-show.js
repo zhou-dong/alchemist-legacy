@@ -250,8 +250,8 @@ export default class MyComponent extends React.Component {
           separation={separation}
           transitionDuration={0}
         />
-        <ButtonToolbar>
-          {this.getInHeapMemo()}
+        <ButtonToolbar>{this.getInHeapMemo()}</ButtonToolbar>
+        <ButtonToolbar style={{ "margin-top": 5, "margin-bottom": 10 }}>
           {this.getRemovedMemo()}
         </ButtonToolbar>
       </div>

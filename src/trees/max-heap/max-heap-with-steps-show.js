@@ -2,7 +2,13 @@ import React from "react";
 import Tree from "react-d3-tree";
 
 import Heap from "./max-heap-with-steps";
-import { ButtonToolbar, ButtonGroup, Button, Glyphicon } from "react-bootstrap";
+import {
+  ButtonToolbar,
+  ButtonGroup,
+  Button,
+  Glyphicon,
+  Modal
+} from "react-bootstrap";
 
 const getLeftChildIndex = index => 2 * index + 1;
 const getRightChildIndex = index => 2 * index + 2;
@@ -13,6 +19,13 @@ const containerId = "max-heap";
 const size = 10;
 const max = 100;
 const radius = 12;
+
+const introContent = `In computer science, a heap is a specialized tree-based data structure that satisfies the heap property: if P is a parent node of C, then the key (the value) of P is either greater than or equal to (in a max heap) or less than or equal to (in a min heap) the key of C. The node at the "top" of the heap (with no parents) is called the root node. <br/><br/>
+
+The heap is one maximally efficient implementation of an abstract data type called a priority queue, and in fact priority queues are often referred to as "heaps", regardless of how they may be implemented. A common implementation of a heap is the binary heap, in which the tree is a binary tree. The heap data structure, specifically the binary heap, was introduced by J. W. J. Williams in 1964, as a data structure for the heapsort sorting algorithm. Heaps are also crucial in several efficient graph algorithms such as Dijkstra's algorithm. In a heap, the highest (or lowest) priority element is always stored at the root. A heap is not a sorted structure and can be regarded as partially ordered. As visible from the heap-diagram, there is no particular relationship among nodes on any given level, even among the siblings. When a heap is a complete binary tree, it has a smallest possible height—a heap with N nodes and for each node a branches always has log N height. A heap is a useful data structure when you need to remove the object with the highest (or lowest) priority. <br/><br/>
+
+- WIKIPEDIA
+`;
 
 class Node {
   constructor(name, color, children) {
@@ -96,7 +109,10 @@ const containerStyles = {
 export default class MyComponent extends React.Component {
   constructor() {
     super();
-    this.state = Object.assign({}, createHeap(size, max));
+    this.state = Object.assign(
+      { showModal: false, closeModal: true },
+      createHeap(size, max)
+    );
     this.pop = this.pop.bind(this);
     this.setTranslate = this.setTranslate.bind(this);
     this.startInterval = this.startInterval.bind(this);
@@ -107,6 +123,9 @@ export default class MyComponent extends React.Component {
     this.toolbar = this.toolbar.bind(this);
     this.getInHeapMemo = this.getInHeapMemo.bind(this);
     this.getRemovedMemo = this.getRemovedMemo.bind(this);
+    this.getIntro = this.getIntro.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   componentDidMount() {
@@ -159,6 +178,10 @@ export default class MyComponent extends React.Component {
       removedMemos,
       removedMemo
     });
+  }
+
+  test() {
+    return <div>xxxxx</div>;
   }
 
   play() {
@@ -221,13 +244,43 @@ export default class MyComponent extends React.Component {
     );
   }
 
+  openModal() {
+    this.setState({ showModal: true });
+    this.pause();
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
+    this.play();
+  }
+
+  getIntro() {
+    return (
+      <Modal
+        show={this.state.showModal}
+        onHide={this.play}
+        aria-labelledby="contained-modal-title"
+      >
+        <Modal.Header>
+          <Modal.Title id="contained-modal-title">
+            Heaps and Priority Queues
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body dangerouslySetInnerHTML={{ __html: introContent }} />
+        <Modal.Footer>
+          <Button onClick={this.closeModal}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
   render() {
     return (
       <div id={containerId} style={containerStyles}>
         <h4>
           Heap and Priority Queue&nbsp;
           <small>
-            <Button bsSize="xsmall" bsStyle="info" onClick={this.refresh}>
+            <Button bsSize="xsmall" bsStyle="info" onClick={this.openModal}>
               <Glyphicon glyph="question-sign" />
             </Button>
           </small>
@@ -250,6 +303,7 @@ export default class MyComponent extends React.Component {
           depthFactor={50}
         />
         {this.toolbar()}
+        {this.getIntro()}
       </div>
     );
   }

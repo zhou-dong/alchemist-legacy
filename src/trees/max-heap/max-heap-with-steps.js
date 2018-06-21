@@ -83,8 +83,8 @@ export default class MaxHeap {
     }
     const max = this.array[0];
     clean(this.array);
-    updateNodeColor(max, "lightgreen");
-    updateNodeColor(this.array[this.array.length - 1], "lightgreen");
+    updateNodeColor(max, "green");
+    updateNodeColor(this.array[this.array.length - 1], "green");
     addStep(this.array, this.steps);
     this.array[0] = this.array.pop();
     addStep(this.array, this.steps);

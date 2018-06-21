@@ -207,19 +207,17 @@ export default class MyComponent extends React.Component {
 
   toolbar() {
     return (
-      <ButtonToolbar style={{ marginTo: 5, marginBottom: 5 }}>
-        <ButtonGroup>
-          <Button bsSize="small" bsStyle="success" onClick={this.play}>
-            <Glyphicon glyph="play" /> play
-          </Button>
-          <Button bsSize="small" bsStyle="warning" onClick={this.pause}>
-            <Glyphicon glyph="pause" /> pause
-          </Button>
-          <Button bsSize="small" bsStyle="danger" onClick={this.refresh}>
-            <Glyphicon glyph="refresh" /> refresh
-          </Button>
-        </ButtonGroup>
-      </ButtonToolbar>
+      <ButtonGroup style={{ marginTo: 5, marginBottom: 5 }}>
+        <Button bsSize="small" bsStyle="success" onClick={this.play}>
+          <Glyphicon glyph="play" /> play
+        </Button>
+        <Button bsSize="small" bsStyle="warning" onClick={this.pause}>
+          <Glyphicon glyph="pause" /> pause
+        </Button>
+        <Button bsSize="small" bsStyle="danger" onClick={this.refresh}>
+          <Glyphicon glyph="refresh" /> refresh
+        </Button>
+      </ButtonGroup>
     );
   }
 
@@ -227,7 +225,6 @@ export default class MyComponent extends React.Component {
     return (
       <div id={containerId} style={containerStyles}>
         <h4>Heap and Priority Queue</h4>
-        {this.toolbar()}
         <Tree
           textLayout={{ x: -7, y: 0 }}
           zoom={1}
@@ -240,6 +237,7 @@ export default class MyComponent extends React.Component {
           transitionDuration={0}
           zoomable={false}
         />
+        {this.toolbar()}
         <ButtonToolbar>{this.getInHeapMemo()}</ButtonToolbar>
         <ButtonToolbar style={{ marginTop: 5, marginBottom: 10 }}>
           {this.getRemovedMemo()}

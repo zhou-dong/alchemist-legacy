@@ -88,7 +88,7 @@ const emptyNode = new Node("", "white", []);
 
 const containerStyles = {
   width: "100%",
-  height: "33em",
+  height: "25em",
   textAlign: "center",
   backgroundColor: ""
 };
@@ -179,7 +179,7 @@ export default class MyComponent extends React.Component {
 
   getInHeapMemo() {
     const btns = this.state.inHeapMemo.map((item, i) => (
-      <Button bsSize="xsmall" bsStyle="info" key={i + 1}>
+      <Button bsSize="xsmall" bsStyle="primary" key={i + 1}>
         {item}
       </Button>
     ));
@@ -193,7 +193,7 @@ export default class MyComponent extends React.Component {
 
   getRemovedMemo() {
     const btns = this.state.removedMemo.map((item, i) => (
-      <Button bsSize="xsmall" bsStyle="info" key={i + 1}>
+      <Button bsSize="xsmall" bsStyle="primary" key={i + 1}>
         {item}
       </Button>
     ));
@@ -215,7 +215,7 @@ export default class MyComponent extends React.Component {
           <Glyphicon glyph="pause" /> pause
         </Button>
         <Button bsSize="small" bsStyle="danger" onClick={this.refresh}>
-          <Glyphicon glyph="refresh" /> refresh
+          <Glyphicon glyph="repeat" /> refresh
         </Button>
       </ButtonGroup>
     );
@@ -224,7 +224,18 @@ export default class MyComponent extends React.Component {
   render() {
     return (
       <div id={containerId} style={containerStyles}>
-        <h4>Heap and Priority Queue</h4>
+        <h4>
+          Heap and Priority Queue&nbsp;
+          <small>
+            <Button bsSize="xsmall" bsStyle="info" onClick={this.refresh}>
+              <Glyphicon glyph="question-sign" />
+            </Button>
+          </small>
+        </h4>
+        <ButtonToolbar>{this.getInHeapMemo()}</ButtonToolbar>
+        <ButtonToolbar style={{ marginTop: 5, marginBottom: 5 }}>
+          {this.getRemovedMemo()}
+        </ButtonToolbar>
         <Tree
           textLayout={{ x: -7, y: 0 }}
           zoom={1}
@@ -233,15 +244,12 @@ export default class MyComponent extends React.Component {
           orientation="vertical"
           translate={this.state.translate}
           collapsible={false}
-          separation={{ siblings: 0.4, nonSiblings: 0.4 }}
+          separation={{ siblings: 0.5, nonSiblings: 0.5 }}
           transitionDuration={0}
           zoomable={false}
+          depthFactor={50}
         />
         {this.toolbar()}
-        <ButtonToolbar>{this.getInHeapMemo()}</ButtonToolbar>
-        <ButtonToolbar style={{ marginTop: 5, marginBottom: 10 }}>
-          {this.getRemovedMemo()}
-        </ButtonToolbar>
       </div>
     );
   }

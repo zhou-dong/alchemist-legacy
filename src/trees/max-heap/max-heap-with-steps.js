@@ -6,7 +6,7 @@ const getParentIndex = index => Math.floor((index - 1) / 2);
 
 const isOutOfBound = (array, index) => index >= array.length;
 
-const radius = 15;
+const radius = 12;
 
 class TreeNode {
   constructor(name, color, children) {
@@ -48,8 +48,8 @@ const swap = (array, steps, index1, index2) => {
   array[index1] = array[index2];
   array[index2] = temp;
 
-  array[index1].value.nodeSvgShape = nodeSvgShape("lightgreen");
-  array[index2].value.nodeSvgShape = nodeSvgShape("lightgreen");
+  array[index1].value.nodeSvgShape = nodeSvgShape("green");
+  array[index2].value.nodeSvgShape = nodeSvgShape("green");
 
   addStep(array, steps);
 };

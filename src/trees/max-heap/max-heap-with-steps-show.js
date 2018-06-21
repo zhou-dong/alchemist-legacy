@@ -2,13 +2,7 @@ import React from "react";
 import Tree from "react-d3-tree";
 
 import Heap from "./max-heap-with-steps";
-import {
-  PageHeader,
-  ButtonToolbar,
-  ButtonGroup,
-  Button,
-  Glyphicon
-} from "react-bootstrap";
+import { ButtonToolbar, ButtonGroup, Button, Glyphicon } from "react-bootstrap";
 
 const getLeftChildIndex = index => 2 * index + 1;
 const getRightChildIndex = index => 2 * index + 2;
@@ -16,10 +10,9 @@ const isOutOfBound = (array, index) => index >= array.length;
 const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
 const containerId = "max-heap";
-const size = 15;
+const size = 10;
 const max = 100;
-
-const radius = 15;
+const radius = 12;
 
 class Node {
   constructor(name, color, children) {
@@ -38,7 +31,7 @@ const createHeap = (size, max) => {
   Array(size)
     .fill(max)
     .map(random => getRandomInt(random))
-    .forEach(e => heap.insert(new Node(e, "lightgreen", []), e));
+    .forEach(e => heap.insert(new Node(e, "green", []), e));
 
   const removed = [];
   for (let i = 0; i < size; i += 1) {
@@ -95,12 +88,10 @@ const emptyNode = new Node("", "white", []);
 
 const containerStyles = {
   width: "100%",
-  height: "35em",
+  height: "33em",
   textAlign: "center",
   backgroundColor: ""
 };
-
-const separation = { siblings: 1, nonSiblings: 1 };
 
 export default class MyComponent extends React.Component {
   constructor() {
@@ -188,13 +179,13 @@ export default class MyComponent extends React.Component {
 
   getInHeapMemo() {
     const btns = this.state.inHeapMemo.map((item, i) => (
-      <Button bsSize="small" bsStyle="info" key={i + 1}>
+      <Button bsSize="xsmall" bsStyle="info" key={i + 1}>
         {item}
       </Button>
     ));
     btns.unshift(
-      <Button bsSize="small" bsStyle="warning" key={0}>
-        In Heap
+      <Button bsSize="xsmall" bsStyle="warning" key={0}>
+        IN HEAP
       </Button>
     );
     return <ButtonGroup>{btns}</ButtonGroup>;
@@ -202,13 +193,13 @@ export default class MyComponent extends React.Component {
 
   getRemovedMemo() {
     const btns = this.state.removedMemo.map((item, i) => (
-      <Button bsSize="small" bsStyle="info" key={i + 1}>
+      <Button bsSize="xsmall" bsStyle="info" key={i + 1}>
         {item}
       </Button>
     ));
     btns.unshift(
-      <Button bsSize="small" bsStyle="warning" key={0}>
-        Removed From Heap
+      <Button bsSize="xsmall" bsStyle="warning" key={0}>
+        OUT HEAP
       </Button>
     );
     return <ButtonGroup>{btns}</ButtonGroup>;
@@ -216,15 +207,15 @@ export default class MyComponent extends React.Component {
 
   toolbar() {
     return (
-      <ButtonToolbar>
+      <ButtonToolbar style={{ marginTo: 5, marginBottom: 5 }}>
         <ButtonGroup>
-          <Button bsStyle="success" onClick={this.play}>
+          <Button bsSize="small" bsStyle="success" onClick={this.play}>
             <Glyphicon glyph="play" /> play
           </Button>
-          <Button bsStyle="warning" onClick={this.pause}>
+          <Button bsSize="small" bsStyle="warning" onClick={this.pause}>
             <Glyphicon glyph="pause" /> pause
           </Button>
-          <Button bsStyle="danger" onClick={this.refresh}>
+          <Button bsSize="small" bsStyle="danger" onClick={this.refresh}>
             <Glyphicon glyph="refresh" /> refresh
           </Button>
         </ButtonGroup>
@@ -235,9 +226,7 @@ export default class MyComponent extends React.Component {
   render() {
     return (
       <div id={containerId} style={containerStyles}>
-        <PageHeader>
-          Heap and Priority Queue <small> -Heap Sort</small>
-        </PageHeader>
+        <h4>Heap and Priority Queue</h4>
         {this.toolbar()}
         <Tree
           textLayout={{ x: -7, y: 0 }}
@@ -247,11 +236,12 @@ export default class MyComponent extends React.Component {
           orientation="vertical"
           translate={this.state.translate}
           collapsible={false}
-          separation={separation}
+          separation={{ siblings: 0.4, nonSiblings: 0.4 }}
           transitionDuration={0}
+          zoomable={false}
         />
         <ButtonToolbar>{this.getInHeapMemo()}</ButtonToolbar>
-        <ButtonToolbar style={{ "margin-top": 5, "margin-bottom": 10 }}>
+        <ButtonToolbar style={{ marginTop: 5, marginBottom: 10 }}>
           {this.getRemovedMemo()}
         </ButtonToolbar>
       </div>

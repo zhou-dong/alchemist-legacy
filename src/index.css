@@ -20,3 +20,7 @@ header > h1 > small,
 header > h1 > span {
   vertical-align: middle;
 }
+
+text.nodeNameBase {
+  stroke: white;
+}

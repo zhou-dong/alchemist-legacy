@@ -34,7 +34,7 @@ ReactDOM.render(
         <Header />
         <Route exact path="/" component={DPs} />
         <Route path="/algorithms" component={Algorithm} />
-        <Route exact path="/tag/trees" component={Trees} />
+        <Route path="/tag/trees" component={Trees} />
         <Route exact path="/tag/dynamic-programming" component={DPs} />
         <Footer />
       </div>

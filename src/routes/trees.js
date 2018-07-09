@@ -1,11 +1,20 @@
 import React from "react";
+import { Route, Link } from "react-router-dom";
 
-// import InorderTraversal from "trees/inorder-traversal";
-// import MaxHeap from "trees/max-heap";
-import MaxHeapSteps from "trees/max-heap/max-heap-with-steps-show";
+import MaxHeap from "trees/max-heap";
 
-export default () => (
+const Algorithm = ({ match }) => {
+  switch (match.params.name) {
+    case "max-heap":
+      return <MaxHeap />;
+    default:
+      return <h3>can not find algorithm: [{match.params.name}]</h3>;
+  }
+};
+
+export default ({ match }) => (
   <div>
-    <MaxHeapSteps />
+    <Link to={match.url + "/max-heap"}>Heap</Link>
+    <Route exact path={`${match.url}/:name`} component={Algorithm} />
   </div>
 );

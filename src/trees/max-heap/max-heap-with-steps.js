@@ -6,7 +6,7 @@ const getParentIndex = index => Math.floor((index - 1) / 2);
 
 const isOutOfBound = (array, index) => index >= array.length;
 
-const radius = 12;
+const radius = 15;
 
 class TreeNode {
   constructor(name, color, children) {

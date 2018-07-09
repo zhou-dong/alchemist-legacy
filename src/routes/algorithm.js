@@ -22,7 +22,7 @@ import WildcardMatching from "algorithms/wildcard-matching";
 import RodCutting from "algorithms/rod-cutting";
 import EggDroppingProblem from "algorithms/egg-dropping-problem";
 import MinimumNumberOfJumpsToReachEnd from "algorithms/minimum-number-of-jumps-to-reach-end";
-import MaxHeapWithSteps from "trees/max-heap/max-heap-with-steps-show";
+import MaxHeap from "trees/max-heap";
 
 const Algorithm = ({ match }) => {
   switch (match.params.name) {
@@ -74,7 +74,7 @@ const Algorithm = ({ match }) => {
     case "minimum-jumps":
       return <MinimumNumberOfJumpsToReachEnd />;
     case "max-heap":
-      return <MaxHeapWithSteps />;
+      return <MaxHeap />;
     default:
       return <h3>can not find algorithm: [{match.params.name}]</h3>;
   }

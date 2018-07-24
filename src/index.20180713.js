@@ -13,8 +13,8 @@ import rootReducer from "reducers";
 import rootSaga from "sagas";
 import registerServiceWorker from "registerServiceWorker";
 
-import Header from "layout/header";
-import Footer from "layout/footer";
+import Header from "layouts/header";
+import Footer from "layouts/footer";
 import Algorithm from "routes/algorithm";
 import Trees from "routes/trees";
 import DPs from "routes/dp";

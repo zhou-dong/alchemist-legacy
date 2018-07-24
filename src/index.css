@@ -23,4 +23,11 @@ header > h1 > span {
 
 text.nodeNameBase {
   stroke: white;
+  fill: white;
+  font-weight: lighter;
+}
+
+path.linkBase {
+  stroke: green;
+  stroke-width: 3px;
 }

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { updateUserReducer } from "layout/header";
+import { updateUserReducer } from "views/UserProfile/UserProfile.jsx";
 
 import editDistanceReducer from "algorithms/edit-distance/redux/reducer";
 import wordBreadIReducer from "algorithms/word-break/1/redux/reducer";

@@ -15,6 +15,6 @@ const Algorithm = ({ match }) => {
 export default ({ match }) => (
   <div>
     <Link to={match.url + "/max-heap"}>Heap</Link>
-    <Route exact path={`${match.url}/:name`} component={Algorithm} />
+    <Route path={`${match.url}/:name`} component={Algorithm} />
   </div>
 );

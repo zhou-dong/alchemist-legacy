@@ -99,8 +99,7 @@ function UserProfile(props) {
   const { user } = props;
   return (
     <div>
-      <Login />
-      {profile(props)}
+      { user ? profile(props) : <Login /> }
     </div>
   );
 }

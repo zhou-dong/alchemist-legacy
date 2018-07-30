@@ -14,6 +14,8 @@ import CardBody from "components/Card/CardBody.jsx";
 import avatar from "assets/img/faces/marc.jpg";
 import Person from "@material-ui/icons/Person";
 
+import Login from "views/Login";
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -69,27 +71,36 @@ const getUserImage = user => {
   }
 }
 
+const profile = (props) => {
+  const { classes } = props;
+  const { user } = props;
+  return (
+    <Grid container>
+    <GridItem xs={12} sm={12} md={12}>
+      <Card profile>
+        <CardAvatar profile>
+          <a href="#pablo" onClick={e => e.preventDefault()}>
+            {getUserImage(user)}
+          </a>
+        </CardAvatar>
+        <CardBody profile>
+          <h4 className={classes.cardTitle}>{getUsername(user)}</h4>
+          <p className={classes.description}>{getEmail(user)}</p>
+          <Button color="danger" round>Sign out</Button>
+        </CardBody>
+      </Card>
+    </GridItem>
+  </Grid>
+  )
+}
+
 function UserProfile(props) {
   const { classes } = props;
   const { user } = props;
   return (
     <div>
-      <Grid container>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card profile>
-            <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                {getUserImage(user)}
-              </a>
-            </CardAvatar>
-            <CardBody profile>
-              <h4 className={classes.cardTitle}>{getUsername(user)}</h4>
-              <p className={classes.description}>{getEmail(user)}</p>
-              <Button disabled round>Follow</Button>
-            </CardBody>
-          </Card>
-        </GridItem>
-      </Grid>
+      <Login />
+      {profile(props)}
     </div>
   );
 }
